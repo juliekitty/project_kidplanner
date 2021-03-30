@@ -1,0 +1,37 @@
+PODS:
+  - countdown_flutter (0.0.1):
+    - Flutter
+  - Flutter (1.0.0)
+  - FMDB (2.7.5):
+    - FMDB/standard (= 2.7.5)
+  - FMDB/standard (2.7.5)
+  - sqflite (0.0.2):
+    - Flutter
+    - FMDB (>= 2.7.5)
+
+DEPENDENCIES:
+  - countdown_flutter (from `.symlinks/plugins/countdown_flutter/ios`)
+  - Flutter (from `Flutter`)
+  - sqflite (from `.symlinks/plugins/sqflite/ios`)
+
+SPEC REPOS:
+  trunk:
+    - FMDB
+
+EXTERNAL SOURCES:
+  countdown_flutter:
+    :path: ".symlinks/plugins/countdown_flutter/ios"
+  Flutter:
+    :path: Flutter
+  sqflite:
+    :path: ".symlinks/plugins/sqflite/ios"
+
+SPEC CHECKSUMS:
+  countdown_flutter: 423a4cc24614ccb078c2ce4ac6739b1d85cbe98b
+  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
+  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+  sqflite: 6d358c025f5b867b29ed92fc697fd34924e11904
+
+PODFILE CHECKSUM: 80a5bea9f6900750909f6d3fad1d3a0f1e560f5a
+
+COCOAPODS: 1.10.1
