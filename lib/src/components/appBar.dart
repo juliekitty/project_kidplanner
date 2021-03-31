@@ -1,26 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:project_kidplanner/views/profileView.dart';
 
 // defaults
 String appBarTitle = '';
+
+//int myPoints = 0;
+int myPoints = 1000;
 
 Widget appBar(context, textTheme, appBarTitle) {
   return AppBar(
     title: Text(
       (appBarTitle != '' ? appBarTitle : 'Routine for Kids'),
       style: textTheme.headline6
-          .copyWith(fontWeight: FontWeight.bold, color: Colors.white),
+          .copyWith(fontWeight: FontWeight.w600, color: Colors.white),
     ),
-    actions: [
+    actions: <Widget>[
+      myPoints == 0
+          ? new SizedBox()
+          : Center(
+              child: new Text(
+                myPoints.toString(),
+                style: new TextStyle(
+                  color: Colors.white,
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
       IconButton(
-        icon: Icon(Icons.more_horiz),
+        icon: Icon(Icons.person),
         tooltip: 'Contact',
         onPressed: () {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Une personne a été ajoutée.'),
-              duration: Duration(seconds: 2, milliseconds: 500),
-            ),
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => ProfileView()),
           );
         },
       ),

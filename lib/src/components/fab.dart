@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import '../../views/bonusTasks.dart';
+import '../../views/bonusTasksView.dart';
 
 Widget returnFab(context) {
   return FloatingActionButton(
@@ -11,7 +11,7 @@ Widget returnFab(context) {
     onPressed: () {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => BonusTasks()),
+        MaterialPageRoute(builder: (context) => BonusTasksView()),
       );
     },
   );

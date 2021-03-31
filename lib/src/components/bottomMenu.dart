@@ -2,74 +2,36 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:project_kidplanner/views/HomePage.dart';
 
-import 'package:project_kidplanner/views/profileViews.dart';
+import 'package:project_kidplanner/views/profileView.dart';
 //import 'package:project_kidplanner/views/CountDownState.dart';
-import 'package:project_kidplanner/views/CountDownTimerState.dart';
+import 'package:project_kidplanner/views/CountDownTimerView.dart';
+/*
+  DEPRECATED
+*/
 
-Widget returnBottomNav(context) {
+Widget returnBottomNav(_selectedScreenIndex, _selectScreen) {
   return BottomAppBar(
-    shape: const CircularNotchedRectangle(),
+    shape: CircularNotchedRectangle(),
     color: Colors.amber,
-    child: new Row(
-      mainAxisSize: MainAxisSize.max,
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: <Widget>[
-        IconButton(
-          padding: EdgeInsets.fromLTRB(40, 5, 5, 5),
-          icon: Icon(
-            Icons.home,
-            size: 30,
-          ),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => HomePage()),
-            );
-          },
-        ),
-        IconButton(
-          padding: EdgeInsets.fromLTRB(40, 5, 5, 5),
-          icon: Icon(
-            Icons.hourglass_bottom,
-            size: 30,
-          ),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => CountDownTimer()),
-            );
-          },
-        ),
-        //
-        const Spacer(),
-        IconButton(
-          padding: EdgeInsets.fromLTRB(5, 5, 40, 5),
-          icon: Icon(
-            Icons.person,
-            size: 30,
-          ),
-          tooltip: 'Contact',
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => ProfileView()),
-            );
-          },
-        ),
-        IconButton(
-          padding: EdgeInsets.fromLTRB(5, 5, 40, 5),
-          icon: Icon(
-            Icons.list,
-            size: 30,
-          ),
-          tooltip: 'List',
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => CountDownTimer()),
-            );
-          },
-        ),
+    notchMargin: 4,
+    clipBehavior: Clip.antiAlias,
+    child: BottomNavigationBar(
+      type: BottomNavigationBarType.fixed,
+      backgroundColor: Colors.amber,
+      currentIndex: _selectedScreenIndex,
+      showSelectedLabels: false,
+      showUnselectedLabels: false,
+      unselectedItemColor: Colors.white,
+      selectedItemColor: Colors.cyan,
+      iconSize: 30,
+      onTap: _selectScreen,
+      items: [
+        BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.hourglass_bottom), label: 'TaskTimer'),
+        //BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+        //BottomNavigationBarItem(icon: Icon(Icons.list), label: "Advices"),
+        //BottomNavigationBarItem(icon: Icon(Icons.star), label: "Bonus Tasks")
       ],
     ),
   );

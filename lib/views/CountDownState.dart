@@ -1,31 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:countdown_flutter/countdown_flutter.dart';
-import 'CountDownTimerState.dart';
-import '../src/components/appBar.dart';
+import 'CountDownTimerView.dart';
 
 class CountDown extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: appBar(context, Theme.of(context).textTheme, 'Countdown'),
-      body: Center(
-        child: Countdown(
-          duration: Duration(seconds: 10),
-          onFinish: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => CountDownTimer()),
-            );
-          },
-          builder: (BuildContext ctx, Duration remaining) {
-            return Text(
-              '${remaining.inMinutes}:${remaining.inSeconds}',
-              style: TextStyle(
-                  color: Colors.black, decoration: TextDecoration.none),
-            );
-          },
-        ),
-      ),
+    return Countdown(
+      duration: Duration(seconds: 10),
+      onFinish: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => CountDownTimer()),
+        );
+      },
+      builder: (BuildContext ctx, Duration remaining) {
+        return Text(
+          '${remaining.inMinutes}:${remaining.inSeconds}',
+          style:
+              TextStyle(color: Colors.black, decoration: TextDecoration.none),
+        );
+      },
     );
   }
 }

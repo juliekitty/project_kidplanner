@@ -1,25 +1,115 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import '../src/components/appBar.dart';
-import '../src/components/fab.dart';
-import '../src/components/bottomMenu.dart';
 
-class ProgramView extends StatefulWidget {
-  @override
-  _ProgramViewState createState() => _ProgramViewState();
-}
+import 'package:project_kidplanner/src/classes/program.dart';
+import 'package:project_kidplanner/resources/programsData.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
-class _ProgramViewState extends State<ProgramView> {
+class ProgramView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: appBar(context, Theme.of(context).textTheme, 'Program'),
-        body: ListView(
-          scrollDirection: Axis.horizontal,
-          children: <Widget>[],
+    final String programType = ModalRoute.of(context).settings.arguments;
+//
+    //print('ok ${programs.toString()}');
+    final Program program = findProgramUsingFirstWhere(programs, programType);
+
+    Widget createTile(context, step) {
+      return Card(
+        child: GestureDetector(
+          onTap: () {
+            /*Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => PhotoDetailsRoute(),
+              settings: RouteSettings(
+                arguments: photo,
+              ),
+            ),
+          );*/
+          },
+          child: Container(
+            width: MediaQuery.of(context).size.width * 0.40,
+            height: MediaQuery.of(context).size.height * 1,
+            alignment: Alignment.bottomCenter,
+            child: Column(children: [
+              Text(step['title'].toString()),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Container(
+                  width: 100,
+                  height: 100,
+                  child: SvgPicture.asset(
+                      (step['picture'] != null
+                          ? step['picture']
+                          : 'assets/images/clock.svg'),
+                      semanticsLabel: ''),
+                ),
+              ),
+            ]),
+            /*decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: NetworkImage(
+                    photo.thumbnailUrl,
+                  ),
+                  fit: BoxFit.cover),
+            ),*/
+          ),
         ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButton: returnFab(context),
-        bottomNavigationBar: returnBottomNav(context));
+      );
+    }
+
+//
+    return Scaffold(
+      appBar: appBar(context, Theme.of(context).textTheme, 'Program'),
+      body: ListView(
+        scrollDirection: Axis.vertical,
+        shrinkWrap: true,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Text(
+              'Begin a routine: ${program.title}',
+              style: Theme.of(context).textTheme.headline6,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(
+                'There are ${program.steps.length} steps',
+                style: Theme.of(context).textTheme.bodyText2,
+              ),
+              for (var item in program.steps)
+                RichText(
+                  text: TextSpan(
+                    text: '• ',
+                    style: Theme.of(context).textTheme.bodyText2,
+                    children: <TextSpan>[
+                      TextSpan(
+                        text: '${item['title'].toString()}',
+                      ),
+                    ],
+                  ),
+                ),
+            ]),
+          ),
+          program.steps.length == 0
+              ? new SizedBox()
+              : SizedBox(
+                  height: 200,
+                  child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      shrinkWrap: true,
+                      physics: ScrollPhysics(),
+                      children: [
+                        for (var item in program.steps)
+                          createTile(context, item)
+                      ]),
+                )
+        ],
+      ),
+    );
   }
 }

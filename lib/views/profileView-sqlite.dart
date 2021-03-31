@@ -5,11 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
-import '../src/components/appBar.dart';
-import '../src/components/fab.dart';
-import '../src/components/bottomMenu.dart';
 
 class ProfileView extends StatefulWidget {
   @override
@@ -20,15 +16,10 @@ class _ProfileViewState extends State<ProfileView> {
   @override
   Widget build(BuildContext context) {
     load();
-    return Scaffold(
-        appBar: appBar(context, Theme.of(context).textTheme, 'my Profile'),
-        body: ListView(
-          scrollDirection: Axis.horizontal,
-          children: <Widget>[Text('Test page for sqlite')],
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButton: returnFab(context),
-        bottomNavigationBar: returnBottomNav(context));
+    return ListView(
+      scrollDirection: Axis.horizontal,
+      children: <Widget>[Text('Test page for sqlite')],
+    );
   }
 }
 
