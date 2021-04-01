@@ -7,7 +7,7 @@ import 'package:project_kidplanner/resources/programsData.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'dart:async';
 
-class Step1 extends StatelessWidget {
+/*class Step1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -20,6 +20,17 @@ class Step1 extends StatelessWidget {
       ),
     );
   }
+}*/
+
+Widget step1() {
+  return Container(
+    child: Padding(
+      padding: const EdgeInsets.fromLTRB(15, 20, 15, 5),
+      child: Text(
+        '1',
+      ),
+    ),
+  );
 }
 
 class Step2 extends StatelessWidget {
@@ -74,11 +85,11 @@ class ProgramDetailsView extends StatefulWidget {
 
 class _ProgramDetailsViewState extends State<ProgramDetailsView> {
   int _selectedScreenIndex = 0;
-  List _screens = [
-    {"screen": Step1(), "title": "Step 1"},
-    {"screen": Step2(), "title": "Step 2"},
-    {"screen": Step3(), "title": "Step 3"},
-    {"screen": Step4(), "title": "Step 4"},
+  List<Map> _screens = [
+    {"screen": step1(), "title": "Step 1", "duration": Duration(seconds: 5)},
+    {"screen": Step2(), "title": "Step 2", "duration": Duration(seconds: 15)},
+    {"screen": Step3(), "title": "Step 3", "duration": Duration(seconds: 6)},
+    {"screen": Step4(), "title": "Step 4", "duration": Duration(seconds: 5)},
   ];
 
   void _selectScreen(int index) {
@@ -108,7 +119,7 @@ class _ProgramDetailsViewState extends State<ProgramDetailsView> {
 
   void loadTimer(Duration duration) {
     Timer timer = new Timer(duration, () {
-      debugPrint("Print after 5 seconds");
+      debugPrint("Print after ${duration.toString()}");
       if (_selectedScreenIndex + 1 < _screens.length) {
         _selectScreen(_selectedScreenIndex + 1);
       } else {
@@ -141,8 +152,8 @@ class _ProgramDetailsViewState extends State<ProgramDetailsView> {
     final Program program = findProgramUsingFirstWhere(programs, programType);
 
     // If not the last step, program a timer to go to the next step
-    print('create a timer');
-    loadTimer(new Duration(seconds: 5));
+    print('create a timer in ${_screens[_selectedScreenIndex]["duration"]}');
+    loadTimer(_screens[_selectedScreenIndex]["duration"]);
 
     return Scaffold(
       appBar: appBar(context, Theme.of(context).textTheme,
