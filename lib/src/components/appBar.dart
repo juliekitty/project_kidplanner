@@ -30,7 +30,7 @@ Widget appBar(context, textTheme, appBarTitle) {
             ),
       IconButton(
         icon: Icon(Icons.person),
-        tooltip: 'Contact',
+        tooltip: 'Profile',
         onPressed: () {
           Navigator.push(
             context,

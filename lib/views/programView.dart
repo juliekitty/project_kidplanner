@@ -5,6 +5,7 @@ import '../src/components/appBar.dart';
 import 'package:project_kidplanner/src/classes/program.dart';
 import 'package:project_kidplanner/resources/programsData.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'programDetails.dart';
 
 class ProgramView extends StatelessWidget {
   @override
@@ -16,6 +17,7 @@ class ProgramView extends StatelessWidget {
 
     Widget createTile(context, step) {
       return Card(
+        color: Colors.amber,
         child: GestureDetector(
           onTap: () {
             /*Navigator.push(
@@ -31,22 +33,31 @@ class ProgramView extends StatelessWidget {
           child: Container(
             width: MediaQuery.of(context).size.width * 0.40,
             height: MediaQuery.of(context).size.height * 1,
-            alignment: Alignment.bottomCenter,
-            child: Column(children: [
-              Text(step['title'].toString()),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Container(
-                  width: 100,
-                  height: 100,
-                  child: SvgPicture.asset(
-                      (step['picture'] != null
-                          ? step['picture']
-                          : 'assets/images/clock.svg'),
-                      semanticsLabel: ''),
-                ),
-              ),
-            ]),
+            alignment: Alignment.center,
+            padding: const EdgeInsets.all(10.0),
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    step['title'].toString(),
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.headline6,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Container(
+                      width: 50,
+                      height: 50,
+                      child: SvgPicture.asset(
+                          (step['picture'] != null
+                              ? step['picture']
+                              : 'assets/images/clock.svg'),
+                          semanticsLabel: ''),
+                    ),
+                  ),
+                  Text('${step['duration'].toString()} mn'),
+                ]),
             /*decoration: BoxDecoration(
               image: DecorationImage(
                   image: NetworkImage(
@@ -110,6 +121,29 @@ class ProgramView extends StatelessWidget {
                 )
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.keyboard_arrow_right),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ProgramDetailsView(),
+              settings: RouteSettings(
+                arguments: program.programId,
+              ),
+            ),
+          );
+        },
+      ),
+/*
+ElevatedButton(
+                      child: Text(
+                        (buttonText != null ? buttonText : 'GO'),
+                        style: TextStyle(fontSize: 18),
+                      ),
+                      
+                    ),
+*/
     );
   }
 }

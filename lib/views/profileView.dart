@@ -20,17 +20,19 @@ class _ProfileViewState extends State<ProfileView> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Icon(Icons.person),
-                  Expanded(
-                      child: Text(
-                          'Name Name Name Name Name Name Name Name Name ')),
-                ],
+              Padding(
+                padding: EdgeInsets.fromLTRB(15.0, 12.5, 25.0, 12.5),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Expanded(flex: 1, child: Icon(Icons.person)),
+                    Expanded(flex: 1, child: Divider()),
+                    Expanded(flex: 10, child: Text('Julie')),
+                  ],
+                ),
               ),
-              Container(
+              /*Container(
                 child: TextField(
                   decoration: InputDecoration(
                     icon: Icon(Icons.person),
@@ -40,7 +42,7 @@ class _ProfileViewState extends State<ProfileView> {
                     border: OutlineInputBorder(),
                   ),
                 ),
-              ),
+              ),*/
               Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -57,7 +59,7 @@ class _ProfileViewState extends State<ProfileView> {
                   children: <Widget>[
                     Row(
                       children: <Widget>[
-                        Expanded(child: Text('Content')),
+                        Expanded(child: Text('Credits')),
                         IconButton(
                           icon: Icon(
                             Icons.keyboard_arrow_right,

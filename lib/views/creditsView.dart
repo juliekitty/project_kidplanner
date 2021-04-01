@@ -12,7 +12,7 @@ class CreditsRoute extends StatefulWidget {
 
 class WebViewLoadUI extends State<WebViewLoad> {
   WebViewController webViewController;
-  String htmlFilePath = 'assets/html/TestPage.html';
+  String htmlFilePath = 'assets/html/credits.html';
 
   loadLocalHTML() async {
     String fileHtmlContents = await rootBundle.loadString(htmlFilePath);
@@ -45,12 +45,6 @@ class _CreditsRouteState extends State<CreditsRoute> {
         title: Text("Credits"),
       ),
       body: WebViewLoad(),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.arrow_back),
-        onPressed: () {
-          Navigator.pop(context);
-        },
-      ),
     );
   }
 }
