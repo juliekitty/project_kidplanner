@@ -135,13 +135,14 @@ class _ProgramDetailsViewState extends State<ProgramDetailsView> {
   @override
   void dispose() {
     //stateTimer.cancel();
+    print('dispose');
     super.dispose();
   }
 
   @override
   void initState() {
     super.initState();
-
+    print('initState');
     // if put here, the function will be called only once
     // loadPeriodic();
   }
@@ -155,32 +156,60 @@ class _ProgramDetailsViewState extends State<ProgramDetailsView> {
     print('create a timer in ${_screens[_selectedScreenIndex]["duration"]}');
     loadTimer(_screens[_selectedScreenIndex]["duration"]);
 
-    return Scaffold(
-      appBar: appBar(context, Theme.of(context).textTheme,
-          _screens[_selectedScreenIndex]["title"]),
-      body: Container(
-        color: Colors.yellow[100].withOpacity(0.3),
-        child: _screens[_selectedScreenIndex]["screen"],
+    return WillPopScope(
+      onWillPop: () async {
+        final value = await showDialog<bool>(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                content: Text(
+                    'Are you sure you want to exit? You\'ll loose your bonus!'),
+                actions: <Widget>[
+                  TextButton(
+                    child: Text('No'),
+                    onPressed: () {
+                      Navigator.of(context).pop(false);
+                    },
+                  ),
+                  TextButton(
+                    child: Text('Yes, exit!!'),
+                    onPressed: () {
+                      Navigator.of(context).pop(true);
+                    },
+                  ),
+                ],
+              );
+            });
+
+        return value == true;
+      },
+      child: Scaffold(
+        appBar: appBar(context, Theme.of(context).textTheme,
+            _screens[_selectedScreenIndex]["title"]),
+        body: Container(
+          color: Colors.yellow[100].withOpacity(0.3),
+          child: _screens[_selectedScreenIndex]["screen"],
+        ),
+        floatingActionButton: (_selectedScreenIndex + 1 >= _screens.length)
+            ? FloatingActionButton(
+                child: Icon(
+                  Icons.arrow_back,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              )
+            : FloatingActionButton(
+                child: Icon(
+                  Icons.star,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  _selectScreen(_selectedScreenIndex + 1);
+                },
+              ),
       ),
-      floatingActionButton: (_selectedScreenIndex + 1 >= _screens.length)
-          ? FloatingActionButton(
-              child: Icon(
-                Icons.arrow_back,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            )
-          : FloatingActionButton(
-              child: Icon(
-                Icons.star,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                _selectScreen(_selectedScreenIndex + 1);
-              },
-            ),
     );
   }
 }
