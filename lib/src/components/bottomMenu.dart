@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:project_kidplanner/views/HomePage.dart';
-
-import 'package:project_kidplanner/views/profileView.dart';
-//import 'package:project_kidplanner/views/CountDownState.dart';
-import 'package:project_kidplanner/views/CountDownTimerView.dart';
 
 Widget returnBottomNav(_selectedScreenIndex, _selectScreen) {
   return BottomAppBar(

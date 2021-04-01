@@ -40,7 +40,7 @@ class ProgramView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    step['title'].toString(),
+                    step.title.toString(),
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.headline6,
                   ),
@@ -50,13 +50,13 @@ class ProgramView extends StatelessWidget {
                       width: 50,
                       height: 50,
                       child: SvgPicture.asset(
-                          (step['picture'] != null
-                              ? step['picture']
+                          (step.picture != null
+                              ? step.picture
                               : 'assets/images/clock.svg'),
                           semanticsLabel: ''),
                     ),
                   ),
-                  Text('${step['duration'].toString()} mn'),
+                  Text('${step.duration.toString()} mn'),
                 ]),
             /*decoration: BoxDecoration(
               image: DecorationImage(
@@ -99,7 +99,7 @@ class ProgramView extends StatelessWidget {
                     style: Theme.of(context).textTheme.bodyText2,
                     children: <TextSpan>[
                       TextSpan(
-                        text: '${item['title'].toString()}',
+                        text: '${item.title.toString()}',
                       ),
                     ],
                   ),
