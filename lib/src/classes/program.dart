@@ -3,21 +3,21 @@ class Program {
   String programId;
   String title;
   String descr;
-  List<Step> steps;
+  List<ProgramStep> steps;
   // später für DetailView bei bedarf gerne erweitern mit Alter, Ort, etc.
 
   // Konstruktor
   Program(this.programId, this.title, this.descr, this.steps);
 }
 
-class Step {
+class ProgramStep {
   // Eigenschaften
   String title;
   double duration;
   String picture;
 
   // Konstruktor
-  Step({this.title, this.duration, this.picture});
+  ProgramStep({this.title, this.duration, this.picture});
 }
 
 /// Find a person in the list using firstWhere method.
