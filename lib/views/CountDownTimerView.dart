@@ -2,30 +2,8 @@ import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
 import 'package:flutter/rendering.dart';
-//import 'package:project_kidplanner/main.dart';
 import 'package:duration_picker/duration_picker.dart';
-
-extension DurationExtensions on Duration {
-  /// Converts the duration into a readable string
-  /// 05:15
-  String toHoursMinutes() {
-    String twoDigitMinutes = _toTwoDigits(this.inMinutes.remainder(60));
-    return "${_toTwoDigits(this.inHours)}:$twoDigitMinutes";
-  }
-
-  /// Converts the duration into a readable string
-  /// 05:15:35
-  String toHoursMinutesSeconds() {
-    String twoDigitMinutes = _toTwoDigits(this.inMinutes.remainder(60));
-    String twoDigitSeconds = _toTwoDigits(this.inSeconds.remainder(60));
-    return "${_toTwoDigits(this.inHours)}:$twoDigitMinutes:$twoDigitSeconds";
-  }
-
-  String _toTwoDigits(int n) {
-    if (n >= 10) return "$n";
-    return "0$n";
-  }
-}
+import 'package:project_kidplanner/src/components/DurationExtension.dart';
 
 class CountDownTimer extends StatefulWidget {
   @override
@@ -81,7 +59,8 @@ class _CountDownTimerState extends State<CountDownTimer>
                 });
                 print(resultingDuration.toHoursMinutes());
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    content: Text('Chose duration: $resultingDuration')));
+                    content: Text(
+                        'Chose duration: ${resultingDuration.toHoursMinutes()}')));
               },
             ),
             Align(

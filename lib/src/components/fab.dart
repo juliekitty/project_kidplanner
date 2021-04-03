@@ -4,6 +4,7 @@ import '../../views/bonusTasksView.dart';
 
 Widget returnFab(context) {
   return FloatingActionButton(
+    tooltip: 'Win bonus points',
     child: Icon(
       Icons.star,
       color: Colors.white,

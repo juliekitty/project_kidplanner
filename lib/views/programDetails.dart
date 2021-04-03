@@ -5,7 +5,7 @@ import 'package:project_kidplanner/src/classes/customScrollPhysics.dart';
 
 import 'package:project_kidplanner/src/classes/program.dart';
 import 'package:project_kidplanner/resources/programsData.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+//import 'package:flutter_svg/flutter_svg.dart';
 import 'dart:async';
 
 //
@@ -14,6 +14,11 @@ import 'dart:async';
 
 // bool: is the next button visible
 bool isVisibileNextBtn = false;
+List _screens;
+List _stepsWidgetsList;
+// Timer
+Timer timer;
+bool _initDone = false;
 
 //
 // Each step as a widget for the pageView
@@ -97,22 +102,11 @@ Widget showInterruptDialog(context) {
   );
 }
 
-class ProgramDetailsView extends StatefulWidget {
-  @override
-  _ProgramDetailsViewState createState() => _ProgramDetailsViewState();
-}
+// List of the screens
+// and merge the two in one List
 
-class _ProgramDetailsViewState extends State<ProgramDetailsView> {
-  // State variables
-  // Variables for Pageview
-  int _selectedScreenIndex = 0; // current screen
-  PageController _pageController = PageController();
-  // Timer
-  Timer timer;
-  // List of the screens
-  // TODO: construct dynamically with the program.steps
-  // and merge the two in one List
-  List<Map<String, dynamic>> _screens = [
+List<ProgramStep> initSteps(List<ProgramStep> steps) {
+  /*List<Map<String, dynamic>> _screens = [
     {
       "title": "Step 1",
       "widget": new Center(child: step1()),
@@ -121,7 +115,7 @@ class _ProgramDetailsViewState extends State<ProgramDetailsView> {
     {
       "title": "Step 2",
       "widget": new Center(child: Step2()),
-      "duration": Duration(seconds: 15)
+      "duration": Duration(seconds: 3)
     },
     {
       "title": "Step 3",
@@ -133,28 +127,35 @@ class _ProgramDetailsViewState extends State<ProgramDetailsView> {
       "widget": new Center(child: Step4()),
       "duration": Duration(seconds: 5)
     },
-  ];
+  ];*/
 
-  List<Map<String, dynamic>> initSteps(List<ProgramStep> steps) {
-    return _screens;
-  }
+  return steps;
+}
 
-  List<Widget> initStepsWidgetsList() {
-    final List<Widget> _stepsWidgetsList = [];
-    _screens.forEach((element) {
-      _stepsWidgetsList.add(element['widget']);
-    });
-    return _stepsWidgetsList;
-  }
+List<Widget> initStepsWidgetsList(_screens) {
+  // createWidget List to use in the PageView
+  final List<Widget> _stepsWidgetsList = [];
+  _screens.forEach((element) {
+    debugPrint(element.title);
+    _stepsWidgetsList.add(element.widget);
+  });
+  debugPrint(_stepsWidgetsList.toString());
+  return _stepsWidgetsList;
+}
 
-/*
-  void _selectScreen(int index) {
-    setState(() {
-      _selectedScreenIndex = index;
-    });
-  }
-*/
-  // Go back to previous state, at the end of the program or when program interrupted
+class ProgramDetailsView extends StatefulWidget {
+  @override
+  _ProgramDetailsViewState createState() => _ProgramDetailsViewState();
+}
+
+class _ProgramDetailsViewState extends State<ProgramDetailsView> {
+  // State variables
+  // Variables for Pageview
+  int _selectedScreenIndex = 0; // current screen
+  PageController _pageController = PageController();
+
+  // Go back to previous state
+  // at the end of the program or when program interrupted
   void backState() {
     Navigator.pop(context);
   }
@@ -162,23 +163,32 @@ class _ProgramDetailsViewState extends State<ProgramDetailsView> {
   // when the state is left
   @override
   void dispose() {
-    print('dispose');
+    debugPrint('dispose');
+    debugPrint('timer $timer');
     timer.cancel();
     super.dispose();
   }
 
   // function called after timer time's up
+  // to display next or done button (FloatingActionButton)
   void timedAction() {
     debugPrint("timedAction");
-    if (_selectedScreenIndex + 1 < _screens.length) {
-      /*_pageController.nextPage(
-          duration: Duration(milliseconds: 350),
-          curve: Curves.easeInOut,
-        );*/
-      debugPrint("Button next visible");
+    debugPrint("Button next visible");
+    if (this.mounted) {
       setState(() {
         isVisibileNextBtn = true;
       });
+    }
+  }
+
+  // action on the next button (FloatingActionButton)
+  void nextPageOrBack() {
+    if (_selectedScreenIndex + 1 < _screens.length) {
+      _pageController.nextPage(
+        duration: Duration(milliseconds: 350),
+        curve: Curves.easeInOut,
+      );
+      // TODO add points to score
     } else {
       backState();
     }
@@ -193,82 +203,98 @@ class _ProgramDetailsViewState extends State<ProgramDetailsView> {
     setState(() {
       isVisibileNextBtn = false;
     });
-    // If not the last step, program a timer to go to the next step
-    print('create timer ${_screens[_selectedScreenIndex]["duration"]}');
-    loadTimer(_screens[_selectedScreenIndex]["duration"]);
     _selectedScreenIndex = index;
+
+    // If not the last step, program a timer to go to the next step
+    debugPrint(
+        'create timer $_selectedScreenIndex of ${_screens[_selectedScreenIndex].duration}');
+    loadTimer(_screens[_selectedScreenIndex].duration);
   }
 
   @override
   void initState() {
     super.initState();
-    print('initState');
+    debugPrint('initState');
 
-    // init variable
+    // init variables
     isVisibileNextBtn = false;
-
-    // create first timer
-    print(
-        'create first timer $_selectedScreenIndex of ${_screens[_selectedScreenIndex]["duration"]}');
-    loadTimer(_screens[_selectedScreenIndex]["duration"]);
+    _initDone = false;
   }
+
+  Future<dynamic> callAsyncFetch() => Future.delayed(Duration.zero, () {
+        if (!_initDone) {
+          _initDone = true;
+          final String programType = ModalRoute.of(context).settings.arguments;
+          final Program program =
+              findProgramUsingFirstWhere(programs, programType);
+          debugPrint(program.title);
+          _screens = initSteps(program.steps);
+          debugPrint(program.steps.toString());
+          _stepsWidgetsList = initStepsWidgetsList(_screens);
+
+          // create first timer
+          debugPrint(
+              'create first timer $_selectedScreenIndex of ${_screens[_selectedScreenIndex].duration}');
+          loadTimer(_screens[_selectedScreenIndex].duration);
+        }
+        return true;
+      });
 
   @override
   Widget build(BuildContext context) {
-    final String programType = ModalRoute.of(context).settings.arguments;
-    final Program program = findProgramUsingFirstWhere(programs, programType);
+    return FutureBuilder<dynamic>(
+        future: callAsyncFetch(),
+        builder: (context, AsyncSnapshot<dynamic> snapshot) {
+          if (snapshot.hasData) {
+            return WillPopScope(
+              onWillPop: () async {
+                final value = await showDialog<bool>(
+                    context: context,
+                    builder: (context) {
+                      return showInterruptDialog(context);
+                    });
 
-    List _stepsWidgetsList = initStepsWidgetsList();
-
-    return WillPopScope(
-      onWillPop: () async {
-        final value = await showDialog<bool>(
-            context: context,
-            builder: (context) {
-              return showInterruptDialog(context);
-            });
-
-        return value == true;
-      },
-      child: Scaffold(
-        appBar: appBar(context, Theme.of(context).textTheme,
-            _screens[_selectedScreenIndex]["title"]),
-        body: Container(
-          color: Colors.yellow[100].withOpacity(0.3),
-          child: PageView(
-            children: _stepsWidgetsList,
-            pageSnapping: false,
-            physics: CustomLockScrollPhysics(lockLeft: true, lockRight: true),
-            scrollDirection: Axis.horizontal,
-            controller: _pageController,
-            onPageChanged: (index) {
-              onPageChanged(index);
-            },
-          ),
-        ),
-        floatingActionButton: (_selectedScreenIndex + 1 >= _screens.length)
-            ? Container()
-            : Visibility(
-                visible: isVisibileNextBtn,
-                child: FloatingActionButton.extended(
-                  label: Text(
-                    "NEXT",
-                    style: TextStyle(
-                        fontFamily: 'Helvetica', fontWeight: FontWeight.bold),
+                return value == true;
+              },
+              child: Scaffold(
+                appBar: appBar(context, Theme.of(context).textTheme,
+                    _screens[_selectedScreenIndex].title),
+                body: Container(
+                  color: Colors.yellow[100].withOpacity(0.3),
+                  child: PageView(
+                    children: _stepsWidgetsList,
+                    pageSnapping: false,
+                    physics: CustomLockScrollPhysics(
+                        lockLeft: true, lockRight: true),
+                    scrollDirection: Axis.horizontal,
+                    controller: _pageController,
+                    onPageChanged: (index) {
+                      onPageChanged(index);
+                    },
                   ),
-                  icon: Icon(
-                    Icons.star,
-                    size: Theme.of(context).iconTheme.size - 15,
+                ),
+                floatingActionButton: Visibility(
+                  visible: isVisibileNextBtn,
+                  child: FloatingActionButton.extended(
+                    label: Text(
+                      (_selectedScreenIndex + 1 >= _screens.length)
+                          ? "DONE"
+                          : "NEXT",
+                      style: TextStyle(
+                          fontFamily: 'Helvetica', fontWeight: FontWeight.bold),
+                    ),
+                    icon: Icon(
+                      Icons.star,
+                      size: Theme.of(context).iconTheme.size - 15,
+                    ),
+                    onPressed: nextPageOrBack,
                   ),
-                  onPressed: () {
-                    _pageController.nextPage(
-                      duration: Duration(milliseconds: 350),
-                      curve: Curves.easeInOut,
-                    );
-                  },
                 ),
               ),
-      ),
-    );
+            );
+          } else {
+            return CircularProgressIndicator();
+          }
+        });
   }
 }

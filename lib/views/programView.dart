@@ -6,6 +6,9 @@ import 'package:project_kidplanner/src/classes/program.dart';
 import 'package:project_kidplanner/resources/programsData.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'programDetails.dart';
+import 'package:flutter/rendering.dart';
+
+import 'package:project_kidplanner/src/components/DurationExtension.dart';
 
 class ProgramView extends StatelessWidget {
   @override
@@ -56,7 +59,8 @@ class ProgramView extends StatelessWidget {
                           semanticsLabel: ''),
                     ),
                   ),
-                  Text('${step.duration.toString()} mn'),
+                  Text('${step.duration.inMinutes}:'
+                      '${(step.duration.inSeconds % 60).toString().padLeft(2, '0')}'),
                 ]),
             /*decoration: BoxDecoration(
               image: DecorationImage(
