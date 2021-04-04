@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import '../src/components/appBar.dart';
 
 import 'package:project_kidplanner/src/classes/program.dart';
-import 'package:project_kidplanner/resources/programsData.dart';
+import 'package:project_kidplanner/src/libraries/programsData.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'programDetails.dart';
 import 'package:flutter/rendering.dart';
 
-import 'package:project_kidplanner/src/components/DurationExtension.dart';
+//import 'package:project_kidplanner/src/components/DurationExtension.dart';
 
 class ProgramView extends StatelessWidget {
   @override

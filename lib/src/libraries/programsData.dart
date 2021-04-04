@@ -1,3 +1,5 @@
+library project_kidplanner.programs_data;
+
 import 'package:project_kidplanner/src/classes/program.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';

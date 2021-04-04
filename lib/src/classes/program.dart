@@ -10,6 +10,11 @@ class Program {
 
   // Konstruktor
   Program(this.programId, this.title, this.descr, this.steps);
+
+  @override
+  String toString() {
+    return this.title;
+  }
 }
 
 class ProgramStep {

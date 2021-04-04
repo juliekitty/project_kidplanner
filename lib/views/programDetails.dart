@@ -4,9 +4,8 @@ import '../src/components/appBar.dart';
 import 'package:project_kidplanner/src/classes/customScrollPhysics.dart';
 
 import 'package:project_kidplanner/src/classes/program.dart';
-import 'package:project_kidplanner/resources/programsData.dart';
+import 'package:project_kidplanner/src/libraries/programsData.dart';
 import 'dart:async';
-import 'package:flutter_svg/flutter_svg.dart';
 
 //
 //  global variables

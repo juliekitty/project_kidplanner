@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:project_kidplanner/views/profileView.dart';
+import '../libraries/globals.dart' as globals;
 
 // defaults
 String appBarTitle = '';
 
 //int myPoints = 0;
-int myPoints = 1000;
+int myPoints = globals.exampleParticipant.score;
 
 Widget appBar(context, textTheme, appBarTitle) {
   return AppBar(
