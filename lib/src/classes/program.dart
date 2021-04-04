@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class Program {
   // Eigenschaften
@@ -20,6 +21,32 @@ class ProgramStep {
 
   // Konstruktor
   ProgramStep({this.title, this.duration, this.widget, this.picture});
+
+  Widget stepDefault() {
+    return new Center(
+      child: Column(children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(15, 20, 15, 5),
+          child: Text(
+            this.title,
+            textAlign: TextAlign.center,
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Container(
+            width: 500,
+            height: 500,
+            child: SvgPicture.asset(
+                (this.picture != null
+                    ? this.picture
+                    : 'assets/images/clock.svg'),
+                semanticsLabel: ''),
+          ),
+        ),
+      ]),
+    );
+  }
 }
 
 /// Find a program in the list using firstWhere method.

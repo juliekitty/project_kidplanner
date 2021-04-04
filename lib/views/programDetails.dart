@@ -5,8 +5,8 @@ import 'package:project_kidplanner/src/classes/customScrollPhysics.dart';
 
 import 'package:project_kidplanner/src/classes/program.dart';
 import 'package:project_kidplanner/resources/programsData.dart';
-//import 'package:flutter_svg/flutter_svg.dart';
 import 'dart:async';
+import 'package:flutter_svg/flutter_svg.dart';
 
 //
 //  global variables
@@ -24,7 +24,7 @@ bool _initDone = false;
 // Each step as a widget for the pageView
 // TODO: dynamically constructs the steps as Widgets
 //
-//
+
 Widget step1() {
   return Container(
     child: Padding(
@@ -135,9 +135,14 @@ List<ProgramStep> initSteps(List<ProgramStep> steps) {
 List<Widget> initStepsWidgetsList(_screens) {
   // createWidget List to use in the PageView
   final List<Widget> _stepsWidgetsList = [];
+  // TODO use the programStep infos for widget
   _screens.forEach((element) {
     debugPrint(element.title);
-    _stepsWidgetsList.add(element.widget);
+    if (element.widget != null) {
+      _stepsWidgetsList.add(element.widget);
+    } else {
+      _stepsWidgetsList.add(element.stepDefault());
+    }
   });
   debugPrint(_stepsWidgetsList.toString());
   return _stepsWidgetsList;
