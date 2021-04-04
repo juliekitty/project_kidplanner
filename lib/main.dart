@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:project_kidplanner/views/bonusTasksView.dart';
-//import 'CountDownState.dart';
-import 'views/HomePage.dart';
-import 'package:project_kidplanner/views/HomePage.dart';
 
+import 'package:project_kidplanner/src/classes/init.dart';
+
+import 'package:project_kidplanner/views/HomePage.dart';
 import 'package:project_kidplanner/views/profileView.dart';
-//import 'package:project_kidplanner/views/CountDownState.dart';
 import 'package:project_kidplanner/views/CountDownTimerView.dart';
 import 'package:project_kidplanner/views/advicesView.dart';
+import 'package:project_kidplanner/views/bonusTasksView.dart';
+import 'package:project_kidplanner/views/splashScreenView.dart';
 
 import 'package:project_kidplanner/src/components/appBar.dart';
 import 'package:project_kidplanner/src/components/fab.dart';
@@ -16,15 +16,24 @@ import 'package:project_kidplanner/src/components/bottomMenu.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+  final Future _initFuture = Init.initialize();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      //debugShowMaterialGrid: true,
-      home: LayoutView(),
+      home: FutureBuilder(
+        future: _initFuture,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            return LayoutView();
+          } else {
+            return SplashScreen();
+          }
+        },
+      ),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.cyan,
-        //primaryColor: Colors.lightBlue[800],
         accentColor: Colors.cyan[600],
         iconTheme: IconThemeData(
           color: Colors.cyan[600],
