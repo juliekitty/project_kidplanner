@@ -10,6 +10,8 @@ class ProfileView extends StatefulWidget {
 }
 
 class _ProfileViewState extends State<ProfileView> {
+  final user = globals.exampleParticipant;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,8 +31,7 @@ class _ProfileViewState extends State<ProfileView> {
                   children: [
                     Expanded(flex: 1, child: Icon(Icons.person)),
                     Expanded(flex: 1, child: Divider()),
-                    Expanded(
-                        flex: 10, child: Text(globals.exampleParticipant.name)),
+                    Expanded(flex: 10, child: Text(user.name)),
                   ],
                 ),
               ),
@@ -52,10 +53,7 @@ class _ProfileViewState extends State<ProfileView> {
                   children: [
                     Expanded(flex: 10, child: Text('Current score:')),
                     Expanded(flex: 1, child: Divider()),
-                    Expanded(
-                        flex: 10,
-                        child:
-                            Text(globals.exampleParticipant.score.toString())),
+                    Expanded(flex: 10, child: Text(user.score.toString())),
                   ],
                 ),
               ),
@@ -77,10 +75,39 @@ class _ProfileViewState extends State<ProfileView> {
                   children: [
                     Expanded(flex: 10, child: Text('Your programs:')),
                     Expanded(flex: 1, child: Divider()),
+                    Expanded(flex: 10, child: Text(user.programs.toString())),
+                  ],
+                ),
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  //borderRadius: BorderRadius.circular(6.0),
+                  border: const Border(
+                    bottom: BorderSide(color: Colors.grey, width: 0.0),
+                    top: BorderSide(color: Colors.grey, width: 0.0),
+                    left: BorderSide(color: Colors.grey, width: 0.0),
+                    right: BorderSide(color: Colors.grey, width: 0.0),
+                  ),
+                ),
+                padding: EdgeInsets.fromLTRB(15.0, 12.5, 25.0, 12.5),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Expanded(flex: 10, child: Text('Debug:')),
+                    Expanded(flex: 1, child: Divider()),
                     Expanded(
                         flex: 10,
-                        child: Text(
-                            globals.exampleParticipant.programs.toString())),
+                        child: ElevatedButton(
+                          child: Text('Add 5000'),
+                          onPressed: () {
+                            setState(() {
+                              user.addToScore(5000);
+                            });
+                            globals.textHasErrorNotifier.value = user.score;
+                          },
+                        )),
                   ],
                 ),
               ),

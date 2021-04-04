@@ -6,8 +6,24 @@ import '../libraries/globals.dart' as globals;
 // defaults
 String appBarTitle = '';
 
-//int myPoints = 0;
-int myPoints = globals.exampleParticipant.score;
+// need ValueListenableBuilder to update the score of Participan when changed
+Widget _buildParticipantScore() {
+  return ValueListenableBuilder(
+    valueListenable: globals.textHasErrorNotifier,
+    builder: (context, value, child) {
+      return Center(
+        child: new Text(
+          globals.exampleParticipant.score.toString(),
+          style: new TextStyle(
+            color: Colors.white,
+            fontSize: 20.0,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+      );
+    },
+  );
+}
 
 Widget appBar(context, textTheme, appBarTitle) {
   return AppBar(
@@ -17,18 +33,9 @@ Widget appBar(context, textTheme, appBarTitle) {
           .copyWith(fontWeight: FontWeight.w600, color: Colors.white),
     ),
     actions: <Widget>[
-      myPoints == 0
+      globals.exampleParticipant.score == 0
           ? new SizedBox()
-          : Center(
-              child: new Text(
-                myPoints.toString(),
-                style: new TextStyle(
-                  color: Colors.white,
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ),
+          : _buildParticipantScore(),
       IconButton(
         icon: Icon(Icons.person),
         tooltip: 'Profile',
