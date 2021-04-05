@@ -3,9 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class Program {
   // Eigenschaften
-  String programId;
-  String title;
-  String descr;
+  String programId, title, descr;
   List<ProgramStep> steps;
 
   // Konstruktor
@@ -14,6 +12,12 @@ class Program {
   @override
   String toString() {
     return this.title;
+  }
+
+  String displayDuration() {
+    Duration duration = this.getDuration();
+    return '${duration.inMinutes}:'
+        '${(duration.inSeconds % 60).toString().padLeft(2, '0')}';
   }
 
   Duration getDuration() {
@@ -27,37 +31,54 @@ class Program {
 
 class ProgramStep {
   // Eigenschaften
-  String title;
+  String title, picture, animation;
   Duration duration;
   Widget widget;
-  String picture;
 
   // Konstruktor
-  ProgramStep({this.title, this.duration, this.widget, this.picture});
+  ProgramStep(
+      {this.title, this.duration, this.widget, this.picture, this.animation});
 
-  Widget stepDefault() {
-    return new Center(
-      child: Column(children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(15, 20, 15, 5),
-          child: Text(
-            this.title,
-            textAlign: TextAlign.center,
+  String displayDuration() {
+    return '${this.duration.inMinutes}:'
+        '${(this.duration.inSeconds % 60).toString().padLeft(2, '0')}';
+  }
+
+// return a widget with step infos
+  Widget stepDefault(context) {
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: new Card(
+        color: Colors.amber,
+        child: Column(children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(10, 20, 10, 3),
+            child: Text(
+              this.title,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.headline5,
+            ),
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Container(
-            width: 500,
-            height: 500,
-            child: SvgPicture.asset(
-                (this.picture != null
-                    ? this.picture
-                    : 'assets/images/clock.svg'),
-                semanticsLabel: ''),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Text(
+              this.displayDuration(),
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.headline6,
+            ),
           ),
-        ),
-      ]),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Container(
+              width: MediaQuery.of(context).size.width * 0.40,
+              height: MediaQuery.of(context).size.height * 0.40,
+              child: (this.picture != null
+                  ? SvgPicture.asset(this.picture, semanticsLabel: '')
+                  : (Container())), // TODO display gif
+            ),
+          ),
+        ]),
+      ),
     );
   }
 }

@@ -40,7 +40,7 @@ Widget showInterruptDialog(context) {
   );
 }
 
-List<Widget> initStepsWidgetsList(_screens) {
+List<Widget> initStepsWidgetsList(_screens, context) {
   // createWidget List to use in the PageView
   final List<Widget> _stepsWidgetsList = [];
   // TODO use the programStep infos for widget
@@ -49,7 +49,7 @@ List<Widget> initStepsWidgetsList(_screens) {
     if (element.widget != null) {
       _stepsWidgetsList.add(element.widget);
     } else {
-      _stepsWidgetsList.add(element.stepDefault());
+      _stepsWidgetsList.add(element.stepDefault(context));
     }
   });
   debugPrint(_stepsWidgetsList.toString());
@@ -143,7 +143,7 @@ class _ProgramDetailsViewState extends State<ProgramDetailsView> {
           debugPrint(program.title);
           _screens = program.steps;
           debugPrint(program.steps.toString());
-          _stepsWidgetsList = initStepsWidgetsList(_screens);
+          _stepsWidgetsList = initStepsWidgetsList(_screens, context);
 
           // create first timer
           debugPrint(

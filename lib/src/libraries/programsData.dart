@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 // PROGRAM STEPS
+// define widget in class object only for specific widgets
+
 final stepDress = ProgramStep(
     title: 'Dress up',
     duration: Duration(seconds: 10),
@@ -16,27 +18,9 @@ final stepBfast = ProgramStep(
 final ProgramStep stepTeeth = ProgramStep(
     title: 'Tooth brushing',
     duration: Duration(seconds: 10),
-    // define widget in class object only for specific widgets
-    widget: new Center(
-      child: Column(children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(15, 20, 15, 5),
-          child: Text(
-            'Tooth brushing',
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Container(
-            width: 500,
-            height: 500,
-            child: SvgPicture.asset('assets/images/eucalyp-brush-teeth.svg',
-                semanticsLabel: ''),
-          ),
-        ),
-      ]),
-    ),
-    picture: 'assets/images/eucalyp-brush-teeth.svg');
+    picture: 'assets/images/eucalyp-brush-teeth.svg',
+    animation: 'assets/images/animated/brush-teeth-gif-6.gif');
+
 final stepToilet = ProgramStep(
     title: 'Toilet',
     duration: Duration(seconds: 5),
