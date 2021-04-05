@@ -15,6 +15,14 @@ class Program {
   String toString() {
     return this.title;
   }
+
+  Duration getDuration() {
+    Duration sumDuration = Duration(minutes: 0);
+    for (var step in this.steps) {
+      sumDuration += step.duration;
+    }
+    return sumDuration;
+  }
 }
 
 class ProgramStep {

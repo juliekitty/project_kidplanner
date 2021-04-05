@@ -9,6 +9,11 @@ import 'programDetails.dart';
 import 'package:flutter/rendering.dart';
 
 //import 'package:project_kidplanner/src/components/DurationExtension.dart';
+//
+String displayDuration(Duration duration) {
+  return '${duration.inMinutes}:'
+      '${(duration.inSeconds % 60).toString().padLeft(2, '0')}';
+}
 
 class ProgramView extends StatelessWidget {
   @override
@@ -59,22 +64,13 @@ class ProgramView extends StatelessWidget {
                           semanticsLabel: ''),
                     ),
                   ),
-                  Text('${step.duration.inMinutes}:'
-                      '${(step.duration.inSeconds % 60).toString().padLeft(2, '0')}'),
+                  Text(displayDuration(step.duration)),
                 ]),
-            /*decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: NetworkImage(
-                    photo.thumbnailUrl,
-                  ),
-                  fit: BoxFit.cover),
-            ),*/
           ),
         ),
       );
     }
 
-//
     return Scaffold(
       appBar: appBar(context, Theme.of(context).textTheme, 'Program'),
       body: ListView(
@@ -84,7 +80,7 @@ class ProgramView extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(15.0),
             child: Text(
-              'Begin a routine: ${program.title}',
+              '${program.title}',
               style: Theme.of(context).textTheme.headline6,
             ),
           ),
@@ -93,6 +89,7 @@ class ProgramView extends StatelessWidget {
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Text(
+                'Duration ${displayDuration(program.getDuration())}\n\n'
                 'There are ${program.steps.length} steps',
                 style: Theme.of(context).textTheme.bodyText2,
               ),
@@ -115,13 +112,13 @@ class ProgramView extends StatelessWidget {
               : SizedBox(
                   height: 200,
                   child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      shrinkWrap: true,
-                      physics: ScrollPhysics(),
-                      children: [
-                        for (var item in program.steps)
-                          createTile(context, item)
-                      ]),
+                    scrollDirection: Axis.horizontal,
+                    shrinkWrap: true,
+                    physics: ScrollPhysics(),
+                    children: [
+                      for (var item in program.steps) createTile(context, item)
+                    ],
+                  ),
                 )
         ],
       ),
