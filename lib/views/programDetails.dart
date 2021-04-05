@@ -19,67 +19,6 @@ List _stepsWidgetsList;
 Timer timer;
 bool _initDone = false;
 
-//
-// Each step as a widget for the pageView
-// TODO: dynamically constructs the steps as Widgets
-//
-
-Widget step1() {
-  return Container(
-    child: Padding(
-      padding: const EdgeInsets.fromLTRB(15, 20, 15, 5),
-      child: Text(
-        '1',
-      ),
-    ),
-  );
-}
-
-class Step2 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(15, 20, 15, 5),
-        child: Text(
-          '2',
-          style: Theme.of(context).textTheme.headline5,
-        ),
-      ),
-    );
-  }
-}
-
-class Step3 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(15, 20, 15, 5),
-        child: Text(
-          '3',
-          style: Theme.of(context).textTheme.headline5,
-        ),
-      ),
-    );
-  }
-}
-
-class Step4 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(15, 20, 15, 5),
-        child: Text(
-          '4',
-          style: Theme.of(context).textTheme.headline5,
-        ),
-      ),
-    );
-  }
-}
-
 // Widget of the dialog shown when user attempts to interrupt the program
 Widget showInterruptDialog(context) {
   return AlertDialog(
@@ -99,36 +38,6 @@ Widget showInterruptDialog(context) {
       ),
     ],
   );
-}
-
-// List of the screens
-// and merge the two in one List
-
-List<ProgramStep> initSteps(List<ProgramStep> steps) {
-  /*List<Map<String, dynamic>> _screens = [
-    {
-      "title": "Step 1",
-      "widget": new Center(child: step1()),
-      "duration": Duration(seconds: 5)
-    },
-    {
-      "title": "Step 2",
-      "widget": new Center(child: Step2()),
-      "duration": Duration(seconds: 3)
-    },
-    {
-      "title": "Step 3",
-      "widget": new Center(child: Step3()),
-      "duration": Duration(seconds: 6)
-    },
-    {
-      "title": "Step 4",
-      "widget": new Center(child: Step4()),
-      "duration": Duration(seconds: 5)
-    },
-  ];*/
-
-  return steps;
 }
 
 List<Widget> initStepsWidgetsList(_screens) {
@@ -232,7 +141,7 @@ class _ProgramDetailsViewState extends State<ProgramDetailsView> {
           final Program program =
               findProgramUsingFirstWhere(programs, programType);
           debugPrint(program.title);
-          _screens = initSteps(program.steps);
+          _screens = program.steps;
           debugPrint(program.steps.toString());
           _stepsWidgetsList = initStepsWidgetsList(_screens);
 
