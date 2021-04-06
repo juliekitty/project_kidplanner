@@ -1,5 +1,5 @@
-// import 'user.dart';
-// import '../libraries/globals.dart' as globals;
+// import 'package:project_kidplanner/src/classes/user.dart';
+// import 'package:project_kidplanner/src/libraries/globals.dart' as globals;
 
 class Init {
   static Future initialize() async {

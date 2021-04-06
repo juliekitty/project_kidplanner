@@ -1,8 +1,9 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
-import '../src/components/appBar.dart';
-import 'creditsView.dart';
-import '../src/libraries/globals.dart' as globals;
+
+import 'package:project_kidplanner/src/components/appBar.dart';
+import 'package:project_kidplanner/views/creditsView.dart';
+import 'package:project_kidplanner/src/libraries/globals.dart' as globals;
 
 class ProfileView extends StatefulWidget {
   @override

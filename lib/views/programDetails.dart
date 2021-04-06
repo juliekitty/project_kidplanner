@@ -1,14 +1,12 @@
 import 'dart:async';
-
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
-import '../src/components/appBar.dart';
-import 'package:project_kidplanner/src/classes/customScrollPhysics.dart';
+import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 
+import 'package:project_kidplanner/src/components/appBar.dart';
+import 'package:project_kidplanner/src/classes/customScrollPhysics.dart';
 import 'package:project_kidplanner/src/classes/program.dart';
 import 'package:project_kidplanner/src/libraries/programsData.dart';
-
-import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 
 //
 //  global variables

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:project_kidplanner/views/profileView.dart';
-import '../libraries/globals.dart' as globals;
+import 'package:project_kidplanner/src/libraries/globals.dart' as globals;
 
 // defaults
 String appBarTitle = '';

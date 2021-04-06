@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
-import '../src/components/appBar.dart';
+import 'package:project_kidplanner/src/components/appBar.dart';
 
 class BonusTasksView extends StatelessWidget {
   @override

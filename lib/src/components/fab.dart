@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import '../../views/bonusTasksView.dart';
+import 'package:project_kidplanner/views/bonusTasksView.dart';
 
 Widget returnFab(context) {
   return FloatingActionButton(
