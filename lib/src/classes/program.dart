@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:countdown_flutter/countdown_flutter.dart';
 
 class Program {
   // Eigenschaften
@@ -44,6 +45,22 @@ class ProgramStep {
         '${(this.duration.inSeconds % 60).toString().padLeft(2, '0')}';
   }
 
+  Widget displayCountdown() {
+    return Countdown(
+      duration: this.duration,
+      onFinish: () {
+        print('finished');
+      },
+      builder: (BuildContext ctx, Duration remaining) {
+        return Text(
+          '${remaining.inMinutes}:${remaining.inSeconds.toString().padLeft(2, '0')}',
+          style:
+              TextStyle(color: Colors.black, decoration: TextDecoration.none),
+        );
+      },
+    );
+  }
+
 // return a widget with step infos
   Widget stepDefault(context) {
     return Padding(
@@ -61,11 +78,7 @@ class ProgramStep {
           ),
           Padding(
             padding: const EdgeInsets.all(10.0),
-            child: Text(
-              this.displayDuration(),
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.headline6,
-            ),
+            child: this.displayCountdown(),
           ),
           Padding(
             padding: const EdgeInsets.all(10.0),
