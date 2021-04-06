@@ -7,6 +7,7 @@ import 'package:project_kidplanner/src/components/appBar.dart';
 import 'package:project_kidplanner/src/classes/customScrollPhysics.dart';
 import 'package:project_kidplanner/src/classes/program.dart';
 import 'package:project_kidplanner/src/libraries/programsData.dart';
+import 'package:project_kidplanner/src/libraries/globals.dart' as globals;
 
 //
 //  global variables
@@ -107,6 +108,9 @@ class _ProgramDetailsViewState extends State<ProgramDetailsView> {
         curve: Curves.easeInOut,
       );
       // TODO add points to score
+      setState(() {
+        globals.currentParticipant.addToScore(500);
+      });
     } else {
       backState();
     }

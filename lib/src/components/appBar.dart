@@ -9,11 +9,11 @@ String appBarTitle = '';
 // need ValueListenableBuilder to update the score of Participan when changed
 Widget _buildParticipantScore() {
   return ValueListenableBuilder(
-    valueListenable: globals.textHasErrorNotifier,
+    valueListenable: globals.userNotifier,
     builder: (context, value, child) {
       return Center(
         child: new Text(
-          globals.exampleParticipant.score.toString(),
+          globals.currentParticipant.score.toString(),
           style: new TextStyle(
             color: Colors.white,
             fontSize: 20.0,
