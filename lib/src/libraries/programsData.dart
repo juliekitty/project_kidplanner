@@ -9,7 +9,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 final stepDress = ProgramStep(
     title: 'Dress up',
-    duration: Duration(seconds: 10),
+    duration: Duration(minutes: 3),
     picture: "assets/images/clothing.svg");
 final stepBfast = ProgramStep(
     title: 'Eat your breakfast',

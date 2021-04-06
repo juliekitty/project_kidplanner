@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import '../src/components/appBar.dart';
@@ -5,7 +7,8 @@ import 'package:project_kidplanner/src/classes/customScrollPhysics.dart';
 
 import 'package:project_kidplanner/src/classes/program.dart';
 import 'package:project_kidplanner/src/libraries/programsData.dart';
-import 'dart:async';
+
+import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 
 //
 //  global variables
@@ -40,7 +43,7 @@ Widget showInterruptDialog(context) {
   );
 }
 
-List<Widget> initStepsWidgetsList(_screens, context) {
+List<Widget> initStepsWidgetsList(_screens, context, _controller) {
   // createWidget List to use in the PageView
   final List<Widget> _stepsWidgetsList = [];
   // TODO use the programStep infos for widget
@@ -49,7 +52,7 @@ List<Widget> initStepsWidgetsList(_screens, context) {
     if (element.widget != null) {
       _stepsWidgetsList.add(element.widget);
     } else {
-      _stepsWidgetsList.add(element.stepDefault(context));
+      _stepsWidgetsList.add(element.stepDefault(context, _controller));
     }
   });
   debugPrint(_stepsWidgetsList.toString());
@@ -66,6 +69,10 @@ class _ProgramDetailsViewState extends State<ProgramDetailsView> {
   // Variables for Pageview
   int _selectedScreenIndex = 0; // current screen
   PageController _pageController = PageController();
+
+  // Animation
+  CountDownController _controller = CountDownController();
+  int _duration = 10;
 
   // Go back to previous state
   // at the end of the program or when program interrupted
@@ -143,12 +150,14 @@ class _ProgramDetailsViewState extends State<ProgramDetailsView> {
           debugPrint(program.title);
           _screens = program.steps;
           debugPrint(program.steps.toString());
-          _stepsWidgetsList = initStepsWidgetsList(_screens, context);
+          _stepsWidgetsList =
+              initStepsWidgetsList(_screens, context, _controller);
 
           // create first timer
           debugPrint(
               'create first timer $_selectedScreenIndex of ${_screens[_selectedScreenIndex].duration}');
           loadTimer(_screens[_selectedScreenIndex].duration);
+          // _controller.start();
         }
         return true;
       });
@@ -182,6 +191,7 @@ class _ProgramDetailsViewState extends State<ProgramDetailsView> {
                     scrollDirection: Axis.horizontal,
                     controller: _pageController,
                     onPageChanged: (index) {
+                      //_controller.start();
                       onPageChanged(index);
                     },
                   ),
@@ -206,7 +216,12 @@ class _ProgramDetailsViewState extends State<ProgramDetailsView> {
               ),
             );
           } else {
-            return CircularProgressIndicator();
+            return Container(
+              color: Colors.yellow[100],
+              child: Center(
+                child: Container(child: CircularProgressIndicator()),
+              ),
+            );
           }
         });
   }

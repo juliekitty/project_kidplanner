@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:countdown_flutter/countdown_flutter.dart';
+import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 
 class Program {
   // Eigenschaften
@@ -45,6 +46,38 @@ class ProgramStep {
         '${(this.duration.inSeconds % 60).toString().padLeft(2, '0')}';
   }
 
+  Widget displayGraphicalCountDown(context, _controller) {
+    // _controller.start();
+    return Stack(alignment: Alignment.center, children: [
+      CircularCountDownTimer(
+        duration: this.duration.inSeconds,
+        initialDuration: 0,
+        controller: _controller,
+        width: MediaQuery.of(context).size.width / 4,
+        height: MediaQuery.of(context).size.height / 4,
+        ringColor: Colors.white,
+        fillColor: Colors.cyan[500],
+        backgroundColor: Colors.amber[800],
+        strokeWidth: 10.0,
+        strokeCap: StrokeCap.round,
+        textStyle: TextStyle(
+            fontSize: 20.0, color: Colors.white, fontWeight: FontWeight.bold),
+        textFormat: CountdownTextFormat.S,
+        isReverse: true,
+        isReverseAnimation: true,
+        isTimerTextShown: false,
+        autoStart: true,
+        onStart: () {
+          print('Countdown Started');
+        },
+        onComplete: () {
+          print('Countdown Ended');
+        },
+      ),
+      this.displayCountdown(),
+    ]);
+  }
+
   Widget displayCountdown() {
     return Countdown(
       duration: this.duration,
@@ -53,16 +86,16 @@ class ProgramStep {
       },
       builder: (BuildContext ctx, Duration remaining) {
         return Text(
-          '${remaining.inMinutes}:${remaining.inSeconds.toString().padLeft(2, '0')}',
-          style:
-              TextStyle(color: Colors.black, decoration: TextDecoration.none),
+          '${remaining.inMinutes}:${(remaining.inSeconds % 60).toString().padLeft(2, '0')}',
+          style: TextStyle(
+              fontSize: 20.0, color: Colors.white, fontWeight: FontWeight.bold),
         );
       },
     );
   }
 
 // return a widget with step infos
-  Widget stepDefault(context) {
+  Widget stepDefault(context, _controller) {
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: new Card(
@@ -76,9 +109,13 @@ class ProgramStep {
               style: Theme.of(context).textTheme.headline5,
             ),
           ),
-          Padding(
+          /*Padding(
             padding: const EdgeInsets.all(10.0),
             child: this.displayCountdown(),
+          ),*/
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: this.displayGraphicalCountDown(context, _controller),
           ),
           Padding(
             padding: const EdgeInsets.all(10.0),

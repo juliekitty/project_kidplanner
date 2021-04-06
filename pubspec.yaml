@@ -38,6 +38,8 @@ dependencies:
   time: "^2.0.0"
   # https://pub.dev/packages/date_time_format
   date_time_format: ^2.0.1
+  # https://pub.dev/packages/circular_countdown_timer
+  circular_countdown_timer: ^0.2.0
 
   url_launcher:
   webview_flutter:
