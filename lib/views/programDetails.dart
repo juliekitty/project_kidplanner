@@ -71,7 +71,6 @@ class _ProgramDetailsViewState extends State<ProgramDetailsView> {
 
   // Animation
   CountDownController _controller = CountDownController();
-  int _duration = 10;
 
   // Go back to previous state
   // at the end of the program or when program interrupted

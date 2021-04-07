@@ -1,8 +1,8 @@
 library project_kidplanner.programs_data;
 
 import 'package:project_kidplanner/src/classes/program.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+//import 'package:flutter/material.dart';
+//import 'package:flutter_svg/flutter_svg.dart';
 
 // PROGRAM STEPS
 // define widget in class object only for specific widgets

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:project_kidplanner/src/classes/init.dart';
 
@@ -13,7 +14,12 @@ import 'package:project_kidplanner/src/components/appBar.dart';
 import 'package:project_kidplanner/src/components/fab.dart';
 import 'package:project_kidplanner/src/components/bottomMenu.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  // forbid rotation to Landscape mode
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   final Future _initFuture = Init.initialize();

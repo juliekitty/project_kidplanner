@@ -5,20 +5,6 @@ import 'package:project_kidplanner/src/classes/user.dart';
 import 'package:project_kidplanner/src/components/appBar.dart';
 import 'package:project_kidplanner/src/libraries/globals.dart' as globals;
 import 'package:project_kidplanner/views/creditsView.dart';
-import 'package:project_kidplanner/views/profileDetailsView.dart';
-
-const profileListBorders = Border(
-  bottom: BorderSide(color: Colors.grey, width: 0.0),
-  top: BorderSide(color: Colors.grey, width: 0.0),
-  left: BorderSide(color: Colors.grey, width: 0.0),
-  right: BorderSide(color: Colors.grey, width: 0.0),
-);
-
-const profileListBoxDecoration = BoxDecoration(
-  color: Colors.white,
-  //borderRadius: BorderRadius.circular(6.0),
-  border: profileListBorders,
-);
 
 const profileListPadding = EdgeInsets.fromLTRB(15.0, 12.5, 25.0, 12.5);
 
@@ -65,7 +51,7 @@ class _ProfileViewState extends State<ProfileView> {
                         ),
                       ),
                       Container(
-                        decoration: profileListBoxDecoration,
+                        decoration: globals.profileListBoxDecoration,
                         padding: profileListPadding,
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -79,7 +65,7 @@ class _ProfileViewState extends State<ProfileView> {
                         ),
                       ),
                       Container(
-                        decoration: profileListBoxDecoration,
+                        decoration: globals.profileListBoxDecoration,
                         padding: profileListPadding,
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -94,7 +80,7 @@ class _ProfileViewState extends State<ProfileView> {
                         ),
                       ),
                       Container(
-                        decoration: profileListBoxDecoration,
+                        decoration: globals.profileListBoxDecoration,
                         padding: profileListPadding,
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -127,7 +113,7 @@ class _ProfileViewState extends State<ProfileView> {
                   ),
                 ),*/
                       /*Container(
-                        decoration: profileListBoxDecoration,
+                        decoration: globals.profileListBoxDecoration,
                         padding: profileListPadding,
                         child: Column(
                           children: <Widget>[
@@ -154,7 +140,7 @@ class _ProfileViewState extends State<ProfileView> {
                         ),
                       ),*/
                       Container(
-                        decoration: profileListBoxDecoration,
+                        decoration: globals.profileListBoxDecoration,
                         padding: profileListPadding,
                         child: Column(
                           children: <Widget>[

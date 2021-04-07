@@ -9,6 +9,7 @@ import 'package:project_kidplanner/src/components/appBar.dart';
 import 'package:project_kidplanner/src/libraries/programsData.dart';
 import 'package:project_kidplanner/src/classes/program.dart';
 import 'package:project_kidplanner/views/programDetails.dart';
+import 'package:project_kidplanner/src/libraries/globals.dart' as globals;
 
 String timeReady(Program program) {
   DateTime ready = DateTime.now() + program.getDuration();
@@ -24,10 +25,11 @@ class ProgramView extends StatelessWidget {
     final Program program = findProgramUsingFirstWhere(programs, programType);
 
     Widget createTile(context, step) {
-      return Padding(
+      return Container(
+        decoration: globals.profileListBoxDecoration,
         padding: const EdgeInsets.fromLTRB(10, 3, 10, 3),
         child: ListTile(
-          tileColor: Colors.amber,
+          tileColor: Colors.white,
           leading: Icon(Icons.star),
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(20))),
@@ -126,8 +128,9 @@ class ProgramView extends StatelessWidget {
                 )
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.keyboard_arrow_right),
+      floatingActionButton: FloatingActionButton.extended(
+        label: Text('Begin'),
+        icon: Icon(Icons.keyboard_arrow_right),
         onPressed: () {
           Navigator.push(
             context,
