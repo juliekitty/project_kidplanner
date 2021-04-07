@@ -106,7 +106,6 @@ class _ProgramDetailsViewState extends State<ProgramDetailsView> {
         duration: Duration(milliseconds: 350),
         curve: Curves.easeInOut,
       );
-      // TODO add points to score
       setState(() {
         globals.currentParticipant.addToScore(500);
       });

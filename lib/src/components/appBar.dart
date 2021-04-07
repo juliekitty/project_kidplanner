@@ -33,9 +33,7 @@ Widget appBar(context, textTheme, appBarTitle) {
           .copyWith(fontWeight: FontWeight.w600, color: Colors.white),
     ),
     actions: <Widget>[
-      globals.exampleParticipant.score == 0
-          ? new SizedBox()
-          : _buildParticipantScore(),
+      _buildParticipantScore(),
       IconButton(
         icon: Icon(Icons.person),
         tooltip: 'Profile',

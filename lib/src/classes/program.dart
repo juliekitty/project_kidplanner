@@ -36,10 +36,18 @@ class ProgramStep {
   String title, picture, animation;
   Duration duration;
   Widget widget;
+  bool done;
+  int points;
 
   // Konstruktor
   ProgramStep(
-      {this.title, this.duration, this.widget, this.picture, this.animation});
+      {this.title,
+      this.duration,
+      this.widget,
+      this.picture,
+      this.animation,
+      this.points,
+      this.done});
 
   String displayDuration() {
     return '${this.duration.inMinutes}:'

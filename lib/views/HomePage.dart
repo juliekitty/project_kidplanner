@@ -20,54 +20,68 @@ Widget cardCarousel(
     child: Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        child: Card(
-          color: color,
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(18))),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                (title != null ? title : 'Title'),
-                style: Theme.of(context).textTheme.headline6,
-              ),
-              //Divider(),
-              Padding(
-                padding: const EdgeInsets.all(6.0),
-                child: Text((descrText != null ? descrText : 'descrText')),
-              ),
-              //Divider(),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Container(
-                  width: 100,
-                  height: 100,
-                  child: SvgPicture.asset(
-                      (picture != null ? picture : 'assets/images/clock.svg'),
-                      semanticsLabel: ''),
+        child: GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => route,
+                settings: RouteSettings(
+                  arguments: arguments,
                 ),
               ),
-              //Divider(),
-              route == null
-                  ? new SizedBox()
-                  : ElevatedButton(
-                      child: Text(
-                        (buttonText != null ? buttonText : 'GO'),
-                        style: TextStyle(fontSize: 18),
-                      ),
-                      onPressed: () {
-                        Navigator.push(
+            );
+          },
+          child: Card(
+            color: color,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(18))),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  (title != null ? title : 'Title'),
+                  style: Theme.of(context).textTheme.headline6,
+                ),
+                //Divider(),
+                Padding(
+                  padding: const EdgeInsets.all(6.0),
+                  child: Text((descrText != null ? descrText : 'descrText')),
+                ),
+                //Divider(),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Container(
+                    width: 100,
+                    height: 100,
+                    child: SvgPicture.asset(
+                        (picture != null ? picture : 'assets/images/clock.svg'),
+                        semanticsLabel: ''),
+                  ),
+                ),
+                //Divider(),
+                route == null
+                    ? new SizedBox()
+                    : ElevatedButton(
+                        child: Text(
+                          (buttonText != null ? buttonText : 'GO'),
+                          style: TextStyle(fontSize: 18),
+                        ),
+                        onPressed: () {
+                          Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) => route,
                               settings: RouteSettings(
                                 arguments: arguments,
                               ),
-                            ));
-                      },
-                    ),
-            ],
+                            ),
+                          );
+                        },
+                      ),
+              ],
+            ),
           ),
         ),
       ),

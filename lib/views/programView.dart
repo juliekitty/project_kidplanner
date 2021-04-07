@@ -38,7 +38,10 @@ class ProgramView extends StatelessWidget {
             textAlign: TextAlign.left,
             style: Theme.of(context).textTheme.headline6,
           ),
-          trailing: Text(step.displayDuration()),
+          trailing: Text(
+            step.displayDuration(),
+            style: Theme.of(context).textTheme.headline6,
+          ),
           /*child: GestureDetector(
             onTap: () {
               /*Navigator.push(

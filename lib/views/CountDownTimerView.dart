@@ -44,10 +44,12 @@ class _CountDownTimerState extends State<CountDownTimer>
               },
               snapToMins: 5.0,
             ),*/
-            IconButton(
-              icon: Icon(Icons.add),
-              color: Colors.cyan,
-              iconSize: 40,
+            TextButton(
+              child: Icon(
+                Icons.add,
+                size: 40,
+                color: Colors.cyan[200],
+              ),
               onPressed: () async {
                 var resultingDuration = await showDurationPicker(
                   context: context,
@@ -100,12 +102,14 @@ class _CountDownTimerState extends State<CountDownTimer>
                                   Text(
                                     "Task Timer",
                                     style: TextStyle(
-                                        fontSize: 20.0, color: Colors.white),
+                                        fontSize: 20.0,
+                                        color: Colors.cyan[200]),
                                   ),
                                   Text(
                                     timerString,
                                     style: TextStyle(
-                                        fontSize: 112.0, color: Colors.white),
+                                        fontSize: 112.0,
+                                        color: Colors.cyan[200]),
                                   ),
                                 ],
                               ),
@@ -120,7 +124,7 @@ class _CountDownTimerState extends State<CountDownTimer>
                         animation: controller,
                         builder: (context, child) {
                           return IconButton(
-                            color: Colors.cyan,
+                            color: Colors.cyan[200],
                             iconSize: 40,
                             onPressed: () {
                               if (controller.isAnimating)
