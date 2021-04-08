@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:project_kidplanner/views/advicesView.dart';
 import 'package:project_kidplanner/views/bonusTasksView.dart';
-import 'programView.dart';
+import 'package:project_kidplanner/views/programView.dart';
+import 'package:project_kidplanner/views/snakeGame/game.dart';
 
 Widget cardCarousel(
     {context,
@@ -186,7 +187,8 @@ class HomePage extends StatelessWidget {
                     color: Colors.cyan[200],
                     title: 'Games',
                     descrText: 'Redeem your rewards!',
-                    picture: 'assets/images/game-console.svg'),
+                    picture: 'assets/images/game-console.svg',
+                    route: GamePage()),
               ],
             ),
           ),
