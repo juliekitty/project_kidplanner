@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:project_kidplanner/src/classes/user.dart';
+import 'package:project_kidplanner/src/libraries/globals.dart' as globals;
 
 import 'package:project_kidplanner/src/classes/init.dart';
 
@@ -77,6 +79,70 @@ class _LayoutViewState extends State<LayoutView> {
     {"screen": AdvicesView(), "title": "Advices"},
     {"screen": BonusTasksView(), "title": "Bonus Tasks"}
   ];
+
+  final GlobalKey<FormState> _keyDialogForm = new GlobalKey<FormState>();
+
+  Future<void> _askNameDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('What\'s your name?'),
+          content: SingleChildScrollView(
+            child: Form(
+              key: _keyDialogForm,
+              child: ListBody(
+                children: <Widget>[
+                  TextFormField(
+                    textAlign: TextAlign.center,
+                    onSaved: (val) {
+                      globals.currentParticipant.name = val;
+                      Participant()
+                          .insertParticipant(globals.currentParticipant);
+                      setState(() {});
+                    },
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Name',
+                    ),
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return 'Please enter your name';
+                      }
+                      return null;
+                    },
+                  )
+                ],
+              ),
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('OK'),
+              onPressed: () {
+                if (_keyDialogForm.currentState.validate()) {
+                  _keyDialogForm.currentState.save();
+                  Navigator.pop(context);
+                }
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    new Future.delayed(Duration.zero, () {
+      if (globals.currentParticipant.name == '') {
+        _askNameDialog();
+      }
+    });
+  }
 
   void _selectScreen(int index) {
     setState(() {

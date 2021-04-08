@@ -18,23 +18,48 @@ Widget cardCarousel(
     arguments = '',
     buttonText,
     costPoints}) {
+  final snackBar =
+      SnackBar(content: Text('You do not have enough point to play!'));
+
+  Future<dynamic> onTap() {
+    if (costPoints != null) {
+      if (globals.currentParticipant.score - costPoints < 0) {
+        // not enough points
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
+        return new Future.delayed(Duration.zero, () {});
+      } else {
+        globals.currentParticipant.addToScore(-costPoints);
+        return Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => route,
+            settings: RouteSettings(
+              arguments: arguments,
+            ),
+          ),
+        );
+      }
+    } else {
+      return Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => route,
+          settings: RouteSettings(
+            arguments: arguments,
+          ),
+        ),
+      );
+    }
+  }
+
   return AspectRatio(
     aspectRatio: 1 / 1.2,
     child: Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
         child: GestureDetector(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => route,
-                settings: RouteSettings(
-                  arguments: arguments,
-                ),
-              ),
-            );
-          },
+          onTap: onTap,
           child: Card(
             color: color,
             shape: RoundedRectangleBorder(
@@ -71,20 +96,7 @@ Widget cardCarousel(
                           (buttonText != null ? buttonText : 'GO'),
                           style: TextStyle(fontSize: 18),
                         ),
-                        onPressed: () {
-                          if (costPoints != null) {
-                            globals.currentParticipant.addToScore(-costPoints);
-                          }
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => route,
-                              settings: RouteSettings(
-                                arguments: arguments,
-                              ),
-                            ),
-                          );
-                        },
+                        onPressed: onTap,
                       ),
               ],
             ),

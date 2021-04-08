@@ -8,7 +8,7 @@ import 'package:audioplayers/audioplayers.dart';
 
 // declaration of globals to use as examples in the App
 bool isLoggedIn = true;
-Participant exampleParticipant = Participant(id: 1, name: 'Mike', score: 0);
+Participant exampleParticipant = Participant(id: 1, name: '', score: 0);
 
 ValueNotifier<int> userNotifier = ValueNotifier(currentParticipant.score);
 

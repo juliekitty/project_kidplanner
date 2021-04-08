@@ -120,18 +120,30 @@ class _GamePageState extends State<GamePage> {
           content: Text(
             "Your game is over but you played well. Your score is " +
                 score.toString() +
-                ". Restart will cost you 200 points!",
+                '.\n${(globals.currentParticipant.score - 200 < 0) ? "You do not have enough point to play again!" : ". \nRestart will cost you 200 points!"}',
             style: TextStyle(color: Colors.white),
           ),
           actions: [
+            (globals.currentParticipant.score - 200 < 0)
+                ? Container()
+                : TextButton(
+                    onPressed: () async {
+                      globals.currentParticipant.addToScore(-200);
+                      Navigator.of(context).pop();
+                      restart();
+                    },
+                    child: Text(
+                      "Restart",
+                      style: TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.bold),
+                    ),
+                  ),
             TextButton(
               onPressed: () async {
-                globals.currentParticipant.addToScore(-200);
                 Navigator.of(context).pop();
-                restart();
               },
               child: Text(
-                "Restart",
+                "Exit game",
                 style:
                     TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
               ),
