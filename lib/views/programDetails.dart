@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
+import 'package:audioplayers/audio_cache.dart';
 
 import 'package:project_kidplanner/src/components/appBar.dart';
 import 'package:project_kidplanner/src/classes/customScrollPhysics.dart';
@@ -71,6 +72,10 @@ class _ProgramDetailsViewState extends State<ProgramDetailsView> {
 
   // Animation
   CountDownController _controller = CountDownController();
+  // Audio
+
+  static AudioCache player = new AudioCache(
+      prefix: globals.audioFilesPrefix, fixedPlayer: globals.audioPlayer);
 
   // Go back to previous state
   // at the end of the program or when program interrupted
@@ -84,6 +89,7 @@ class _ProgramDetailsViewState extends State<ProgramDetailsView> {
     debugPrint('dispose');
     debugPrint('timer $timer');
     timer.cancel();
+    globals.audioPlayer.stop();
     super.dispose();
   }
 
@@ -95,6 +101,7 @@ class _ProgramDetailsViewState extends State<ProgramDetailsView> {
     if (this.mounted) {
       setState(() {
         isVisibileNextBtn = true;
+        player.play(globals.timerFinishedAudio);
       });
     }
   }

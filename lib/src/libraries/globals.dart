@@ -4,6 +4,7 @@ import 'package:project_kidplanner/src/classes/program.dart';
 import 'package:project_kidplanner/src/classes/user.dart';
 import 'programsData.dart' as programsData;
 import 'package:flutter/material.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 // declaration of globals to use as examples in the App
 bool isLoggedIn = true;
@@ -27,3 +28,9 @@ const profileListBoxDecoration = BoxDecoration(
   //borderRadius: BorderRadius.circular(6.0),
   border: profileListBorders,
 );
+
+// Audio constants
+const timerFinishedAudio = "Cool-alarm-tone-notification-sound.mp3";
+const programStepAudio = "Ticking-clock-sound.mp3";
+const audioFilesPrefix = 'audio/';
+final audioPlayer = AudioPlayer();
