@@ -93,30 +93,6 @@ class _BonusTasksViewState extends State<BonusTasksView> {
                 ),
         ],
       ),
-      /*floatingActionButton: FloatingActionButton.extended(
-        label: Text('Begin'),
-        icon: Icon(Icons.keyboard_arrow_right),
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => ProgramDetailsView(),
-              settings: RouteSettings(
-                arguments: program.programId,
-              ),
-            ),
-          );
-        },
-      ),*/
-/*
-ElevatedButton(
-                      child: Text(
-                        (buttonText != null ? buttonText : 'GO'),
-                        style: TextStyle(fontSize: 18),
-                      ),
-                      
-                    ),
-*/
     );
   }
 }

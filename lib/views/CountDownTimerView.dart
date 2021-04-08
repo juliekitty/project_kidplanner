@@ -26,7 +26,7 @@ class _CountDownTimerState extends State<CountDownTimer>
   Future initDuration() async {
     var resultingDuration = await showDurationPicker(
       context: context,
-      initialTime: Duration(minutes: 10),
+      initialTime: Duration(minutes: 3),
       snapToMins: 5.0,
     );
     setState(() {
