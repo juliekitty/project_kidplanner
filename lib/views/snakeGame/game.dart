@@ -9,6 +9,7 @@ import 'direction_type.dart';
 import 'piece.dart';
 
 import 'package:project_kidplanner/src/components/appBar.dart';
+import 'package:project_kidplanner/src/libraries/globals.dart' as globals;
 
 class GamePage extends StatefulWidget {
   @override
@@ -33,19 +34,28 @@ class _GamePageState extends State<GamePage> {
 
   int score = 0;
 
+  // when the state is left
+  @override
+  void dispose() {
+    super.dispose();
+    timer.cancel();
+  }
+
   void draw() async {
-    if (positions.length == 0) {
-      positions.add(getRandomPositionWithinRange());
-    }
+    if (this.mounted) {
+      if (positions.length == 0) {
+        positions.add(getRandomPositionWithinRange());
+      }
 
-    while (length > positions.length) {
-      positions.add(positions[positions.length - 1]);
-    }
+      while (length > positions.length) {
+        positions.add(positions[positions.length - 1]);
+      }
 
-    for (int i = positions.length - 1; i > 0; i--) {
-      positions[i] = positions[i - 1];
+      for (int i = positions.length - 1; i > 0; i--) {
+        positions[i] = positions[i - 1];
+      }
+      positions[0] = await getNextPosition(positions[0]);
     }
-    positions[0] = await getNextPosition(positions[0]);
   }
 
   Direction getRandomDirection([DirectionType type]) {
@@ -110,12 +120,13 @@ class _GamePageState extends State<GamePage> {
           content: Text(
             "Your game is over but you played well. Your score is " +
                 score.toString() +
-                ".",
+                ". Restart will cost you 200 points!",
             style: TextStyle(color: Colors.white),
           ),
           actions: [
             TextButton(
               onPressed: () async {
+                globals.currentParticipant.addToScore(-200);
                 Navigator.of(context).pop();
                 restart();
               },

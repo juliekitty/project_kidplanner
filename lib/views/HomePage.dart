@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:project_kidplanner/src/libraries/globals.dart' as globals;
 
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:project_kidplanner/views/advicesView.dart';
@@ -15,7 +16,8 @@ Widget cardCarousel(
     picture,
     route,
     arguments = '',
-    buttonText}) {
+    buttonText,
+    costPoints}) {
   return AspectRatio(
     aspectRatio: 1 / 1.2,
     child: Padding(
@@ -70,6 +72,9 @@ Widget cardCarousel(
                           style: TextStyle(fontSize: 18),
                         ),
                         onPressed: () {
+                          if (costPoints != null) {
+                            globals.currentParticipant.addToScore(-costPoints);
+                          }
                           Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -188,7 +193,8 @@ class HomePage extends StatelessWidget {
                     title: 'Games',
                     descrText: 'Redeem your rewards!',
                     picture: 'assets/images/game-console.svg',
-                    route: GamePage()),
+                    route: GamePage(),
+                    costPoints: 500),
               ],
             ),
           ),
