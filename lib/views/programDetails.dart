@@ -73,7 +73,6 @@ class _ProgramDetailsViewState extends State<ProgramDetailsView> {
   // Animation
   CountDownController _controller = CountDownController();
   // Audio
-
   static AudioCache player = new AudioCache(
       prefix: globals.audioFilesPrefix, fixedPlayer: globals.audioPlayer);
 
@@ -172,64 +171,65 @@ class _ProgramDetailsViewState extends State<ProgramDetailsView> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<dynamic>(
-        future: callAsyncFetch(),
-        builder: (context, AsyncSnapshot<dynamic> snapshot) {
-          if (snapshot.hasData) {
-            return WillPopScope(
-              onWillPop: () async {
-                final value = await showDialog<bool>(
-                    context: context,
-                    builder: (context) {
-                      return showInterruptDialog(context);
-                    });
+      future: callAsyncFetch(),
+      builder: (context, AsyncSnapshot<dynamic> snapshot) {
+        if (snapshot.hasData) {
+          return WillPopScope(
+            onWillPop: () async {
+              final value = await showDialog<bool>(
+                  context: context,
+                  builder: (context) {
+                    return showInterruptDialog(context);
+                  });
 
-                return value == true;
-              },
-              child: Scaffold(
-                appBar: appBar(context, Theme.of(context).textTheme,
-                    _screens[_selectedScreenIndex].title),
-                body: Container(
-                  color: Colors.yellow[100].withOpacity(0.3),
-                  child: PageView(
-                    children: _stepsWidgetsList,
-                    pageSnapping: false,
-                    physics: CustomLockScrollPhysics(
-                        lockLeft: true, lockRight: true),
-                    scrollDirection: Axis.horizontal,
-                    controller: _pageController,
-                    onPageChanged: (index) {
-                      //_controller.start();
-                      onPageChanged(index);
-                    },
-                  ),
-                ),
-                floatingActionButton: Visibility(
-                  visible: isVisibileNextBtn,
-                  child: FloatingActionButton.extended(
-                    label: Text(
-                      (_selectedScreenIndex + 1 >= _screens.length)
-                          ? "DONE"
-                          : "NEXT",
-                      style: TextStyle(
-                          fontFamily: 'Helvetica', fontWeight: FontWeight.bold),
-                    ),
-                    icon: Icon(
-                      Icons.star,
-                      size: Theme.of(context).iconTheme.size - 15,
-                    ),
-                    onPressed: nextPageOrBack,
-                  ),
+              return value == true;
+            },
+            child: Scaffold(
+              appBar: appBar(context, Theme.of(context).textTheme,
+                  _screens[_selectedScreenIndex].title),
+              body: Container(
+                color: Colors.yellow[100].withOpacity(0.3),
+                child: PageView(
+                  children: _stepsWidgetsList,
+                  pageSnapping: false,
+                  physics:
+                      CustomLockScrollPhysics(lockLeft: true, lockRight: true),
+                  scrollDirection: Axis.horizontal,
+                  controller: _pageController,
+                  onPageChanged: (index) {
+                    //_controller.start();
+                    onPageChanged(index);
+                  },
                 ),
               ),
-            );
-          } else {
-            return Container(
-              color: Colors.yellow[100],
-              child: Center(
-                child: Container(child: CircularProgressIndicator()),
+              floatingActionButton: Visibility(
+                visible: isVisibileNextBtn,
+                child: FloatingActionButton.extended(
+                  label: Text(
+                    (_selectedScreenIndex + 1 >= _screens.length)
+                        ? "DONE"
+                        : "NEXT",
+                    style: TextStyle(
+                        fontFamily: 'Helvetica', fontWeight: FontWeight.bold),
+                  ),
+                  icon: Icon(
+                    Icons.star,
+                    size: Theme.of(context).iconTheme.size - 15,
+                  ),
+                  onPressed: nextPageOrBack,
+                ),
               ),
-            );
-          }
-        });
+            ),
+          );
+        } else {
+          return Container(
+            color: Colors.yellow[100],
+            child: Center(
+              child: Container(child: CircularProgressIndicator()),
+            ),
+          );
+        }
+      },
+    );
   }
 }
