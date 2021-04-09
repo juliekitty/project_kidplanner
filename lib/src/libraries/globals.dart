@@ -6,8 +6,7 @@ import 'programsData.dart' as programsData;
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 
-// declaration of globals to use as examples in the App
-bool isLoggedIn = true;
+// Participant and Programs
 Participant exampleParticipant = Participant(id: 1, name: '', score: 0);
 
 ValueNotifier<int> userNotifier = ValueNotifier(currentParticipant.score);
@@ -16,6 +15,7 @@ Participant currentParticipant;
 
 List<Program> defaultPrograms = programsData.programs;
 
+// Themes Infos
 const profileListBorders = Border(
   bottom: BorderSide(color: Colors.grey, width: 0.0),
   top: BorderSide(color: Colors.grey, width: 0.0),
@@ -25,7 +25,6 @@ const profileListBorders = Border(
 
 const profileListBoxDecoration = BoxDecoration(
   color: Colors.white,
-  //borderRadius: BorderRadius.circular(6.0),
   border: profileListBorders,
 );
 

@@ -101,44 +101,6 @@ class _ProfileViewState extends State<ProfileView> {
                           ],
                         ),
                       ),
-                      /*Container(
-                  child: TextField(
-                    decoration: InputDecoration(
-                      icon: Icon(Icons.person),
-                      hintText: 'Hint Text',
-                      //helperText: 'Helper Text',
-                      //counterText: '0 characters',
-                      border: OutlineInputBorder(),
-                    ),
-                  ),
-                ),*/
-                      /*Container(
-                        decoration: globals.profileListBoxDecoration,
-                        padding: profileListPadding,
-                        child: Column(
-                          children: <Widget>[
-                            Row(
-                              children: <Widget>[
-                                Expanded(child: Text('Test page sqlite')),
-                                IconButton(
-                                  icon: Icon(
-                                    Icons.keyboard_arrow_right,
-                                    size: Theme.of(context).iconTheme.size,
-                                  ),
-                                  onPressed: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              ProfileDetailsView()),
-                                    );
-                                  },
-                                )
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),*/
                       Container(
                         decoration: globals.profileListBoxDecoration,
                         padding: profileListPadding,

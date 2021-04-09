@@ -72,12 +72,10 @@ Widget cardCarousel(
                   (title != null ? title : 'Title'),
                   style: Theme.of(context).textTheme.headline6,
                 ),
-                //Divider(),
                 Padding(
                   padding: const EdgeInsets.all(6.0),
                   child: Text((descrText != null ? descrText : 'descrText')),
                 ),
-                //Divider(),
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Container(
@@ -88,7 +86,6 @@ Widget cardCarousel(
                         semanticsLabel: ''),
                   ),
                 ),
-                //Divider(),
                 route == null
                     ? new SizedBox()
                     : ElevatedButton(
