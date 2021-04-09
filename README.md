@@ -9,7 +9,7 @@ A kid wins points when he/she does the routines or bonus tasks, the points can b
 - Task timer
 - A game, only if the kid won enough points
 
-Roadmap:
+Roadmap/Todolist:
 
 - Be able to have more than one user on a device (currently the data is saved on the device, but only one user can be created)
 - Introduce a task validation system with QR Code
