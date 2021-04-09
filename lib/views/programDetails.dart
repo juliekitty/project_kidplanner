@@ -107,6 +107,7 @@ class _ProgramDetailsViewState extends State<ProgramDetailsView> {
 
   // action on the next button (FloatingActionButton)
   void nextPageOrBack() {
+    globals.audioPlayer.stop();
     if (_selectedScreenIndex + 1 < _screens.length) {
       _pageController.nextPage(
         duration: Duration(milliseconds: 350),

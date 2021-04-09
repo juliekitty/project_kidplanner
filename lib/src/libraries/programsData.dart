@@ -31,11 +31,11 @@ final ProgramStep stepForOutside = ProgramStep(
 
 final ProgramStep stepCheckBag = ProgramStep(
     title: 'Check your schoolbag',
-    duration: Duration(seconds: 15),
+    duration: Duration(seconds: 7),
     picture: 'assets/images/backpack.svg');
 final ProgramStep stepPyjama = ProgramStep(
     title: 'Put your pyjama on',
-    duration: Duration(seconds: 15),
+    duration: Duration(seconds: 5),
     picture: "assets/images/pyjamas.svg");
 final ProgramStep stepTeethNight = ProgramStep(
     title: 'Tooth brushing',

@@ -166,19 +166,19 @@ class HomePage extends StatelessWidget {
               children: <Widget>[
                 cardCarousel(
                   context: context,
-                  color: Colors.cyan[200],
-                  title: 'Planning advices',
-                  descrText: 'Preparation is key!',
-                  picture: 'assets/images/requirement.svg',
-                  route: AdvicesView(),
-                ),
-                cardCarousel(
-                  context: context,
                   color: Colors.orange,
                   title: 'Bonus Tasks',
                   descrText: 'Win bonus points!',
-                  picture: 'assets/images/game-console.svg',
+                  picture: 'assets/images/requirement.svg',
                   route: BonusTasksView(),
+                ),
+                cardCarousel(
+                  context: context,
+                  color: Colors.cyan[200],
+                  title: 'Planning advices',
+                  descrText: 'Preparation is key!',
+                  picture: 'assets/images/read.svg',
+                  route: AdvicesView(),
                 ),
               ],
             ),
