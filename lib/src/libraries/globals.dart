@@ -32,5 +32,7 @@ const profileListBoxDecoration = BoxDecoration(
 // Audio constants
 const timerFinishedAudio = "Cool-alarm-tone-notification-sound.mp3";
 const programStepAudio = "Ticking-clock-sound.mp3";
+const pointsAdd = "Video-game-bonus-bell-sound-effect.mp3";
+const pointsLoose = "Error-beep-sound-effect.mp3";
 const audioFilesPrefix = 'audio/';
 final audioPlayer = AudioPlayer();

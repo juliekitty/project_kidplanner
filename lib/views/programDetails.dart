@@ -186,8 +186,8 @@ class _ProgramDetailsViewState extends State<ProgramDetailsView> {
               return value == true;
             },
             child: Scaffold(
-              appBar: appBar(context, Theme.of(context).textTheme,
-                  _screens[_selectedScreenIndex].title),
+              appBar:
+                  appBar(context, Theme.of(context).textTheme, 'My Routine'),
               body: Container(
                 color: Colors.yellow[100].withOpacity(0.3),
                 child: PageView(

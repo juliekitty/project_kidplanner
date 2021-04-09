@@ -120,7 +120,7 @@ class _GamePageState extends State<GamePage> {
           content: Text(
             "Your game is over but you played well. Your score is " +
                 score.toString() +
-                '.\n${(globals.currentParticipant.score - 200 < 0) ? "You do not have enough point to play again!" : ". \nRestart will cost you 200 points!"}',
+                '.\n${(globals.currentParticipant.score - 200 < 0) ? "You do not have enough point to play again!" : "\nRestart will cost you 200 points!"}',
             style: TextStyle(color: Colors.white),
           ),
           actions: [
@@ -215,7 +215,7 @@ class _GamePageState extends State<GamePage> {
           posX: positions[i].dx.toInt(),
           posY: positions[i].dy.toInt(),
           size: step,
-          color: Colors.red,
+          color: Colors.orange[500],
         ),
       );
     }
@@ -307,7 +307,7 @@ class _GamePageState extends State<GamePage> {
     return Scaffold(
       appBar: appBar(context, Theme.of(context).textTheme, 'Program'),
       body: Container(
-        color: Color(0XFFF5BB00),
+        color: Colors.amber[100],
         child: Stack(
           children: [
             getPlayAreaBorder(),

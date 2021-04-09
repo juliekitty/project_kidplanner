@@ -66,8 +66,9 @@ flutter:
     - assets/images/advices/
     - assets/html/
     - assets/audio/Cool-alarm-tone-notification-sound.mp3
-    - assets/audio/Xylophone-melody-ringtone.mp3
     - assets/audio/Ticking-clock-sound.mp3
+    - assets/audio/Video-game-bonus-bell-sound-effect.mp3
+    - assets/audio/Error-beep-sound-effect.mp3
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

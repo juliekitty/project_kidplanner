@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:audioplayers/audio_cache.dart';
 
 import 'package:project_kidplanner/src/classes/program.dart';
 import 'package:project_kidplanner/src/libraries/globals.dart' as globals;
@@ -23,6 +24,13 @@ class Participant extends User {
     this.score += addedPoints;
     this.insertParticipant(this);
     globals.userNotifier.value = this.score;
+    AudioCache player = new AudioCache(
+        prefix: globals.audioFilesPrefix, fixedPlayer: globals.audioPlayer);
+    if (addedPoints > 0) {
+      player.play(globals.pointsAdd);
+    } else {
+      player.play(globals.pointsLoose);
+    }
     return this.score;
   }
 
