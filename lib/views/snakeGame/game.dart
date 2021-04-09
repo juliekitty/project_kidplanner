@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:audioplayers/audio_cache.dart';
 
 import 'control_panel.dart';
 import 'direction.dart';
@@ -105,6 +106,10 @@ class _GamePageState extends State<GamePage> {
       barrierDismissible: false,
       context: context,
       builder: (ctx) {
+        AudioCache player = new AudioCache(
+            prefix: globals.audioFilesPrefix, fixedPlayer: globals.audioPlayer);
+        player.play(globals.gameLoose);
+
         return AlertDialog(
           backgroundColor: Colors.cyan[500],
           shape: RoundedRectangleBorder(

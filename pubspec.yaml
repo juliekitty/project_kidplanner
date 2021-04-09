@@ -1,5 +1,5 @@
 name: project_kidplanner
-description: A new Flutter project.
+description: Help kids and parents to organize
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
@@ -69,6 +69,7 @@ flutter:
     - assets/audio/Ticking-clock-sound.mp3
     - assets/audio/Video-game-bonus-bell-sound-effect.mp3
     - assets/audio/Error-beep-sound-effect.mp3
+    - assets/audio/Single-coin-dropping.mp3
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
