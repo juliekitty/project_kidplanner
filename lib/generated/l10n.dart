@@ -35,21 +35,61 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
+  /// `Kid Planner`
+  String get General_appName {
+    return Intl.message(
+      'Kid Planner',
+      name: 'General_appName',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `GO`
-  String get general_go {
+  String get General_go {
     return Intl.message(
       'GO',
-      name: 'general_go',
+      name: 'General_go',
       desc: '',
       args: [],
     );
   }
 
   /// `You do not have enough point to play!`
-  String get HPSnackBarNotEnoughPoints {
+  String get HP_SnackBar_NotEnoughPoints {
     return Intl.message(
       'You do not have enough point to play!',
-      name: 'HPSnackBarNotEnoughPoints',
+      name: 'HP_SnackBar_NotEnoughPoints',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `What's your name?`
+  String get HP_AlertDialog_Title {
+    return Intl.message(
+      'What\'s your name?',
+      name: 'HP_AlertDialog_Title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name`
+  String get HP_AlertDialog_Form_LabelText {
+    return Intl.message(
+      'Name',
+      name: 'HP_AlertDialog_Form_LabelText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your name`
+  String get HP_AlertDialog_Form_ValidationText {
+    return Intl.message(
+      'Please enter your name',
+      name: 'HP_AlertDialog_Form_ValidationText',
       desc: '',
       args: [],
     );
@@ -240,6 +280,56 @@ class S {
     return Intl.message(
       'Credits',
       name: 'Profile_Credits_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Task Timer`
+  String get Countdown_PageTitle {
+    return Intl.message(
+      'Task Timer',
+      name: 'Countdown_PageTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Set a timer for a task!`
+  String get Countdown_PageIntroText {
+    return Intl.message(
+      'Set a timer for a task!',
+      name: 'Countdown_PageIntroText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Set a timer`
+  String get Countdown_SetTimerButtonLabel {
+    return Intl.message(
+      'Set a timer',
+      name: 'Countdown_SetTimerButtonLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bonus Tasks`
+  String get Bonus_PageTitle {
+    return Intl.message(
+      'Bonus Tasks',
+      name: 'Bonus_PageTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Planning advices`
+  String get Advices_PageTitle {
+    return Intl.message(
+      'Planning advices',
+      name: 'Advices_PageTitle',
       desc: '',
       args: [],
     );

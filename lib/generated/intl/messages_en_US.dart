@@ -21,7 +21,16 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
-    "HPSnackBarNotEnoughPoints" : MessageLookupByLibrary.simpleMessage("You do not have enough point to play!"),
+    "Advices_PageTitle" : MessageLookupByLibrary.simpleMessage("Planning advices"),
+    "Bonus_PageTitle" : MessageLookupByLibrary.simpleMessage("Bonus Tasks"),
+    "Countdown_PageIntroText" : MessageLookupByLibrary.simpleMessage("Set a timer for a task!"),
+    "Countdown_PageTitle" : MessageLookupByLibrary.simpleMessage("Task Timer"),
+    "Countdown_SetTimerButtonLabel" : MessageLookupByLibrary.simpleMessage("Set a timer"),
+    "General_appName" : MessageLookupByLibrary.simpleMessage("Kid Planner"),
+    "General_go" : MessageLookupByLibrary.simpleMessage("GO"),
+    "HP_AlertDialog_Form_LabelText" : MessageLookupByLibrary.simpleMessage("Name"),
+    "HP_AlertDialog_Form_ValidationText" : MessageLookupByLibrary.simpleMessage("Please enter your name"),
+    "HP_AlertDialog_Title" : MessageLookupByLibrary.simpleMessage("What\'s your name?"),
     "HP_Carousel_Bonus" : MessageLookupByLibrary.simpleMessage("Win bonus points"),
     "HP_Carousel_Bonus_AdvicesDescr" : MessageLookupByLibrary.simpleMessage("Preparation is key!"),
     "HP_Carousel_Bonus_AdvicesTitle" : MessageLookupByLibrary.simpleMessage("Planning advices"),
@@ -35,12 +44,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "HP_Carousel_Routine_MorningDescr" : MessageLookupByLibrary.simpleMessage("Begin your morning routine!"),
     "HP_Carousel_Routine_MorningTitle" : MessageLookupByLibrary.simpleMessage("Morning Routine"),
     "HP_Carousel_Routines" : MessageLookupByLibrary.simpleMessage("Begin a routine"),
+    "HP_SnackBar_NotEnoughPoints" : MessageLookupByLibrary.simpleMessage("You do not have enough point to play!"),
     "Profile_Credits_label" : MessageLookupByLibrary.simpleMessage("Credits"),
     "Profile_Debug_addPointsButtonlabel" : MessageLookupByLibrary.simpleMessage("Add 500"),
     "Profile_Debug_label" : MessageLookupByLibrary.simpleMessage("Debug:"),
     "Profile_PageTitle" : MessageLookupByLibrary.simpleMessage("Profile"),
     "Profile_Points_label" : MessageLookupByLibrary.simpleMessage("Current score:"),
-    "Profile_Programs_label" : MessageLookupByLibrary.simpleMessage("Your programs:"),
-    "general_go" : MessageLookupByLibrary.simpleMessage("GO")
+    "Profile_Programs_label" : MessageLookupByLibrary.simpleMessage("Your programs:")
   };
 }

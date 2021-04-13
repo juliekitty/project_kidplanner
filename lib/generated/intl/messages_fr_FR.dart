@@ -21,7 +21,16 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
-    "HPSnackBarNotEnoughPoints" : MessageLookupByLibrary.simpleMessage("Tu n\'as pas assez de points pour jouer!"),
+    "Advices_PageTitle" : MessageLookupByLibrary.simpleMessage("Conseils d\'organisation"),
+    "Bonus_PageTitle" : MessageLookupByLibrary.simpleMessage("Tâches bonus"),
+    "Countdown_PageIntroText" : MessageLookupByLibrary.simpleMessage("Crée un chronomètre pour une tâche de ton choix !"),
+    "Countdown_PageTitle" : MessageLookupByLibrary.simpleMessage("Chronomètre"),
+    "Countdown_SetTimerButtonLabel" : MessageLookupByLibrary.simpleMessage("Créer"),
+    "General_appName" : MessageLookupByLibrary.simpleMessage("Kid Planner"),
+    "General_go" : MessageLookupByLibrary.simpleMessage("OK"),
+    "HP_AlertDialog_Form_LabelText" : MessageLookupByLibrary.simpleMessage("Nom"),
+    "HP_AlertDialog_Form_ValidationText" : MessageLookupByLibrary.simpleMessage("Merci d\'entrer ton nom"),
+    "HP_AlertDialog_Title" : MessageLookupByLibrary.simpleMessage("Comment t\'appelles-tu ?"),
     "HP_Carousel_Bonus" : MessageLookupByLibrary.simpleMessage("Gagne des points bonus"),
     "HP_Carousel_Bonus_AdvicesDescr" : MessageLookupByLibrary.simpleMessage("La clé c\'est la préparation !"),
     "HP_Carousel_Bonus_AdvicesTitle" : MessageLookupByLibrary.simpleMessage("Conseils d\'organisation"),
@@ -35,12 +44,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "HP_Carousel_Routine_MorningDescr" : MessageLookupByLibrary.simpleMessage("Commence la routine du matin !"),
     "HP_Carousel_Routine_MorningTitle" : MessageLookupByLibrary.simpleMessage("Routine du matin"),
     "HP_Carousel_Routines" : MessageLookupByLibrary.simpleMessage("Tes routines"),
+    "HP_SnackBar_NotEnoughPoints" : MessageLookupByLibrary.simpleMessage("Tu n\'as pas assez de points pour jouer!"),
     "Profile_Credits_label" : MessageLookupByLibrary.simpleMessage("Crédits"),
     "Profile_Debug_addPointsButtonlabel" : MessageLookupByLibrary.simpleMessage("Ajoute 500"),
     "Profile_Debug_label" : MessageLookupByLibrary.simpleMessage("Debug :"),
     "Profile_PageTitle" : MessageLookupByLibrary.simpleMessage("Profil"),
     "Profile_Points_label" : MessageLookupByLibrary.simpleMessage("Score actuel:"),
-    "Profile_Programs_label" : MessageLookupByLibrary.simpleMessage("Tes routines :"),
-    "general_go" : MessageLookupByLibrary.simpleMessage("OK")
+    "Profile_Programs_label" : MessageLookupByLibrary.simpleMessage("Tes routines :")
   };
 }

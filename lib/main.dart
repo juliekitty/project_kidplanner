@@ -80,11 +80,11 @@ class LayoutView extends StatefulWidget {
 class _LayoutViewState extends State<LayoutView> {
   int _selectedScreenIndex = 0;
   List _screens = [
-    {"screen": HomePage(), "title": "Kid Planner"},
-    {"screen": CountDownTimer(), "title": "Task Timer"},
-    {"screen": ProfileView(), "title": "my Profile"},
-    {"screen": AdvicesView(), "title": "Advices"},
-    {"screen": BonusTasksView(), "title": "Bonus Tasks"}
+    {"screen": HomePage(), "title": S.current.General_appName},
+    {"screen": CountDownTimer(), "title": S.current.Countdown_PageTitle},
+    {"screen": ProfileView(), "title": S.current.Profile_PageTitle},
+    {"screen": AdvicesView(), "title": S.current.Advices_PageTitle},
+    {"screen": BonusTasksView(), "title": S.current.Bonus_PageTitle}
   ];
 
   final GlobalKey<FormState> _keyDialogForm = new GlobalKey<FormState>();
@@ -95,7 +95,7 @@ class _LayoutViewState extends State<LayoutView> {
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('What\'s your name?'),
+          title: Text(S.current.HP_AlertDialog_Title),
           content: SingleChildScrollView(
             child: Form(
               key: _keyDialogForm,
@@ -111,12 +111,12 @@ class _LayoutViewState extends State<LayoutView> {
                     },
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
-                      labelText: 'Name',
+                      labelText: S.current.HP_AlertDialog_Form_LabelText,
                     ),
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (value) {
                       if (value.isEmpty) {
-                        return 'Please enter your name';
+                        return S.current.HP_AlertDialog_Form_ValidationText;
                       }
                       return null;
                     },
@@ -127,7 +127,7 @@ class _LayoutViewState extends State<LayoutView> {
           ),
           actions: <Widget>[
             TextButton(
-              child: Text('OK'),
+              child: Text(S.current.General_go),
               onPressed: () {
                 if (_keyDialogForm.currentState.validate()) {
                   _keyDialogForm.currentState.save();

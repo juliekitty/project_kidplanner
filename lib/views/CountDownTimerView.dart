@@ -3,6 +3,7 @@ import 'package:audioplayers/audio_cache.dart';
 import 'package:flutter/rendering.dart';
 import 'package:duration_picker/duration_picker.dart';
 import 'package:project_kidplanner/src/libraries/globals.dart' as globals;
+import 'package:project_kidplanner/generated/l10n.dart';
 
 class CountDownTimer extends StatefulWidget {
   @override
@@ -76,12 +77,12 @@ class _CountDownTimerState extends State<CountDownTimer>
                       child: Center(
                         child: Column(children: [
                           Text(
-                            'Set a timer for a task!',
+                            S.of(context).Countdown_PageIntroText,
                             style: TextStyle(fontSize: 18),
                           ),
                           ElevatedButton(
                             child: Text(
-                              'Set a timer',
+                              S.of(context).Countdown_SetTimerButtonLabel,
                               style:
                                   TextStyle(fontSize: 18, color: Colors.white),
                             ),
@@ -123,7 +124,7 @@ class _CountDownTimerState extends State<CountDownTimer>
                                             CrossAxisAlignment.center,
                                         children: <Widget>[
                                           Text(
-                                            "Task Timer",
+                                            S.of(context).Countdown_PageTitle,
                                             style: TextStyle(
                                                 fontSize: 20.0,
                                                 color: Colors.cyan[200]),

@@ -1,7 +1,11 @@
 {
     "@@locale": "en_US",
-    "general_go": "GO",
-    "HPSnackBarNotEnoughPoints": "You do not have enough point to play!",
+    "General_appName": "Kid Planner",
+    "General_go": "GO",
+    "HP_SnackBar_NotEnoughPoints": "You do not have enough point to play!",
+    "HP_AlertDialog_Title": "What's your name?",
+    "HP_AlertDialog_Form_LabelText": "Name",
+    "HP_AlertDialog_Form_ValidationText": "Please enter your name",
     "HP_Carousel_Routines": "Begin a routine",
     "HP_Carousel_Routine_MorningTitle": "Morning Routine",
     "HP_Carousel_Routine_MorningDescr": "Begin your morning routine!",
@@ -20,6 +24,11 @@
     "Profile_Programs_label": "Your programs:",
     "Profile_Debug_label": "Debug:",
     "Profile_Debug_addPointsButtonlabel": "Add 500",
-    "Profile_Credits_label": "Credits"
+    "Profile_Credits_label": "Credits",
+    "Countdown_PageTitle": "Task Timer",
+    "Countdown_PageIntroText": "Set a timer for a task!",
+    "Countdown_SetTimerButtonLabel": "Set a timer",
+    "Bonus_PageTitle": "Bonus Tasks",
+    "Advices_PageTitle": "Planning advices"
 
   }

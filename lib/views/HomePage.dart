@@ -20,7 +20,7 @@ Widget cardCarousel(
     buttonText,
     costPoints}) {
   final snackBar =
-      SnackBar(content: Text(S.of(context).HPSnackBarNotEnoughPoints));
+      SnackBar(content: Text(S.of(context).HP_SnackBar_NotEnoughPoints));
 
   Future<dynamic> onTap() {
     if (costPoints != null) {
@@ -97,7 +97,7 @@ Widget cardCarousel(
                         child: Text(
                           (buttonText != null
                               ? buttonText
-                              : S.of(context).general_go),
+                              : S.of(context).General_go),
                           style: TextStyle(fontSize: 18),
                         ),
                         onPressed: onTap,
