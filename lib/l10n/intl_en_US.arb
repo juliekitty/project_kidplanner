@@ -1,0 +1,25 @@
+{
+    "@@locale": "en_US",
+    "general_go": "GO",
+    "HPSnackBarNotEnoughPoints": "You do not have enough point to play!",
+    "HP_Carousel_Routines": "Begin a routine",
+    "HP_Carousel_Routine_MorningTitle": "Morning Routine",
+    "HP_Carousel_Routine_MorningDescr": "Begin your morning routine!",
+    "HP_Carousel_Routine_BedtimeTitle": "Bedtime Routine",
+    "HP_Carousel_Routine_BedtimeDescr": "Begin your bedtime routine!",
+    "HP_Carousel_Bonus": "Win bonus points",    
+    "HP_Carousel_Bonus_TasksTitle": "Bonus Tasks",
+    "HP_Carousel_Bonus_TasksDescr": "Win bonus points!",
+    "HP_Carousel_Bonus_AdvicesTitle": "Planning advices",
+    "HP_Carousel_Bonus_AdvicesDescr": "Preparation is key!",
+    "HP_Carousel_Games": "Play games",
+    "HP_Carousel_Games_GamesTitle": "Games",
+    "HP_Carousel_Games_GamesDescr": "Redeem your rewards!",
+    "Profile_PageTitle": "Profile",
+    "Profile_Points_label": "Current score:",
+    "Profile_Programs_label": "Your programs:",
+    "Profile_Debug_label": "Debug:",
+    "Profile_Debug_addPointsButtonlabel": "Add 500",
+    "Profile_Credits_label": "Credits"
+
+  }

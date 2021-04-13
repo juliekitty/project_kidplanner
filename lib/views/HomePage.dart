@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:project_kidplanner/src/libraries/globals.dart' as globals;
+import 'package:project_kidplanner/generated/l10n.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:project_kidplanner/views/advicesView.dart';
@@ -19,7 +20,7 @@ Widget cardCarousel(
     buttonText,
     costPoints}) {
   final snackBar =
-      SnackBar(content: Text('You do not have enough point to play!'));
+      SnackBar(content: Text(S.of(context).HPSnackBarNotEnoughPoints));
 
   Future<dynamic> onTap() {
     if (costPoints != null) {
@@ -68,19 +69,23 @@ Widget cardCarousel(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  (title != null ? title : 'Title'),
-                  style: Theme.of(context).textTheme.headline6,
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(10, 10, 10, 5),
+                  child: Text(
+                    (title != null ? title : 'Title'),
+                    style: Theme.of(context).textTheme.headline6,
+                    textAlign: TextAlign.center,
+                  ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(6.0),
+                  padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
                   child: Text((descrText != null ? descrText : 'descrText')),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Container(
-                    width: 100,
-                    height: 100,
+                    width: 70,
+                    height: 70,
                     child: SvgPicture.asset(
                         (picture != null ? picture : 'assets/images/clock.svg'),
                         semanticsLabel: ''),
@@ -90,7 +95,9 @@ Widget cardCarousel(
                     ? new SizedBox()
                     : ElevatedButton(
                         child: Text(
-                          (buttonText != null ? buttonText : 'GO'),
+                          (buttonText != null
+                              ? buttonText
+                              : S.of(context).general_go),
                           style: TextStyle(fontSize: 18),
                         ),
                         onPressed: onTap,
@@ -114,7 +121,7 @@ class HomePage extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.fromLTRB(15, 20, 15, 5),
           child: Text(
-            'Begin a routine',
+            S.of(context).HP_Carousel_Routines,
             style: Theme.of(context).textTheme.headline5,
           ),
         ),
@@ -129,16 +136,16 @@ class HomePage extends StatelessWidget {
                 cardCarousel(
                     context: context,
                     color: Colors.yellow[600],
-                    title: 'Morning Routine',
-                    descrText: 'Begin your morning routine!',
+                    title: S.of(context).HP_Carousel_Routine_MorningTitle,
+                    descrText: S.of(context).HP_Carousel_Routine_MorningDescr,
                     picture: 'assets/images/clock.svg',
                     route: ProgramView(),
                     arguments: 'morning'),
                 cardCarousel(
                     context: context,
                     color: Colors.cyan[200],
-                    title: 'Bedtime Routine',
-                    descrText: 'Begin your bedtime routine!',
+                    title: S.of(context).HP_Carousel_Routine_BedtimeTitle,
+                    descrText: S.of(context).HP_Carousel_Routine_BedtimeDescr,
                     picture: 'assets/images/wake-up.svg',
                     route: ProgramView(),
                     arguments: 'bedtime'),
@@ -149,7 +156,7 @@ class HomePage extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.fromLTRB(15, 20, 15, 5),
           child: Text(
-            'Win bonus points',
+            S.of(context).HP_Carousel_Bonus,
             style: Theme.of(context).textTheme.headline5,
           ),
         ),
@@ -164,16 +171,16 @@ class HomePage extends StatelessWidget {
                 cardCarousel(
                   context: context,
                   color: Colors.orange,
-                  title: 'Bonus Tasks',
-                  descrText: 'Win bonus points!',
+                  title: S.of(context).HP_Carousel_Bonus_TasksTitle,
+                  descrText: S.of(context).HP_Carousel_Bonus_TasksDescr,
                   picture: 'assets/images/requirement.svg',
                   route: BonusTasksView(),
                 ),
                 cardCarousel(
                   context: context,
                   color: Colors.cyan[200],
-                  title: 'Planning advices',
-                  descrText: 'Preparation is key!',
+                  title: S.of(context).HP_Carousel_Bonus_AdvicesTitle,
+                  descrText: S.of(context).HP_Carousel_Bonus_AdvicesDescr,
                   picture: 'assets/images/read.svg',
                   route: AdvicesView(),
                 ),
@@ -184,7 +191,7 @@ class HomePage extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.fromLTRB(15, 20, 15, 5),
           child: Text(
-            'Play games',
+            S.of(context).HP_Carousel_Games,
             style: Theme.of(context).textTheme.headline5,
           ),
         ),
@@ -199,8 +206,8 @@ class HomePage extends StatelessWidget {
                 cardCarousel(
                     context: context,
                     color: Colors.cyan[200],
-                    title: 'Games',
-                    descrText: 'Redeem your rewards!',
+                    title: S.of(context).HP_Carousel_Games_GamesTitle,
+                    descrText: S.of(context).HP_Carousel_Games_GamesDescr,
                     picture: 'assets/images/game-console.svg',
                     route: GamePage(),
                     costPoints: 500),

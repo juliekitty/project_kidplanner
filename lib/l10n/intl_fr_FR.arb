@@ -1,0 +1,26 @@
+{
+    "@@locale": "fr_FR",
+    "general_go": "OK",
+    "HPSnackBarNotEnoughPoints": "Tu n'as pas assez de points pour jouer!",
+    "HP_Carousel_Routines": "Tes routines",
+    "HP_Carousel_Routine_MorningTitle": "Routine du matin",
+    "HP_Carousel_Routine_MorningDescr": "Commence la routine du matin !",
+    "HP_Carousel_Routine_BedtimeTitle": "Routine du coucher",
+    "HP_Carousel_Routine_BedtimeDescr": "Commence la routine du coucher !",
+    "HP_Carousel_Bonus": "Gagne des points bonus",    
+    "HP_Carousel_Bonus_TasksTitle": "Tâches bonus",
+    "HP_Carousel_Bonus_TasksDescr": "Gagne des points bonus",    
+    "HP_Carousel_Bonus_AdvicesTitle": "Conseils d'organisation",
+    "HP_Carousel_Bonus_AdvicesDescr": "La clé c'est la préparation !",
+    "HP_Carousel_Games": "Jeux",
+    "HP_Carousel_Games_GamesTitle": "Snake",
+    "HP_Carousel_Games_GamesDescr": "Utilise tes points !",
+    "Profile_PageTitle": "Profil",
+    "Profile_Points_label": "Score actuel:",
+    "Profile_Programs_label": "Tes routines :",
+    "Profile_Debug_label": "Debug :",
+    "Profile_Debug_addPointsButtonlabel": "Ajoute 500",
+    "Profile_Credits_label": "Crédits"
+
+    
+  }

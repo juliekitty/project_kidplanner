@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:project_kidplanner/src/classes/user.dart';
+import 'package:project_kidplanner/generated/l10n.dart';
 
 import 'package:project_kidplanner/src/components/appBar.dart';
 import 'package:project_kidplanner/src/libraries/globals.dart' as globals;
@@ -27,7 +28,11 @@ class _ProfileViewState extends State<ProfileView> {
             globals.currentParticipant = user;
 
             return Scaffold(
-              appBar: appBar(context, Theme.of(context).textTheme, 'Profile'),
+              appBar: appBar(
+                context,
+                Theme.of(context).textTheme,
+                S.of(context).Profile_PageTitle,
+              ),
               body: ListView(
                 scrollDirection: Axis.vertical,
                 children: <Widget>[
@@ -57,7 +62,10 @@ class _ProfileViewState extends State<ProfileView> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Expanded(flex: 10, child: Text('Current score:')),
+                            Expanded(
+                                flex: 10,
+                                child:
+                                    Text(S.of(context).Profile_Points_label)),
                             Expanded(flex: 1, child: Divider()),
                             Expanded(
                                 flex: 10, child: Text(user.score.toString())),
@@ -71,7 +79,10 @@ class _ProfileViewState extends State<ProfileView> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Expanded(flex: 10, child: Text('Your programs:')),
+                            Expanded(
+                                flex: 10,
+                                child:
+                                    Text(S.of(context).Profile_Programs_label)),
                             Expanded(flex: 1, child: Divider()),
                             Expanded(
                                 flex: 10,
@@ -86,12 +97,16 @@ class _ProfileViewState extends State<ProfileView> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Expanded(flex: 10, child: Text('Debug:')),
+                            Expanded(
+                                flex: 10,
+                                child: Text(S.of(context).Profile_Debug_label)),
                             Expanded(flex: 1, child: Divider()),
                             Expanded(
                                 flex: 10,
                                 child: ElevatedButton(
-                                  child: Text('Add 500'),
+                                  child: Text(S
+                                      .of(context)
+                                      .Profile_Debug_addPointsButtonlabel),
                                   onPressed: () {
                                     setState(() {
                                       user.addToScore(500);
@@ -108,7 +123,9 @@ class _ProfileViewState extends State<ProfileView> {
                           children: <Widget>[
                             Row(
                               children: <Widget>[
-                                Expanded(child: Text('Credits')),
+                                Expanded(
+                                    child: Text(
+                                        S.of(context).Profile_Credits_label)),
                                 IconButton(
                                   icon: Icon(
                                     Icons.keyboard_arrow_right,
