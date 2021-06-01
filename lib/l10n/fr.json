@@ -1,0 +1,48 @@
+{
+  "@@locale": "fr",
+  "General_appName": "Kid Planner",
+  "General_go": "OK",
+  "HP_SnackBar_NotEnoughPoints": "Tu n'as pas assez de points pour jouer!",
+  "HP_PageTitle": "Accueil",
+  "HP_AlertDialog_Title": "Comment t'appelles-tu ?",
+  "HP_AlertDialog_Form_LabelText": "Nom",
+  "HP_AlertDialog_Form_ValidationText": "Merci d'entrer ton nom",
+  "HP_Carousel_Routines": "Tes routines",
+  "HP_Carousel_Routine_MorningTitle": "Routine du matin",
+  "HP_Carousel_Routine_MorningDescr": "Commence la routine du matin !",
+  "HP_Carousel_Routine_BedtimeTitle": "Routine du coucher",
+  "HP_Carousel_Routine_BedtimeDescr": "Commence la routine du coucher !",
+  "HP_Carousel_Bonus": "Gagne des points bonus",
+  "HP_Carousel_Bonus_TasksTitle": "Tâches bonus",
+  "HP_Carousel_Bonus_TasksDescr": "Gagne des points bonus",
+  "HP_Carousel_Bonus_AdvicesTitle": "Conseils d'organisation",
+  "HP_Carousel_Bonus_AdvicesDescr": "La clé c'est la préparation !",
+  "HP_Carousel_Games": "Jeux",
+  "HP_Carousel_Games_GamesTitle": "Snake",
+  "HP_Carousel_Games_GamesDescr": "Utilise tes points !",
+  "Profile_PageTitle": "Profil",
+  "Profile_Points_label": "Score actuel:",
+  "Profile_Programs_label": "Tes routines :",
+  "Profile_Debug_label": "Debug :",
+  "Profile_Debug_addPointsButtonlabel": "Ajoute 500",
+  "Profile_Credits_label": "Crédits",
+  "Countdown_PageTitle": "Chronomètre",
+  "Countdown_PageIntroText": "Crée un chronomètre pour une tâche de ton choix !",
+  "Countdown_SetTimerButtonLabel": "Créer",
+  "Bonus_PageTitle": "Tâches bonus",
+  "Bonus_PageIntroText": "Gagne des points bonus ",
+  "Bonus_Task1_title": "je fais mon lit",
+  "Bonus_Task2_title": "je mets la table",
+  "Bonus_Task3_title": "je range mes livres",
+  "Bonus_Task4_title": "je mets mon linge au sale",
+  "Bonus_Task5_title": "je range le linge propre",
+  "Bonus_Task6_title": "je descends les poubelles",
+  "Bonus_Task7_title": "je range les jouets",
+  "Advices_PageTitle": "Conseils d'organisation",
+  "Programs" : {
+    "Steps" : {
+      "DressUp": "Dress up"
+    }
+  }
+  
+}
