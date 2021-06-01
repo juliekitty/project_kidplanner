@@ -48,7 +48,7 @@ List<Widget> initStepsWidgetsList(_screens, context, _controller) {
   final List<Widget> _stepsWidgetsList = [];
   // TODO use the programStep infos for widget
   _screens.forEach((element) {
-    debugPrint(element.title);
+    debugPrint('element.title' + element.title + element.title.tr());
     if (element.widget != null) {
       _stepsWidgetsList.add(element.widget);
     } else {
@@ -56,6 +56,9 @@ List<Widget> initStepsWidgetsList(_screens, context, _controller) {
     }
   });
   debugPrint(_stepsWidgetsList.toString());
+  if (_stepsWidgetsList.isEmpty) {
+    _stepsWidgetsList.add(Container());
+  }
   return _stepsWidgetsList;
 }
 
@@ -149,7 +152,9 @@ class _ProgramDetailsViewState extends State<ProgramDetailsView> {
   }
 
   Future<dynamic> callAsyncFetch() => Future.delayed(Duration.zero, () {
+        print('callAsyncFetch');
         if (!_initDone) {
+          print('!_initDone');
           _initDone = true;
           final String programType = ModalRoute.of(context).settings.arguments;
           final Program program =
@@ -171,9 +176,11 @@ class _ProgramDetailsViewState extends State<ProgramDetailsView> {
 
   @override
   Widget build(BuildContext context) {
+    print('build');
     return FutureBuilder<dynamic>(
       future: callAsyncFetch(),
       builder: (context, AsyncSnapshot<dynamic> snapshot) {
+        print(snapshot.data);
         if (snapshot.hasData) {
           return WillPopScope(
             onWillPop: () async {

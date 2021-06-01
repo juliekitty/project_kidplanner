@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 import 'package:time/time.dart';
 import 'package:date_time_format/date_time_format.dart';
@@ -13,6 +14,26 @@ import 'package:project_kidplanner/src/libraries/globals.dart' as globals;
 String timeReady(Program program) {
   DateTime ready = DateTime.now() + program.getDuration();
   return ready.format('H:i'); //ready.format('H:i:s');
+}
+
+// Because we cannot create
+String returnTranslatedStepTitle(BuildContext context, String title) {
+  if (title == "Bonus_Task1_title") {
+    return tr('Bonus_Task1_title');
+  } else if (title == "Bonus_Task2_title") {
+    return tr('Bonus_Task2_title');
+  } else if (title == "Bonus_Task3_title") {
+    return tr('Bonus_Task3_title');
+  } else if (title == "Bonus_Task4_title") {
+    return tr('Bonus_Task4_title');
+  } else if (title == "Bonus_Task5_title") {
+    return tr('Bonus_Task5_title');
+  } else if (title == "Bonus_Task6_title") {
+    return tr('Bonus_Task6_title');
+  } else if (title == "Bonus_Task7_title") {
+    return tr('Bonus_Task7_title');
+  }
+  return tr('Bonus_PageTitle');
 }
 
 class BonusTasksView extends StatefulWidget {
@@ -37,7 +58,7 @@ class _BonusTasksViewState extends State<BonusTasksView> {
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(20))),
           title: Text(
-            step.title.toString(),
+            returnTranslatedStepTitle(context, step.title.toString()),
             textAlign: TextAlign.left,
             style: Theme.of(context).textTheme.headline6,
           ),
@@ -58,7 +79,7 @@ class _BonusTasksViewState extends State<BonusTasksView> {
     }
 
     return Scaffold(
-      appBar: appBar(context, Theme.of(context).textTheme, 'Program'),
+      appBar: appBar(context, Theme.of(context).textTheme, 'Bonus'),
       body: ListView(
         scrollDirection: Axis.vertical,
         //shrinkWrap: true,
@@ -66,7 +87,7 @@ class _BonusTasksViewState extends State<BonusTasksView> {
           Padding(
             padding: const EdgeInsets.all(15.0),
             child: Text(
-              'Earn bonus points with these tasks',
+              tr('Bonus_PageIntroText'),
               style: Theme.of(context).textTheme.headline5,
             ),
           ),

@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:project_kidplanner/src/libraries/globals.dart' as globals;
-import 'package:project_kidplanner/generated/l10n.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:project_kidplanner/views/advicesView.dart';
@@ -19,8 +19,7 @@ Widget cardCarousel(
     arguments = '',
     buttonText,
     costPoints}) {
-  final snackBar =
-      SnackBar(content: Text(S.of(context).HP_SnackBar_NotEnoughPoints));
+  final snackBar = SnackBar(content: Text(tr('HP_SnackBar_NotEnoughPoints')));
 
   Future<dynamic> onTap() {
     if (costPoints != null) {
@@ -95,9 +94,7 @@ Widget cardCarousel(
                     ? new SizedBox()
                     : ElevatedButton(
                         child: Text(
-                          (buttonText != null
-                              ? buttonText
-                              : S.of(context).General_go),
+                          (buttonText != null ? buttonText : tr('General_go')),
                           style: TextStyle(fontSize: 18),
                         ),
                         onPressed: onTap,
@@ -121,7 +118,7 @@ class HomePage extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.fromLTRB(15, 20, 15, 5),
           child: Text(
-            S.of(context).HP_Carousel_Routines,
+            tr('HP_Carousel_Routines'),
             style: Theme.of(context).textTheme.headline5,
           ),
         ),
@@ -136,16 +133,16 @@ class HomePage extends StatelessWidget {
                 cardCarousel(
                     context: context,
                     color: Colors.yellow[600],
-                    title: S.of(context).HP_Carousel_Routine_MorningTitle,
-                    descrText: S.of(context).HP_Carousel_Routine_MorningDescr,
+                    title: tr('HP_Carousel_Routine_MorningTitle'),
+                    descrText: tr('HP_Carousel_Routine_MorningDescr'),
                     picture: 'assets/images/clock.svg',
                     route: ProgramView(),
                     arguments: 'morning'),
                 cardCarousel(
                     context: context,
                     color: Colors.cyan[200],
-                    title: S.of(context).HP_Carousel_Routine_BedtimeTitle,
-                    descrText: S.of(context).HP_Carousel_Routine_BedtimeDescr,
+                    title: tr('HP_Carousel_Routine_BedtimeTitle'),
+                    descrText: tr('HP_Carousel_Routine_BedtimeDescr'),
                     picture: 'assets/images/wake-up.svg',
                     route: ProgramView(),
                     arguments: 'bedtime'),
@@ -156,7 +153,7 @@ class HomePage extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.fromLTRB(15, 20, 15, 5),
           child: Text(
-            S.of(context).HP_Carousel_Bonus,
+            tr('HP_Carousel_Bonus'),
             style: Theme.of(context).textTheme.headline5,
           ),
         ),
@@ -171,16 +168,16 @@ class HomePage extends StatelessWidget {
                 cardCarousel(
                   context: context,
                   color: Colors.orange,
-                  title: S.of(context).HP_Carousel_Bonus_TasksTitle,
-                  descrText: S.of(context).HP_Carousel_Bonus_TasksDescr,
+                  title: tr('HP_Carousel_Bonus_TasksTitle'),
+                  descrText: tr('HP_Carousel_Bonus_TasksDescr'),
                   picture: 'assets/images/requirement.svg',
                   route: BonusTasksView(),
                 ),
                 cardCarousel(
                   context: context,
                   color: Colors.cyan[200],
-                  title: S.of(context).HP_Carousel_Bonus_AdvicesTitle,
-                  descrText: S.of(context).HP_Carousel_Bonus_AdvicesDescr,
+                  title: tr('HP_Carousel_Bonus_AdvicesTitle'),
+                  descrText: tr('HP_Carousel_Bonus_AdvicesDescr'),
                   picture: 'assets/images/read.svg',
                   route: AdvicesView(),
                 ),
@@ -191,7 +188,7 @@ class HomePage extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.fromLTRB(15, 20, 15, 5),
           child: Text(
-            S.of(context).HP_Carousel_Games,
+            tr('HP_Carousel_Games'),
             style: Theme.of(context).textTheme.headline5,
           ),
         ),
@@ -206,8 +203,8 @@ class HomePage extends StatelessWidget {
                 cardCarousel(
                     context: context,
                     color: Colors.cyan[200],
-                    title: S.of(context).HP_Carousel_Games_GamesTitle,
-                    descrText: S.of(context).HP_Carousel_Games_GamesDescr,
+                    title: tr('HP_Carousel_Games_GamesTitle'),
+                    descrText: tr('HP_Carousel_Games_GamesDescr'),
                     picture: 'assets/images/game-console.svg',
                     route: GamePage(),
                     costPoints: 500),

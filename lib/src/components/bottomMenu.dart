@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+import 'package:easy_localization/easy_localization.dart';
+
 Widget returnBottomNav(_selectedScreenIndex, _selectScreen) {
   return BottomAppBar(
     shape: CircularNotchedRectangle(),
@@ -18,9 +20,11 @@ Widget returnBottomNav(_selectedScreenIndex, _selectScreen) {
       iconSize: 30,
       onTap: _selectScreen,
       items: [
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
         BottomNavigationBarItem(
-            icon: Icon(Icons.hourglass_bottom), label: 'TaskTimer'),
+            icon: Icon(Icons.home), label: tr('HP_PageTitle')),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.hourglass_bottom),
+            label: tr('Countdown_PageTitle')),
         //BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
         //BottomNavigationBarItem(icon: Icon(Icons.list), label: "Advices"),
         //BottomNavigationBarItem(icon: Icon(Icons.star), label: "Bonus Tasks")

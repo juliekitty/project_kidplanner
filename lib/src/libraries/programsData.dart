@@ -7,7 +7,7 @@ import 'package:project_kidplanner/src/classes/programStep.dart';
 // define widget in class object only for specific widgets
 
 final ProgramStep stepDress = ProgramStep(
-    title: 'Dress up',
+    title: 'DressUp', // "Dress up"
     duration: Duration(minutes: 3),
     picture: "assets/images/clothing.svg");
 final ProgramStep stepBfast = ProgramStep(
