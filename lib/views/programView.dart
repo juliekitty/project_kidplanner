@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -34,7 +35,7 @@ class ProgramView extends StatelessWidget {
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(20))),
           title: Text(
-            step.title.toString(),
+            tr('Programs.Steps.' + step.id.toString()),
             textAlign: TextAlign.left,
             style: Theme.of(context).textTheme.headline6,
           ),
@@ -46,6 +47,14 @@ class ProgramView extends StatelessWidget {
       );
     }
 
+    var text = Text(
+      tr('Programs.programIntro', namedArgs: {
+        'length': program.steps.length.toString(),
+        'timeReady': timeReady(program)
+      }),
+      //'There are ${program.steps.length} steps, you should be ready at ${timeReady(program)}',
+      style: Theme.of(context).textTheme.headline6,
+    );
     return Scaffold(
       appBar: appBar(context, Theme.of(context).textTheme, 'Program'),
       body: ListView(
@@ -55,7 +64,7 @@ class ProgramView extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(15.0),
             child: Text(
-              '${program.title} (${program.displayDuration()})',
+              '${tr('Programs.' + program.programId + '.title')} (${program.displayDuration()})',
               style: Theme.of(context).textTheme.headline5,
             ),
           ),
@@ -63,10 +72,7 @@ class ProgramView extends StatelessWidget {
             padding: const EdgeInsets.all(15.0),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text(
-                'There are ${program.steps.length} steps, you should be ready at ${timeReady(program)}',
-                style: Theme.of(context).textTheme.headline6,
-              ),
+              text,
             ]),
           ),
           program.steps.length == 0

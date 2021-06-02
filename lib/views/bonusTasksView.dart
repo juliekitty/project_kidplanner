@@ -58,7 +58,7 @@ class _BonusTasksViewState extends State<BonusTasksView> {
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(20))),
           title: Text(
-            returnTranslatedStepTitle(context, step.title.toString()),
+            returnTranslatedStepTitle(context, step.id.toString()),
             textAlign: TextAlign.left,
             style: Theme.of(context).textTheme.headline6,
           ),
