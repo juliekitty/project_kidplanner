@@ -22,7 +22,15 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
     "Advices_PageTitle" : MessageLookupByLibrary.simpleMessage("Planning advices"),
+    "Bonus_PageIntroText" : MessageLookupByLibrary.simpleMessage("Earn bonus points with these tasks"),
     "Bonus_PageTitle" : MessageLookupByLibrary.simpleMessage("Bonus Tasks"),
+    "Bonus_Task1_title" : MessageLookupByLibrary.simpleMessage("make your bed"),
+    "Bonus_Task2_title" : MessageLookupByLibrary.simpleMessage("set the table"),
+    "Bonus_Task3_title" : MessageLookupByLibrary.simpleMessage("put your books away"),
+    "Bonus_Task4_title" : MessageLookupByLibrary.simpleMessage("take care of dirty clothes"),
+    "Bonus_Task5_title" : MessageLookupByLibrary.simpleMessage("put away clean clothes"),
+    "Bonus_Task6_title" : MessageLookupByLibrary.simpleMessage("throw the trash away"),
+    "Bonus_Task7_title" : MessageLookupByLibrary.simpleMessage("put your toys away"),
     "Countdown_PageIntroText" : MessageLookupByLibrary.simpleMessage("Set a timer for a task!"),
     "Countdown_PageTitle" : MessageLookupByLibrary.simpleMessage("Task Timer"),
     "Countdown_SetTimerButtonLabel" : MessageLookupByLibrary.simpleMessage("Set a timer"),
@@ -44,12 +52,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "HP_Carousel_Routine_MorningDescr" : MessageLookupByLibrary.simpleMessage("Begin your morning routine!"),
     "HP_Carousel_Routine_MorningTitle" : MessageLookupByLibrary.simpleMessage("Morning Routine"),
     "HP_Carousel_Routines" : MessageLookupByLibrary.simpleMessage("Begin a routine"),
+    "HP_PageTitle" : MessageLookupByLibrary.simpleMessage("Home page"),
     "HP_SnackBar_NotEnoughPoints" : MessageLookupByLibrary.simpleMessage("You do not have enough point to play!"),
     "Profile_Credits_label" : MessageLookupByLibrary.simpleMessage("Credits"),
     "Profile_Debug_addPointsButtonlabel" : MessageLookupByLibrary.simpleMessage("Add 500"),
     "Profile_Debug_label" : MessageLookupByLibrary.simpleMessage("Debug:"),
     "Profile_PageTitle" : MessageLookupByLibrary.simpleMessage("Profile"),
     "Profile_Points_label" : MessageLookupByLibrary.simpleMessage("Current score:"),
-    "Profile_Programs_label" : MessageLookupByLibrary.simpleMessage("Your programs:")
+    "Profile_Programs_label" : MessageLookupByLibrary.simpleMessage("Your programs:"),
+    "ProgramStepDressUp" : MessageLookupByLibrary.simpleMessage("Dress up")
   };
 }

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
@@ -17,7 +18,7 @@ import 'package:project_kidplanner/src/libraries/globals.dart' as globals;
 // bool: is the next button visible
 bool isVisibileNextBtn = false;
 List _screens;
-List _stepsWidgetsList;
+List _stepsWidgetsList = [];
 // Timer
 Timer timer;
 bool _initDone = false;
@@ -25,16 +26,16 @@ bool _initDone = false;
 // Widget of the dialog shown when user attempts to interrupt the program
 Widget showInterruptDialog(context) {
   return AlertDialog(
-    content: Text('Are you sure you want to exit? You\'ll loose your bonus!'),
+    content: Text('Programs.programInterrupt').tr(),
     actions: <Widget>[
       TextButton(
-        child: Text('No'),
+        child: Text('General_no').tr(),
         onPressed: () {
           Navigator.of(context).pop(false);
         },
       ),
       TextButton(
-        child: Text('Yes, exit!!'),
+        child: Text('programInterrupt_yes').tr(),
         onPressed: () {
           Navigator.of(context).pop(true);
         },
@@ -48,14 +49,15 @@ List<Widget> initStepsWidgetsList(_screens, context, _controller) {
   final List<Widget> _stepsWidgetsList = [];
   // TODO use the programStep infos for widget
   _screens.forEach((element) {
-    debugPrint(element.title);
     if (element.widget != null) {
       _stepsWidgetsList.add(element.widget);
     } else {
       _stepsWidgetsList.add(element.stepDefault(context, _controller));
     }
   });
-  debugPrint(_stepsWidgetsList.toString());
+  if (_stepsWidgetsList.isEmpty) {
+    _stepsWidgetsList.add(Container());
+  }
   return _stepsWidgetsList;
 }
 
@@ -149,17 +151,17 @@ class _ProgramDetailsViewState extends State<ProgramDetailsView> {
   }
 
   Future<dynamic> callAsyncFetch() => Future.delayed(Duration.zero, () {
+        print('callAsyncFetch');
         if (!_initDone) {
+          print('!_initDone');
           _initDone = true;
           final String programType = ModalRoute.of(context).settings.arguments;
           final Program program =
               findProgramUsingFirstWhere(programs, programType);
           debugPrint(program.title);
           _screens = program.steps;
-          debugPrint(program.steps.toString());
           _stepsWidgetsList =
               initStepsWidgetsList(_screens, context, _controller);
-
           // create first timer
           debugPrint(
               'create first timer $_selectedScreenIndex of ${_screens[_selectedScreenIndex].duration}');
@@ -171,10 +173,12 @@ class _ProgramDetailsViewState extends State<ProgramDetailsView> {
 
   @override
   Widget build(BuildContext context) {
+    print('build');
     return FutureBuilder<dynamic>(
       future: callAsyncFetch(),
       builder: (context, AsyncSnapshot<dynamic> snapshot) {
-        if (snapshot.hasData) {
+        print(snapshot.data);
+        if (snapshot.hasData && _stepsWidgetsList.isNotEmpty) {
           return WillPopScope(
             onWillPop: () async {
               final value = await showDialog<bool>(
@@ -186,8 +190,8 @@ class _ProgramDetailsViewState extends State<ProgramDetailsView> {
               return value == true;
             },
             child: Scaffold(
-              appBar:
-                  appBar(context, Theme.of(context).textTheme, 'My Routine'),
+              appBar: appBar(
+                  context, Theme.of(context).textTheme, tr('Programs.appBar')),
               body: Container(
                 color: Colors.yellow[100].withOpacity(0.3),
                 child: PageView(
@@ -208,8 +212,8 @@ class _ProgramDetailsViewState extends State<ProgramDetailsView> {
                 child: FloatingActionButton.extended(
                   label: Text(
                     (_selectedScreenIndex + 1 >= _screens.length)
-                        ? "DONE"
-                        : "NEXT",
+                        ? tr("General_DONE")
+                        : tr("General_NEXT"),
                     style: TextStyle(
                         fontFamily: 'Helvetica', fontWeight: FontWeight.bold),
                   ),

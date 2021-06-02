@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:countdown_flutter/countdown_flutter.dart';
@@ -5,7 +6,7 @@ import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 
 class ProgramStep {
   // Eigenschaften
-  String title, picture, animation;
+  String id, picture, animation;
   Duration duration;
   Widget widget;
   bool done;
@@ -13,7 +14,7 @@ class ProgramStep {
 
   // Konstruktor
   ProgramStep(
-      {this.title,
+      {this.id,
       this.duration,
       this.widget,
       this.picture,
@@ -84,7 +85,7 @@ class ProgramStep {
           Padding(
             padding: const EdgeInsets.fromLTRB(10, 20, 10, 3),
             child: Text(
-              this.title,
+              tr('Programs.Steps.' + this.id),
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.headline5,
             ),

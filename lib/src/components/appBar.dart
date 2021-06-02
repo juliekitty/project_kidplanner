@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:project_kidplanner/views/profileView.dart';
@@ -28,7 +29,7 @@ Widget _buildParticipantScore() {
 Widget appBar(context, textTheme, appBarTitle) {
   return AppBar(
     title: Text(
-      (appBarTitle != '' ? appBarTitle : 'Routine for Kids'),
+      (appBarTitle != '' ? appBarTitle : tr('General_appName')),
       style: textTheme.headline6
           .copyWith(fontWeight: FontWeight.w600, color: Colors.white),
     ),
@@ -36,7 +37,7 @@ Widget appBar(context, textTheme, appBarTitle) {
       _buildParticipantScore(),
       IconButton(
         icon: Icon(Icons.person),
-        tooltip: 'Profile',
+        tooltip: tr('Profile_PageTitle'),
         onPressed: () {
           Navigator.push(
             context,

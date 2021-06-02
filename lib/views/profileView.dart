@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:project_kidplanner/src/classes/user.dart';
-import 'package:project_kidplanner/generated/l10n.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 import 'package:project_kidplanner/src/components/appBar.dart';
 import 'package:project_kidplanner/src/libraries/globals.dart' as globals;
@@ -31,7 +31,7 @@ class _ProfileViewState extends State<ProfileView> {
               appBar: appBar(
                 context,
                 Theme.of(context).textTheme,
-                S.of(context).Profile_PageTitle,
+                tr('Profile_PageTitle'),
               ),
               body: ListView(
                 scrollDirection: Axis.vertical,
@@ -64,8 +64,7 @@ class _ProfileViewState extends State<ProfileView> {
                           children: [
                             Expanded(
                                 flex: 10,
-                                child:
-                                    Text(S.of(context).Profile_Points_label)),
+                                child: Text(tr('Profile_Points_label'))),
                             Expanded(flex: 1, child: Divider()),
                             Expanded(
                                 flex: 10, child: Text(user.score.toString())),
@@ -81,8 +80,7 @@ class _ProfileViewState extends State<ProfileView> {
                           children: [
                             Expanded(
                                 flex: 10,
-                                child:
-                                    Text(S.of(context).Profile_Programs_label)),
+                                child: Text(tr('Profile_Programs_label'))),
                             Expanded(flex: 1, child: Divider()),
                             Expanded(
                                 flex: 10,
@@ -99,14 +97,13 @@ class _ProfileViewState extends State<ProfileView> {
                           children: [
                             Expanded(
                                 flex: 10,
-                                child: Text(S.of(context).Profile_Debug_label)),
+                                child: Text('Profile_Debug_label').tr()),
                             Expanded(flex: 1, child: Divider()),
                             Expanded(
                                 flex: 10,
                                 child: ElevatedButton(
-                                  child: Text(S
-                                      .of(context)
-                                      .Profile_Debug_addPointsButtonlabel),
+                                  child: Text(
+                                      tr('Profile_Debug_addPointsButtonlabel')),
                                   onPressed: () {
                                     setState(() {
                                       user.addToScore(500);
@@ -124,8 +121,7 @@ class _ProfileViewState extends State<ProfileView> {
                             Row(
                               children: <Widget>[
                                 Expanded(
-                                    child: Text(
-                                        S.of(context).Profile_Credits_label)),
+                                    child: Text('Profile_Credits_label').tr()),
                                 IconButton(
                                   icon: Icon(
                                     Icons.keyboard_arrow_right,

@@ -65,6 +65,16 @@ class S {
     );
   }
 
+  /// `Home page`
+  String get HP_PageTitle {
+    return Intl.message(
+      'Home page',
+      name: 'HP_PageTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `What's your name?`
   String get HP_AlertDialog_Title {
     return Intl.message(
@@ -325,11 +335,101 @@ class S {
     );
   }
 
+  /// `Earn bonus points with these tasks`
+  String get Bonus_PageIntroText {
+    return Intl.message(
+      'Earn bonus points with these tasks',
+      name: 'Bonus_PageIntroText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `make your bed`
+  String get Bonus_Task1_title {
+    return Intl.message(
+      'make your bed',
+      name: 'Bonus_Task1_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `set the table`
+  String get Bonus_Task2_title {
+    return Intl.message(
+      'set the table',
+      name: 'Bonus_Task2_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `put your books away`
+  String get Bonus_Task3_title {
+    return Intl.message(
+      'put your books away',
+      name: 'Bonus_Task3_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `take care of dirty clothes`
+  String get Bonus_Task4_title {
+    return Intl.message(
+      'take care of dirty clothes',
+      name: 'Bonus_Task4_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `put away clean clothes`
+  String get Bonus_Task5_title {
+    return Intl.message(
+      'put away clean clothes',
+      name: 'Bonus_Task5_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `throw the trash away`
+  String get Bonus_Task6_title {
+    return Intl.message(
+      'throw the trash away',
+      name: 'Bonus_Task6_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `put your toys away`
+  String get Bonus_Task7_title {
+    return Intl.message(
+      'put your toys away',
+      name: 'Bonus_Task7_title',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Planning advices`
   String get Advices_PageTitle {
     return Intl.message(
       'Planning advices',
       name: 'Advices_PageTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dress up`
+  String get ProgramStepDressUp {
+    return Intl.message(
+      'Dress up',
+      name: 'ProgramStepDressUp',
       desc: '',
       args: [],
     );
