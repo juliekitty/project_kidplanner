@@ -10,6 +10,7 @@ Widget returnBottomNav(_selectedScreenIndex, _selectScreen) {
     notchMargin: 4,
     clipBehavior: Clip.antiAlias,
     child: BottomNavigationBar(
+      elevation: 0,
       type: BottomNavigationBarType.fixed,
       backgroundColor: Colors.amber,
       currentIndex: _selectedScreenIndex,
