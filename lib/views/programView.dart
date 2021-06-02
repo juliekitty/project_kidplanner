@@ -85,7 +85,7 @@ class ProgramView extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
-        label: Text('Begin'),
+        label: Text('General_Begin').tr(),
         icon: Icon(Icons.keyboard_arrow_right),
         onPressed: () {
           Navigator.push(

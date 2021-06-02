@@ -6,6 +6,7 @@
   "General_no": "Non",
   "General_DONE": "FIN",
   "General_NEXT": "SUIVANT",
+  "General_Begin": "Début",  
   "HP_SnackBar_NotEnoughPoints": "Tu n‘as pas assez de points pour jouer!",
   "HP_PageTitle": "Accueil",
   "HP_AlertDialog_Title": "Comment t‘appelles-tu ?",

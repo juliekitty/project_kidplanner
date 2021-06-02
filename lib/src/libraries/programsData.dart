@@ -7,7 +7,7 @@ import 'package:project_kidplanner/src/classes/programStep.dart';
 // define widget in class object only for specific widgets
 
 final ProgramStep stepDress = ProgramStep(
-    id: 'stepDress', // "Dress up"
+    id: 'stepDress',
     duration: Duration(minutes: 3),
     picture: "assets/images/clothing.svg");
 final ProgramStep stepBfast = ProgramStep(
@@ -30,24 +30,24 @@ final ProgramStep stepForOutside = ProgramStep(
 
 final ProgramStep stepCheckBag = ProgramStep(
     id: 'stepCheckBag',
-    duration: Duration(seconds: 7),
+    duration: Duration(minutes: 4),
     picture: 'assets/images/backpack.svg');
 final ProgramStep stepPyjama = ProgramStep(
     id: 'stepPyjama',
-    duration: Duration(seconds: 5),
+    duration: Duration(minutes: 4),
     picture: "assets/images/pyjamas.svg");
 final ProgramStep stepTeethNight = ProgramStep(
     id: 'stepTeethNight',
-    duration: Duration(seconds: 4),
+    duration: Duration(minutes: 4),
     picture: 'assets/images/eucalyp-brush-teeth.svg',
     animation: 'assets/images/animated/brush-teeth-gif-6.gif');
 final ProgramStep stepToilet = ProgramStep(
     id: 'stepToilet',
-    duration: Duration(seconds: 5),
+    duration: Duration(minutes: 4),
     picture: 'assets/images/eucalyp-shower.svg');
 final ProgramStep stepWater = ProgramStep(
     id: 'stepWater',
-    duration: Duration(seconds: 5),
+    duration: Duration(minutes: 4),
     picture: "assets/images/water.svg");
 final ProgramStep stepEndBed = ProgramStep(
     id: 'stepEndBed',

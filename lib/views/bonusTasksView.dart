@@ -16,26 +16,6 @@ String timeReady(Program program) {
   return ready.format('H:i'); //ready.format('H:i:s');
 }
 
-// Because we cannot create
-String returnTranslatedStepTitle(BuildContext context, String title) {
-  if (title == "Bonus_Task1_title") {
-    return tr('Bonus_Task1_title');
-  } else if (title == "Bonus_Task2_title") {
-    return tr('Bonus_Task2_title');
-  } else if (title == "Bonus_Task3_title") {
-    return tr('Bonus_Task3_title');
-  } else if (title == "Bonus_Task4_title") {
-    return tr('Bonus_Task4_title');
-  } else if (title == "Bonus_Task5_title") {
-    return tr('Bonus_Task5_title');
-  } else if (title == "Bonus_Task6_title") {
-    return tr('Bonus_Task6_title');
-  } else if (title == "Bonus_Task7_title") {
-    return tr('Bonus_Task7_title');
-  }
-  return tr('Bonus_PageTitle');
-}
-
 class BonusTasksView extends StatefulWidget {
   @override
   _BonusTasksViewState createState() => _BonusTasksViewState();
@@ -58,7 +38,7 @@ class _BonusTasksViewState extends State<BonusTasksView> {
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(20))),
           title: Text(
-            returnTranslatedStepTitle(context, step.id.toString()),
+            tr('Bonus_' + step.id.toString() + '_title'),
             textAlign: TextAlign.left,
             style: Theme.of(context).textTheme.headline6,
           ),
@@ -79,7 +59,8 @@ class _BonusTasksViewState extends State<BonusTasksView> {
     }
 
     return Scaffold(
-      appBar: appBar(context, Theme.of(context).textTheme, 'Bonus'),
+      appBar:
+          appBar(context, Theme.of(context).textTheme, tr('Bonus_PageTitle')),
       body: ListView(
         scrollDirection: Axis.vertical,
         //shrinkWrap: true,
