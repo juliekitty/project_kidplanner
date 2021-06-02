@@ -46,9 +46,7 @@ dependencies:
 
   audioplayers: ^0.15.1
 
-  intl: 0.17.0
-  flutter_localizations:
-    sdk: flutter
+  easy_localization: ^2.3.3
 
 
 dev_dependencies:
@@ -74,6 +72,8 @@ flutter:
     - assets/audio/Video-game-bonus-bell-sound-effect.mp3
     - assets/audio/Error-beep-sound-effect.mp3
     - assets/audio/Single-coin-dropping.mp3
+    - lib/l10n/
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
   # For details regarding adding assets from package dependencies, see
@@ -97,6 +97,4 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
-flutter_intl:
-  main_locale: en_US 
-  enabled: true
+

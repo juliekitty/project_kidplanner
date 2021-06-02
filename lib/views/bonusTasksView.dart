@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 import 'package:time/time.dart';
 import 'package:date_time_format/date_time_format.dart';
@@ -37,7 +38,7 @@ class _BonusTasksViewState extends State<BonusTasksView> {
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(20))),
           title: Text(
-            step.title.toString(),
+            tr('Bonus_' + step.id.toString() + '_title'),
             textAlign: TextAlign.left,
             style: Theme.of(context).textTheme.headline6,
           ),
@@ -58,7 +59,8 @@ class _BonusTasksViewState extends State<BonusTasksView> {
     }
 
     return Scaffold(
-      appBar: appBar(context, Theme.of(context).textTheme, 'Program'),
+      appBar:
+          appBar(context, Theme.of(context).textTheme, tr('Bonus_PageTitle')),
       body: ListView(
         scrollDirection: Axis.vertical,
         //shrinkWrap: true,
@@ -66,7 +68,7 @@ class _BonusTasksViewState extends State<BonusTasksView> {
           Padding(
             padding: const EdgeInsets.all(15.0),
             child: Text(
-              'Earn bonus points with these tasks',
+              tr('Bonus_PageIntroText'),
               style: Theme.of(context).textTheme.headline5,
             ),
           ),

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:project_kidplanner/src/classes/user.dart';
 import 'package:project_kidplanner/src/libraries/globals.dart' as globals;
-import 'package:project_kidplanner/generated/l10n.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
+
+import 'package:easy_localization/easy_localization.dart';
 
 import 'package:project_kidplanner/src/classes/init.dart';
 
@@ -20,9 +20,17 @@ import 'package:project_kidplanner/src/components/bottomMenu.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  // await EasyLocalization.ensureInitialized();
+
   // forbid rotation to Landscape mode
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  runApp(MyApp());
+  runApp(
+    EasyLocalization(
+        supportedLocales: [Locale('en'), Locale('fr')],
+        path: 'lib/l10n', // <-- change the path of the translation files
+        fallbackLocale: Locale('en'),
+        child: MyApp()),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -30,13 +38,23 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // context.locale = Locale('fr', 'FR');
+    // print(context.locale.toString());
+
+    print('getCurrentLocale' + Intl.getCurrentLocale());
+
     return MaterialApp(
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
       home: FutureBuilder(
         future: _initFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
+            print('LayoutView');
             return LayoutView();
           } else {
+            print('SplashScreen');
             return SplashScreen();
           }
         },
@@ -61,13 +79,6 @@ class MyApp extends StatelessWidget {
           bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
         ),*/
       ),
-      localizationsDelegates: [
-        S.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: S.delegate.supportedLocales,
     );
   }
 }
@@ -80,11 +91,11 @@ class LayoutView extends StatefulWidget {
 class _LayoutViewState extends State<LayoutView> {
   int _selectedScreenIndex = 0;
   List _screens = [
-    {"screen": HomePage(), "title": S.current.General_appName},
-    {"screen": CountDownTimer(), "title": S.current.Countdown_PageTitle},
-    {"screen": ProfileView(), "title": S.current.Profile_PageTitle},
-    {"screen": AdvicesView(), "title": S.current.Advices_PageTitle},
-    {"screen": BonusTasksView(), "title": S.current.Bonus_PageTitle}
+    {"screen": HomePage(), "title": tr('General_appName')},
+    {"screen": CountDownTimer(), "title": tr('Countdown_PageTitle')},
+    {"screen": ProfileView(), "title": tr('Profile_PageTitle')},
+    {"screen": AdvicesView(), "title": tr('Advices_PageTitle')},
+    {"screen": BonusTasksView(), "title": tr('Bonus_PageTitle')}
   ];
 
   final GlobalKey<FormState> _keyDialogForm = new GlobalKey<FormState>();
@@ -95,7 +106,7 @@ class _LayoutViewState extends State<LayoutView> {
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text(S.current.HP_AlertDialog_Title),
+          title: Text('HP_AlertDialog_Title').tr(),
           content: SingleChildScrollView(
             child: Form(
               key: _keyDialogForm,
@@ -111,12 +122,12 @@ class _LayoutViewState extends State<LayoutView> {
                     },
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
-                      labelText: S.current.HP_AlertDialog_Form_LabelText,
+                      labelText: tr('HP_AlertDialog_Form_LabelText'),
                     ),
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (value) {
                       if (value.isEmpty) {
-                        return S.current.HP_AlertDialog_Form_ValidationText;
+                        return tr('HP_AlertDialog_Form_ValidationText');
                       }
                       return null;
                     },
@@ -127,7 +138,7 @@ class _LayoutViewState extends State<LayoutView> {
           ),
           actions: <Widget>[
             TextButton(
-              child: Text(S.current.General_go),
+              child: Text('General_go').tr(),
               onPressed: () {
                 if (_keyDialogForm.currentState.validate()) {
                   _keyDialogForm.currentState.save();

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:project_kidplanner/src/components/appBar.dart';
@@ -8,7 +9,8 @@ class AdvicesView extends StatelessWidget {
   Widget build(BuildContext context) {
     var maxIndex = 0;
     return Scaffold(
-      appBar: appBar(context, Theme.of(context).textTheme, 'Advices'),
+      appBar:
+          appBar(context, Theme.of(context).textTheme, tr('Advices_PageTitle')),
       body: Container(
         color: Colors.yellow[100].withOpacity(0.3),
         child: PageView(
