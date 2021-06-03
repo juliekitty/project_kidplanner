@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
-import 'package:audioplayers/audio_cache.dart';
 
 import 'control_panel.dart';
 import 'direction.dart';

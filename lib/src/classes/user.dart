@@ -1,7 +1,7 @@
 import 'dart:async';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:audioplayers/audio_cache.dart';
 
 import 'package:project_kidplanner/src/classes/program.dart';
 import 'package:project_kidplanner/src/libraries/globals.dart' as globals;

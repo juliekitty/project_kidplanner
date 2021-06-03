@@ -1,5 +1,5 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
-import 'package:audioplayers/audio_cache.dart';
 import 'package:flutter/rendering.dart';
 import 'package:duration_picker/duration_picker.dart';
 import 'package:project_kidplanner/src/libraries/globals.dart' as globals;
