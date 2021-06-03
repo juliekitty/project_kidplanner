@@ -140,6 +140,24 @@ class _ProfileViewState extends State<ProfileView> {
                           ],
                         ),
                       ),
+                      Container(
+                        decoration: globals.profileListBoxDecoration,
+                        padding: profileListPadding,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Expanded(
+                                flex: 10,
+                                child: Text(tr('Profile_Language_label'))),
+                            Expanded(flex: 1, child: Divider()),
+                            Expanded(
+                                flex: 10,
+                                child:
+                                    Text(Intl.getCurrentLocale().toString())),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ],
