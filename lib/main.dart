@@ -18,9 +18,9 @@ import 'package:project_kidplanner/src/components/appBar.dart';
 import 'package:project_kidplanner/src/components/fab.dart';
 import 'package:project_kidplanner/src/components/bottomMenu.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await EasyLocalization.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
 
   // forbid rotation to Landscape mode
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
