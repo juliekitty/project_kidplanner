@@ -38,48 +38,43 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // context.locale = Locale('fr', 'FR');
-    // print(context.locale.toString());
-
-    print('getCurrentLocale' + Intl.getCurrentLocale());
-
-    return MaterialApp(
-      localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
-      locale: context.locale,
-      home: FutureBuilder(
-        future: _initFuture,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            print('LayoutView');
-            return LayoutView();
-          } else {
-            print('SplashScreen');
-            return SplashScreen();
-          }
-        },
+    final ThemeData theme = ThemeData(
+      primarySwatch: Colors.cyan,
+      iconTheme: IconThemeData(
+        color: Colors.cyan[600],
+        size: 40,
       ),
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.cyan,
-        accentColor: Colors.cyan[600],
-        iconTheme: IconThemeData(
-          color: Colors.cyan[600],
-          size: 40,
-        ),
-        primaryIconTheme: IconThemeData(
-          color: Colors.white,
-          size: 40,
-        ),
-        //buttonTheme: ButtonThemeData(),
-        fontFamily: 'Futura',
-        /*textTheme: TextTheme(
+      primaryIconTheme: IconThemeData(
+        color: Colors.white,
+        size: 40,
+      ),
+      //buttonTheme: ButtonThemeData(),
+      fontFamily: 'Futura',
+      /*textTheme: TextTheme(
           headline1: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
           headline6: TextStyle(fontSize: 20.0, fontStyle: FontStyle.italic),
           bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
         ),*/
-      ),
     );
+
+    return MaterialApp(
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
+        home: FutureBuilder(
+          future: _initFuture,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              print('LayoutView');
+              return LayoutView();
+            } else {
+              print('SplashScreen');
+              return SplashScreen();
+            }
+          },
+        ),
+        debugShowCheckedModeBanner: false,
+        theme: theme);
   }
 }
 
