@@ -28,6 +28,7 @@
   "Profile_PageTitle": "Profil",
   "Profile_Points_label": "Score actuel:",
   "Profile_Programs_label": "Tes routines :",
+  "Profile_Language_label": "Locale actuelle :",
   "Profile_Debug_label": "Debug :",
   "Profile_Debug_addPointsButtonlabel": "Ajoute 500",
   "Profile_Credits_label": "Crédits",
@@ -48,7 +49,7 @@
     "appBar": "Ma routine",
     "programIntro": "Il y a {length} étapes, tu seras prêt à {timeReady}.",
     "programInterrupt": "Es-tu sûr(e) de vouloir quitter ? Tu perds ton bonus !",
-    "programInterrupt_yes": "oui, quitter !",
+    "programInterrupt_yes": "Oui, quitter !",
     "morning": {
       "title": "Routine du matin", 
       "introText": "C‘est l‘heure de se lever !"

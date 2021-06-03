@@ -9,6 +9,9 @@ A kid wins points when he/she does the routines or bonus tasks, the points can b
 - Task timer
 - A game, only if the kid won enough points
 
+2.06.21
+- Internationalization in French done, language chosen in the device settings is used.
+
 Roadmap/Todolist:
 
 - Be able to have more than one user on a device (currently the data is saved on the device, but only one user can be created)

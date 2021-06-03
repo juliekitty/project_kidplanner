@@ -35,7 +35,7 @@ Widget showInterruptDialog(context) {
         },
       ),
       TextButton(
-        child: Text('programInterrupt_yes').tr(),
+        child: Text('Programs.programInterrupt_yes').tr(),
         onPressed: () {
           Navigator.of(context).pop(true);
         },
