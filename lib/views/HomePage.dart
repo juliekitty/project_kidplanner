@@ -10,7 +10,7 @@ import 'package:project_kidplanner/views/programView.dart';
 import 'package:project_kidplanner/views/snakeGame/game.dart';
 
 Widget cardCarousel(
-    {context,
+    {required context,
     color,
     title,
     descrText,
@@ -23,7 +23,7 @@ Widget cardCarousel(
 
   Future<dynamic> onTap() {
     if (costPoints != null) {
-      if (globals.currentParticipant.score - costPoints < 0) {
+      if (globals.currentParticipant.score! - costPoints < 0) {
         // not enough points
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
 

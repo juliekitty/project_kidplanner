@@ -18,19 +18,19 @@ class GamePage extends StatefulWidget {
 }
 
 class _GamePageState extends State<GamePage> {
-  List<Offset> positions = [];
+  List<Offset?> positions = [];
   int length = 5;
   int step = 20;
   Direction direction = Direction.right;
 
-  Piece food;
-  Offset foodPosition;
+  late Piece food;
+  Offset? foodPosition;
 
-  double screenWidth;
-  double screenHeight;
+  late double screenWidth;
+  late double screenHeight;
   int lowerBoundX, upperBoundX, lowerBoundY, upperBoundY;
 
-  Timer timer;
+  Timer? timer;
   double speed = 0.7;
 
   int score = 0;
@@ -39,7 +39,7 @@ class _GamePageState extends State<GamePage> {
   @override
   void dispose() {
     super.dispose();
-    timer.cancel();
+    timer!.cancel();
   }
 
   void draw() async {
@@ -55,11 +55,11 @@ class _GamePageState extends State<GamePage> {
       for (int i = positions.length - 1; i > 0; i--) {
         positions[i] = positions[i - 1];
       }
-      positions[0] = await getNextPosition(positions[0]);
+      positions[0] = await getNextPosition(positions[0]!);
     }
   }
 
-  Direction getRandomDirection([DirectionType type]) {
+  Direction getRandomDirection([DirectionType? type]) {
     if (type == DirectionType.horizontal) {
       bool random = Random().nextBool();
       if (random) {
@@ -125,11 +125,11 @@ class _GamePageState extends State<GamePage> {
           content: Text(
             "Your game is over but you played well. Your score is " +
                 score.toString() +
-                '.\n${(globals.currentParticipant.score - 200 < 0) ? "You do not have enough point to play again!" : "\nRestart will cost you 200 points!"}',
+                '.\n${(globals.currentParticipant.score! - 200 < 0) ? "You do not have enough point to play again!" : "\nRestart will cost you 200 points!"}',
             style: TextStyle(color: Colors.white),
           ),
           actions: [
-            (globals.currentParticipant.score - 200 < 0)
+            (globals.currentParticipant.score! - 200 < 0)
                 ? Container()
                 : TextButton(
                     onPressed: () async {
@@ -159,11 +159,11 @@ class _GamePageState extends State<GamePage> {
     );
   }
 
-  Future<Offset> getNextPosition(Offset position) async {
-    Offset nextPosition;
+  Future<Offset?> getNextPosition(Offset position) async {
+    Offset? nextPosition;
 
     if (detectCollision(position) == true) {
-      if (timer != null && timer.isActive) timer.cancel();
+      if (timer != null && timer!.isActive) timer!.cancel();
       await Future.delayed(
           Duration(milliseconds: 500), () => showGameOverDialog());
       return position;
@@ -197,8 +197,8 @@ class _GamePageState extends State<GamePage> {
     }
 
     food = Piece(
-      posX: foodPosition.dx.toInt(),
-      posY: foodPosition.dy.toInt(),
+      posX: foodPosition!.dx.toInt(),
+      posY: foodPosition!.dy.toInt(),
       size: step,
       color: Color(0XFF8EA604),
       isAnimated: true,
@@ -217,8 +217,8 @@ class _GamePageState extends State<GamePage> {
 
       pieces.add(
         Piece(
-          posX: positions[i].dx.toInt(),
-          posY: positions[i].dy.toInt(),
+          posX: positions[i]!.dx.toInt(),
+          posY: positions[i]!.dy.toInt(),
           size: step,
           color: Colors.orange[500],
         ),
@@ -246,7 +246,7 @@ class _GamePageState extends State<GamePage> {
   }
 
   void changeSpeed() {
-    if (timer != null && timer.isActive) timer.cancel();
+    if (timer != null && timer!.isActive) timer!.cancel();
 
     // if you want timer to tick at fixed duration.
     timer = Timer.periodic(Duration(milliseconds: 200 ~/ speed), (timer) {
@@ -310,7 +310,7 @@ class _GamePageState extends State<GamePage> {
     upperBoundY = roundToNearestTens(screenHeight.toInt() - step);
 
     return Scaffold(
-      appBar: appBar(context, Theme.of(context).textTheme, 'Program'),
+      appBar: appBar(context, Theme.of(context).textTheme, 'Program') as PreferredSizeWidget?,
       body: Container(
         color: Colors.amber[100],
         child: Stack(

@@ -7,20 +7,20 @@ import 'package:project_kidplanner/src/classes/program.dart';
 import 'package:project_kidplanner/src/libraries/globals.dart' as globals;
 
 abstract class User {
-  String name;
-  int id;
+  String? name;
+  int? id;
   User(this.id, this.name);
 }
 
 // Participant
 class Participant extends User {
   // programs that the user have access to
-  List<Program> programs; // TODO implement Participant.programs
-  int score;
+  List<Program?>? programs; // TODO implement Participant.programs
+  int? score;
 
   Participant({id, name, this.score}) : super(id, name);
 
-  int addToScore(int addedPoints) {
+  int? addToScore(int addedPoints) {
     this.score += addedPoints;
     this.insertParticipant(this);
     globals.userNotifier.value = this.score;
@@ -111,7 +111,7 @@ class Participant extends User {
     print(await Participant().participants());
   }
 
-  Future<Participant> getParticipant(int id) async {
+  Future<Participant> getParticipant(int? id) async {
     // Get a reference to the database.
     final Database db = await openSQLiteDatabase();
 

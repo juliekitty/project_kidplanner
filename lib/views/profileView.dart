@@ -32,7 +32,7 @@ class _ProfileViewState extends State<ProfileView> {
                 context,
                 Theme.of(context).textTheme,
                 tr('Profile_PageTitle'),
-              ),
+              ) as PreferredSizeWidget?,
               body: ListView(
                 scrollDirection: Axis.vertical,
                 children: <Widget>[
@@ -51,7 +51,7 @@ class _ProfileViewState extends State<ProfileView> {
                             Expanded(
                                 flex: 10,
                                 child:
-                                    Text(user.name == null ? '' : user.name)),
+                                    Text(user.name == null ? '' : user.name!)),
                           ],
                         ),
                       ),

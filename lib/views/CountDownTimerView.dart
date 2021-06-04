@@ -12,7 +12,7 @@ class CountDownTimer extends StatefulWidget {
 
 class _CountDownTimerState extends State<CountDownTimer>
     with TickerProviderStateMixin {
-  AnimationController controller;
+  late AnimationController controller;
   Duration resultingDuration = Duration(hours: 0, minutes: 0);
 
   // Audio
@@ -20,7 +20,7 @@ class _CountDownTimerState extends State<CountDownTimer>
       prefix: globals.audioFilesPrefix, fixedPlayer: globals.audioPlayer);
 
   String get timerString {
-    Duration duration = controller.duration * controller.value;
+    Duration duration = controller.duration! * controller.value;
     return '${duration.inMinutes}:${(duration.inSeconds % 60).toString().padLeft(2, '0')}';
   }
 

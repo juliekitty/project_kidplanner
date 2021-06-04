@@ -9,11 +9,11 @@ import 'package:audioplayers/audioplayers.dart';
 // Participant and Programs
 Participant exampleParticipant = Participant(id: 1, name: '', score: 0);
 
-ValueNotifier<int> userNotifier = ValueNotifier(currentParticipant.score);
+ValueNotifier<int?> userNotifier = ValueNotifier(currentParticipant.score);
 
-Participant currentParticipant;
+late Participant currentParticipant;
 
-List<Program> defaultPrograms = programsData.programs;
+List<Program?> defaultPrograms = programsData.programs;
 
 // Themes Infos
 const profileListBorders = Border(

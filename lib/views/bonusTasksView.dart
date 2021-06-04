@@ -60,7 +60,7 @@ class _BonusTasksViewState extends State<BonusTasksView> {
 
     return Scaffold(
       appBar:
-          appBar(context, Theme.of(context).textTheme, tr('Bonus_PageTitle')),
+          appBar(context, Theme.of(context).textTheme, tr('Bonus_PageTitle')) as PreferredSizeWidget?,
       body: ListView(
         scrollDirection: Axis.vertical,
         //shrinkWrap: true,

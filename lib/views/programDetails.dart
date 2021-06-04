@@ -17,10 +17,10 @@ import 'package:project_kidplanner/src/libraries/globals.dart' as globals;
 
 // bool: is the next button visible
 bool isVisibileNextBtn = false;
-List _screens;
+late List _screens;
 List _stepsWidgetsList = [];
 // Timer
-Timer timer;
+late Timer timer;
 bool _initDone = false;
 
 // Widget of the dialog shown when user attempts to interrupt the program
@@ -44,9 +44,9 @@ Widget showInterruptDialog(context) {
   );
 }
 
-List<Widget> initStepsWidgetsList(_screens, context, _controller) {
+List<Widget?> initStepsWidgetsList(_screens, context, _controller) {
   // createWidget List to use in the PageView
-  final List<Widget> _stepsWidgetsList = [];
+  final List<Widget?> _stepsWidgetsList = [];
   // TODO use the programStep infos for widget
   _screens.forEach((element) {
     if (element.widget != null) {
@@ -155,9 +155,9 @@ class _ProgramDetailsViewState extends State<ProgramDetailsView> {
         if (!_initDone) {
           print('!_initDone');
           _initDone = true;
-          final String programType = ModalRoute.of(context).settings.arguments;
+          final String? programType = ModalRoute.of(context)!.settings.arguments as String?;
           final Program program =
-              findProgramUsingFirstWhere(programs, programType);
+              findProgramUsingFirstWhere(programs, programType)!;
           debugPrint(program.title);
           _screens = program.steps;
           _stepsWidgetsList =
@@ -191,11 +191,11 @@ class _ProgramDetailsViewState extends State<ProgramDetailsView> {
             },
             child: Scaffold(
               appBar: appBar(
-                  context, Theme.of(context).textTheme, tr('Programs.appBar')),
+                  context, Theme.of(context).textTheme, tr('Programs.appBar')) as PreferredSizeWidget?,
               body: Container(
-                color: Colors.yellow[100].withOpacity(0.3),
+                color: Colors.yellow[100]!.withOpacity(0.3),
                 child: PageView(
-                  children: _stepsWidgetsList,
+                  children: _stepsWidgetsList as List<Widget>,
                   pageSnapping: false,
                   physics:
                       CustomLockScrollPhysics(lockLeft: true, lockRight: true),
@@ -219,7 +219,7 @@ class _ProgramDetailsViewState extends State<ProgramDetailsView> {
                   ),
                   icon: Icon(
                     Icons.star,
-                    size: Theme.of(context).iconTheme.size - 15,
+                    size: Theme.of(context).iconTheme.size! - 15,
                   ),
                   onPressed: nextPageOrBack,
                 ),

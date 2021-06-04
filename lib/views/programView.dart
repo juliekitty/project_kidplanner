@@ -20,10 +20,10 @@ String timeReady(Program program) {
 class ProgramView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final String programType = ModalRoute.of(context).settings.arguments;
+    final String? programType = ModalRoute.of(context)!.settings.arguments as String?;
 //
     //print('ok ${programs.toString()}');
-    final Program program = findProgramUsingFirstWhere(programs, programType);
+    final Program program = findProgramUsingFirstWhere(programs, programType)!;
 
     Widget createTile(context, step) {
       return Container(
@@ -56,7 +56,7 @@ class ProgramView extends StatelessWidget {
       style: Theme.of(context).textTheme.headline6,
     );
     return Scaffold(
-      appBar: appBar(context, Theme.of(context).textTheme, 'Program'),
+      appBar: appBar(context, Theme.of(context).textTheme, 'Program') as PreferredSizeWidget?,
       body: ListView(
         scrollDirection: Axis.vertical,
         //shrinkWrap: true,
