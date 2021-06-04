@@ -1,0 +1,107 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Current Device: Debug",
+        "request": "launch",
+        "type": "dart",
+        
+      },
+      {
+        "name": "Current Device: Profile",
+        "request": "launch",
+        "type": "dart",
+        
+      },
+      {
+        "name": "Current Device: Release Mode",
+        "request": "launch",
+        "type": "dart",
+        
+      },
+      {
+        "name": "Android: Debug",
+        "request": "launch",
+        "type": "dart",
+        "deviceId": "android",
+        
+      },
+      {
+        "name": "Android: Profile",
+        "request": "launch",
+        "type": "dart",
+        "deviceId": "android",
+        
+      },
+      {
+        "name": "iPhone SE (2nd generation): Debug",
+        "request": "launch",
+        "type": "dart",
+        "deviceId": "2A77CB3D-4EA0-45FD-9476-8712548EBB86",
+        
+      },
+      {
+        "name": "iPhone: Debug", // 12
+        "request": "launch",
+        "type": "dart",
+        "deviceId": "706906EF-C993-48B5-8356-B5A41B2CDC9E",
+        
+      },
+      {
+        "name": "iPhone: Profile",
+        "request": "launch",
+        "type": "dart",
+        "deviceId": "iphone",
+        
+      },
+      {
+        "name": "Chrome: Debug",
+        "request": "launch",
+        "type": "dart",
+        "deviceId": "chrome",
+        
+      },
+      {
+        "name": "Chrome: Profile",
+        "request": "launch",
+        "type": "dart",
+        "deviceId": "chrome",
+        
+      },
+      {
+        "name": "Chrome: Release",
+        "request": "launch",
+        "type": "dart",
+        "deviceId": "chrome",
+        
+      },
+      {
+        "name": "Tests",
+        "type": "dart",
+        "request": "launch",
+        "program": "test/",
+      }
+    ],
+    "compounds": [
+        {
+            "name": "Debug: All Iphone",
+            "configurations": ["iPhone: Debug", "iPhone SE (2nd generation): Debug"],
+          },
+      {
+        "name": "Debug: All Mobile",
+        "configurations": ["Android: Debug", "iPhone: Debug"],
+      },
+      {
+        "name": "Debug: All Devices",
+        "configurations": ["Android: Debug", "iPhone: Debug", "Chrome: Debug"],
+      },
+      {
+        "name": "Debug: Web and iPhone",
+        "configurations": ["Chrome: Debug", "iPhone: Debug"],
+      },
+      {
+        "name": "Debug: Web and Android",
+        "configurations": ["Chrome: Debug", "Android: Debug"],
+      },
+    ]
+  }
