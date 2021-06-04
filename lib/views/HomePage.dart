@@ -53,54 +53,59 @@ Widget cardCarousel(
     }
   }
 
-  return AspectRatio(
-    aspectRatio: 1 / 1.2,
-    child: Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        child: GestureDetector(
-          onTap: onTap,
-          child: Card(
-            color: color,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(18))),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Padding(
+  return Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: Container(
+      width: MediaQuery.of(context).size.width * 0.75,
+      child: GestureDetector(
+        onTap: onTap,
+        child: Card(
+          color: color,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(18))),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                child: Padding(
                   padding: const EdgeInsets.fromLTRB(10, 10, 10, 5),
                   child: Text(
                     (title != null ? title : 'Title'),
-                    style: Theme.of(context).textTheme.headline6,
+                    style: TextStyle(
+                        fontSize: MediaQuery.of(context).size.width * 0.07),
                     textAlign: TextAlign.center,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
-                  child: Text((descrText != null ? descrText : 'descrText')),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+                child: Text(
+                  (descrText != null ? descrText : 'descrText'),
+                  style: TextStyle(
+                      fontSize: MediaQuery.of(context).size.width * 0.04),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Container(
-                    width: 70,
-                    height: 70,
-                    child: SvgPicture.asset(
-                        (picture != null ? picture : 'assets/images/clock.svg'),
-                        semanticsLabel: ''),
-                  ),
+              ), //
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Container(
+                  width: 70,
+                  height: 70,
+                  child: SvgPicture.asset(
+                      (picture != null ? picture : 'assets/images/clock.svg'),
+                      semanticsLabel: ''),
                 ),
-                route == null
-                    ? new SizedBox()
-                    : ElevatedButton(
-                        child: Text(
-                          (buttonText != null ? buttonText : tr('General_go')),
-                          style: TextStyle(fontSize: 18),
-                        ),
-                        onPressed: onTap,
+              ),
+              route == null
+                  ? new SizedBox()
+                  : ElevatedButton(
+                      child: Text(
+                        (buttonText != null ? buttonText : tr('General_go')),
+                        style: TextStyle(fontSize: 18),
                       ),
-              ],
-            ),
+                      onPressed: onTap,
+                    ),
+            ],
           ),
         ),
       ),
