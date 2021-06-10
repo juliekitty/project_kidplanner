@@ -6,32 +6,32 @@ import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 
 class ProgramStep {
   // Eigenschaften
-  String? id, picture, animation;
-  Duration? duration;
+  String /*!*/ id, picture, animation;
+  Duration /*!*/ duration;
   Widget? widget;
-  bool? done;
-  int? points;
+  bool done;
+  int points;
 
   // Konstruktor
   ProgramStep(
-      {this.id,
-      this.duration,
+      {this.id = '',
+      this.duration = const Duration(minutes: 0),
       this.widget,
-      this.picture,
-      this.animation,
-      this.points,
-      this.done});
+      this.picture = '',
+      this.animation = '',
+      this.points = 0,
+      this.done = false});
 
   String displayDuration() {
-    return '${this.duration!.inMinutes}:'
-        '${(this.duration!.inSeconds % 60).toString().padLeft(2, '0')}';
+    return '${this.duration.inMinutes}:'
+        '${(this.duration.inSeconds % 60).toString().padLeft(2, '0')}';
   }
 
   Widget displayGraphicalCountDown(context, _controller) {
     // _controller.start();
     return Stack(alignment: Alignment.center, children: [
       CircularCountDownTimer(
-        duration: this.duration!.inSeconds,
+        duration: this.duration.inSeconds,
         initialDuration: 0,
         controller: _controller,
         width: MediaQuery.of(context).size.width / 4,
@@ -61,7 +61,7 @@ class ProgramStep {
 
   Widget displayCountdown() {
     return Countdown(
-      duration: this.duration!,
+      duration: this.duration,
       onFinish: () {
         print('finished');
       },
@@ -75,6 +75,10 @@ class ProgramStep {
     );
   }
 
+  String stepTitle() {
+    return tr('Programs.Steps.' + this.id);
+  }
+
 // return a widget with step infos
   Widget stepDefault(context, _controller) {
     return Padding(
@@ -85,7 +89,7 @@ class ProgramStep {
           Padding(
             padding: const EdgeInsets.fromLTRB(10, 20, 10, 3),
             child: Text(
-              tr('Programs.Steps.' + this.id!),
+              this.stepTitle(),
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.headline5,
             ),
@@ -104,7 +108,7 @@ class ProgramStep {
               width: MediaQuery.of(context).size.width * 0.40,
               height: MediaQuery.of(context).size.height * 0.40,
               child: (this.picture != null
-                  ? SvgPicture.asset(this.picture!, semanticsLabel: '')
+                  ? SvgPicture.asset(this.picture, semanticsLabel: '')
                   : (Container())), // TODO display gif
             ),
           ),

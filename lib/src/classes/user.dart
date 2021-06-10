@@ -21,7 +21,7 @@ class Participant extends User {
   Participant({id, name, this.score}) : super(id, name);
 
   int? addToScore(int addedPoints) {
-    this.score += addedPoints;
+    if (this.score != null) this.score = this.score! + addedPoints;
     this.insertParticipant(this);
     globals.userNotifier.value = this.score;
     AudioCache player = new AudioCache(
