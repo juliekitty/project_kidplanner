@@ -38,8 +38,11 @@
         "request": "launch",
         "type": "dart",
         "deviceId": "2A77CB3D-4EA0-45FD-9476-8712548EBB86",
-        
-      },
+        "args": [
+          "--no-sound-null-safety",
+        ],
+        "console": "terminal"
+        },
       {
         "name": "iPhone: Debug", // 12
         "request": "launch",
@@ -47,6 +50,15 @@
         "deviceId": "706906EF-C993-48B5-8356-B5A41B2CDC9E",
         
       },
+      {
+        "name": "iPhone 6s: Debug", // 6s
+        "request": "launch",
+        "type": "dart",
+        "deviceId": "324EEE6B-F5C0-4227-87A5-89E8186F1CFF",
+        
+      },
+
+      
       {
         "name": "iPhone: Profile",
         "request": "launch",
