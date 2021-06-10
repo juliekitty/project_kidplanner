@@ -1,6 +1,6 @@
 {
   "@@locale": "en",
-  "General_appName": "Kid Planner",
+  "General_appName": "Kids Planner",
   "General_go": "GO",
   "General_yes": "Yes",
   "General_no": "No",
@@ -9,6 +9,10 @@
   "General_Begin": "Begin",
   "General_Create": "Create",
   "General_DELETE": "DELETE",
+  "General_Delete": "Delete",
+  "General_Cancel": "Cancel",
+  "General_Edit": "Edit",
+
   "HP_SnackBar_NotEnoughPoints": "You do not have enough point to play!",
   "HP_PageTitle": "Home page",
   "HP_AlertDialog_Title": "What‘s your name?",
@@ -76,6 +80,13 @@
     }
   },
   "Programs_edit": {
-    "dismissed": "Routine deleted"
+    "dismissed": "Routine deleted",
+    "delete_confirmation": "Are you sure you want to delete this Routine?",
+    "delete_button": "Delete Confirmation"
+  },
+  "ProgramStep_edit": {
+    "dismissed": "Step deleted",
+    "delete_confirmation": "Are you sure you want to delete this Step?",
+    "delete_button": "Delete Confirmation"
   }
 }

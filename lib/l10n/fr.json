@@ -1,6 +1,6 @@
 {
   "@@locale": "fr",
-  "General_appName": "Kid Planner",
+  "General_appName": "Kids Planner",
   "General_go": "OK",
   "General_yes": "Oui",
   "General_no": "Non",
@@ -11,6 +11,7 @@
   "General_DELETE": "SUPPRIMER",
   "General_Delete": "Supprimer",
   "General_Cancel": "Annuler",
+  "General_Edit": "Modifier",
 
   "HP_SnackBar_NotEnoughPoints": "Tu n‘as pas assez de points pour jouer!",
   "HP_PageTitle": "Accueil",
@@ -81,6 +82,11 @@
   "Programs_edit": {
     "dismissed": "Routine supprimée",
     "delete_confirmation": "Supprimer cette routine ?",
+    "delete_button": "Confirmation"
+  },
+  "ProgramStep_edit": {
+    "dismissed": "Étape supprimée",
+    "delete_confirmation": "Supprimer cette étape ?",
     "delete_button": "Confirmation"
   }
 }

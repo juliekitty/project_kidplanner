@@ -18,10 +18,11 @@ class ProfileView extends StatefulWidget {
 
 class _ProfileViewState extends State<ProfileView> {
   Future _initFuture = Participant().currentUser();
-
+  bool debugMode = false;
   @override
   Widget build(BuildContext context) {
     Participant user = Participant();
+
     return FutureBuilder(
         future: _initFuture,
         builder: (context, snapshot) {
@@ -31,6 +32,11 @@ class _ProfileViewState extends State<ProfileView> {
               user = data;
               user.programs = globals.defaultPrograms;
               globals.currentParticipant = user;
+
+              debugMode = (user.name == 'Julie');
+              print(user.name);
+
+              print(debugMode.toString());
             }
             return Scaffold(
               appBar: appBar(
@@ -79,23 +85,6 @@ class _ProfileViewState extends State<ProfileView> {
                       Container(
                         decoration: globals.profileListBoxDecoration,
                         padding: profileListPadding,
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Expanded(
-                                flex: 10,
-                                child: Text(tr('Profile_Programs_label'))),
-                            Expanded(flex: 1, child: Divider()),
-                            Expanded(
-                                flex: 10,
-                                child: Text(user.programs.toString())),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        decoration: globals.profileListBoxDecoration,
-                        padding: profileListPadding,
                         child: Column(
                           children: <Widget>[
                             Row(
@@ -124,6 +113,78 @@ class _ProfileViewState extends State<ProfileView> {
                           ],
                         ),
                       ),
+                      if (debugMode)
+                        Container(
+                          decoration: globals.profileListDebugBoxDecoration,
+                          padding: profileListPadding,
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Expanded(
+                                  flex: 10,
+                                  child: Text('Profile_Debug_label').tr()),
+                              Expanded(flex: 1, child: Divider()),
+                              Expanded(
+                                  flex: 10,
+                                  child: ElevatedButton(
+                                    child: Text(tr(
+                                        'Profile_Debug_addPointsButtonlabel')),
+                                    onPressed: () {
+                                      setState(() {
+                                        user.addToScore(500);
+                                      });
+                                    },
+                                  )),
+                            ],
+                          ),
+                        ),
+                      Container(
+                        decoration: globals.profileListBoxDecoration,
+                        padding: profileListPadding,
+                        child: Column(
+                          children: <Widget>[
+                            Row(
+                              children: <Widget>[
+                                Expanded(
+                                    child: Text('Profile_Credits_label').tr()),
+                                IconButton(
+                                  icon: Icon(
+                                    Icons.keyboard_arrow_right,
+                                    size: Theme.of(context).iconTheme.size,
+                                  ),
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => CreditsRoute()),
+                                    );
+                                  },
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      if (debugMode)
+                        Container(
+                          decoration: globals.profileListDebugBoxDecoration,
+                          padding: profileListPadding,
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Expanded(
+                                  flex: 10,
+                                  child: Text(tr('Profile_Language_label'))),
+                              Expanded(flex: 1, child: Divider()),
+                              Expanded(
+                                  flex: 10,
+                                  child:
+                                      Text(Intl.getCurrentLocale().toString())),
+                            ],
+                          ),
+                        ),
                       Container(
                         decoration: globals.profileListBoxDecoration,
                         padding: profileListPadding,
@@ -154,76 +215,6 @@ class _ProfileViewState extends State<ProfileView> {
                                 )
                               ],
                             ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        decoration: globals.profileListBoxDecoration,
-                        padding: profileListPadding,
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Expanded(
-                                flex: 10,
-                                child: Text('Profile_Debug_label').tr()),
-                            Expanded(flex: 1, child: Divider()),
-                            Expanded(
-                                flex: 10,
-                                child: ElevatedButton(
-                                  child: Text(
-                                      tr('Profile_Debug_addPointsButtonlabel')),
-                                  onPressed: () {
-                                    setState(() {
-                                      user.addToScore(500);
-                                    });
-                                  },
-                                )),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        decoration: globals.profileListBoxDecoration,
-                        padding: profileListPadding,
-                        child: Column(
-                          children: <Widget>[
-                            Row(
-                              children: <Widget>[
-                                Expanded(
-                                    child: Text('Profile_Credits_label').tr()),
-                                IconButton(
-                                  icon: Icon(
-                                    Icons.keyboard_arrow_right,
-                                    size: Theme.of(context).iconTheme.size,
-                                  ),
-                                  onPressed: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => CreditsRoute()),
-                                    );
-                                  },
-                                )
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        decoration: globals.profileListBoxDecoration,
-                        padding: profileListPadding,
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Expanded(
-                                flex: 10,
-                                child: Text(tr('Profile_Language_label'))),
-                            Expanded(flex: 1, child: Divider()),
-                            Expanded(
-                                flex: 10,
-                                child:
-                                    Text(Intl.getCurrentLocale().toString())),
                           ],
                         ),
                       ),

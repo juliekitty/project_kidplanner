@@ -36,6 +36,12 @@ class Program {
     });
     programs.remove(program);
   }
+
+  reorderSteps(int oldIndex, int newIndex) {
+    var item = this.steps[oldIndex];
+    this.steps.insert(newIndex, item);
+    this.steps.removeAt(oldIndex);
+  }
 }
 
 /// Find a program in the list using firstWhere method.

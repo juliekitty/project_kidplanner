@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:project_kidplanner/src/classes/program.dart';
@@ -6,23 +7,110 @@ import 'package:project_kidplanner/src/classes/programStep.dart';
 
 import 'package:project_kidplanner/src/components/appBar.dart';
 import 'package:project_kidplanner/src/libraries/globals.dart' as globals;
+import 'package:project_kidplanner/views/profile/programStepEdit.dart';
 
-class ProgramStepsListView extends StatelessWidget {
+class ProgramStepsListView extends StatefulWidget {
+  @override
+  ProgramStepsListViewState createState() => ProgramStepsListViewState();
+}
+
+class ProgramStepsListViewState extends State<ProgramStepsListView> {
   @override
   Widget build(BuildContext context) {
     final Program program =
         ModalRoute.of(context)!.settings.arguments as Program;
 
+    Widget createCard(context, ProgramStep step) {
+      return Dismissible(
+        direction: DismissDirection.endToStart,
+        key: Key(step.id),
+        child: Card(
+          key: Key(step.id),
+          child: Column(
+            children: <Widget>[
+              ListTile(
+                tileColor: Colors.white,
+                leading: Icon(Icons.drag_handle_rounded),
+                title: Text(
+                  tr('Programs.Steps.' + step.id.toString()),
+                  textAlign: TextAlign.left,
+                  style: Theme.of(context).textTheme.bodyText1,
+                ),
+                trailing: TextButton(
+                  child: Text(tr('General_Edit')),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ProgramStepEditView(),
+                        settings: RouteSettings(
+                          arguments: step,
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+        background: Container(
+          alignment: Alignment.centerRight,
+          padding: EdgeInsets.fromLTRB(20, 8, 0, 8),
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(0, 1, 10, 1),
+            child: Text(
+              tr('General_DELETE'),
+              style: Theme.of(context)
+                  .textTheme
+                  .headline6!
+                  .copyWith(color: Colors.white),
+            ),
+          ),
+          decoration: BoxDecoration(color: Colors.red),
+        ),
+        confirmDismiss: (DismissDirection direction) async {
+          return await showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text(tr('ProgramStep_edit.delete_button')),
+                content: Text(tr('ProgramStep_edit.delete_confirmation')),
+                actions: <Widget>[
+                  TextButton(
+                      onPressed: () => Navigator.of(context).pop(true),
+                      child: Text(tr('General_Delete'))),
+                  TextButton(
+                    onPressed: () => Navigator.of(context).pop(false),
+                    child: Text(tr('General_Cancel')),
+                  ),
+                ],
+              );
+            },
+          );
+        },
+        onDismissed: (direction) {
+          // Remove the item from the data source.
+          // Program.delete(participantPrograms, program.programId);
+
+          // Then show a snackbar.
+          ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(tr('ProgramStep_edit.dismissed'))));
+        },
+      );
+    }
+/*
     Widget createTile(context, ProgramStep step) {
       return Dismissible(
         direction: DismissDirection.endToStart,
         key: Key(step.id),
         child: Container(
+          constraints: carouselConstraints,
           decoration: globals.profileListBoxDecoration,
           padding: const EdgeInsets.fromLTRB(10, 3, 10, 3),
           child: ListTile(
             tileColor: Colors.white,
-            leading: Icon(Icons.star),
+            trailing: Icon(Icons.drag_handle_rounded),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(20))),
             title: Text(
@@ -30,20 +118,66 @@ class ProgramStepsListView extends StatelessWidget {
               textAlign: TextAlign.left,
               style: Theme.of(context).textTheme.bodyText1,
             ),
-            trailing: Text(
+            leading: Icon(Icons.star),
+            /*leading: Text(
               step.displayDuration(),
               style: Theme.of(context).textTheme.bodyText2,
-            ),
+            ),*/
           ),
         ),
+        background: Container(
+          alignment: Alignment.centerRight,
+          padding: EdgeInsets.fromLTRB(20, 8, 0, 8),
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(0, 1, 10, 1),
+            child: Text(
+              tr('General_DELETE'),
+              style: Theme.of(context)
+                  .textTheme
+                  .headline6!
+                  .copyWith(color: Colors.white),
+            ),
+          ),
+          decoration: BoxDecoration(color: Colors.red),
+        ),
+        confirmDismiss: (DismissDirection direction) async {
+          return await showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text(tr('ProgramStep_edit.delete_button')),
+                content: Text(tr('ProgramStep_edit.delete_confirmation')),
+                actions: <Widget>[
+                  TextButton(
+                      onPressed: () => Navigator.of(context).pop(true),
+                      child: Text(tr('General_Delete'))),
+                  TextButton(
+                    onPressed: () => Navigator.of(context).pop(false),
+                    child: Text(tr('General_Cancel')),
+                  ),
+                ],
+              );
+            },
+          );
+        },
+        onDismissed: (direction) {
+          // Remove the item from the data source.
+          // Program.delete(participantPrograms, program.programId);
+
+          // Then show a snackbar.
+          ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(tr('ProgramStep_edit.dismissed'))));
+        },
       );
     }
+
+    */
 
     return Scaffold(
       appBar: appBar(context, Theme.of(context).textTheme, 'Program')
           as PreferredSizeWidget?,
-      body: ListView(
-        scrollDirection: Axis.vertical,
+      body: Column(
+        //scrollDirection: Axis.vertical,
         //shrinkWrap: true,
         children: [
           Padding(
@@ -55,13 +189,21 @@ class ProgramStepsListView extends StatelessWidget {
           ),
           program.steps.length == 0
               ? new SizedBox()
-              : ReorderableListView(
-                  onReorder: (int start, int current) {
-                    print('reorder');
-                  },
-                  children: [
-                    for (var item in program.steps) createTile(context, item)
-                  ],
+              : SizedBox(
+                  child: ReorderableListView(
+                    buildDefaultDragHandles: true,
+                    scrollDirection: Axis.vertical,
+                    shrinkWrap: true,
+                    //physics: ScrollPhysics(),
+                    onReorder: (int start, int current) {
+                      setState(() {
+                        program.reorderSteps(start, current);
+                      });
+                    },
+                    children: <Widget>[
+                      for (var item in program.steps) createCard(context, item)
+                    ],
+                  ),
                 )
         ],
       ),
@@ -69,15 +211,15 @@ class ProgramStepsListView extends StatelessWidget {
         label: Text('General_Create').tr(),
         icon: Icon(Icons.keyboard_arrow_right),
         onPressed: () {
-          /*Navigator.push(
+          Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => ProgramCreateView(),
+              builder: (context) => ProgramStepEditView(),
               settings: RouteSettings(
-                arguments: user,
+                arguments: ProgramStep(),
               ),
             ),
-          );*/
+          );
         },
       ),
     );

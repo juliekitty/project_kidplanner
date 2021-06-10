@@ -28,6 +28,9 @@ const profileListBoxDecoration = BoxDecoration(
   border: profileListBorders,
 );
 
+const profileListDebugBoxDecoration =
+    BoxDecoration(color: Colors.yellow, border: profileListBorders);
+
 // Audio constants
 const timerFinishedAudio = "Cool-alarm-tone-notification-sound.mp3";
 const programStepAudio = "Ticking-clock-sound.mp3";
