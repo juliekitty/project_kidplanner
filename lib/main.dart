@@ -51,10 +51,11 @@ class MyApp extends StatelessWidget {
       //buttonTheme: ButtonThemeData(),
       fontFamily: 'Futura',
       textTheme: TextTheme(
-          headline1: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
-          headline6: TextStyle(fontSize: 28.0),
-          bodyText1: TextStyle(fontSize: 18.0),
-        ),
+        headline1: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
+        headline6: TextStyle(fontSize: 28.0),
+        bodyText1: TextStyle(fontSize: 18.0),
+        bodyText2: TextStyle(fontSize: 18.0),
+      ),
     );
 
     return MaterialApp(
