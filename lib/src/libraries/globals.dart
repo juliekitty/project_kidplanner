@@ -34,5 +34,5 @@ const programStepAudio = "Ticking-clock-sound.mp3";
 const pointsAdd = "Video-game-bonus-bell-sound-effect.mp3";
 const gameLoose = "Error-beep-sound-effect.mp3";
 const pointsLoose = "Single-coin-dropping.mp3";
-const audioFilesPrefix = 'audio/';
+const audioFilesPrefix = 'assets/audio/';
 final audioPlayer = AudioPlayer();
