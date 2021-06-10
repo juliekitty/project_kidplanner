@@ -22,14 +22,25 @@ class Program {
   Duration getDuration() {
     Duration sumDuration = Duration(minutes: 0);
     for (var step in this.steps) {
-      sumDuration += step.duration!;
+      sumDuration += step.duration;
     }
     return sumDuration;
+  }
+
+  static delete(List<Program?>? programs, String /*!*/ programId) {
+    print('delete it');
+
+    final program = programs!
+        .firstWhere((element) => element!.programId == programId, orElse: () {
+      return null;
+    });
+    programs.remove(program);
   }
 }
 
 /// Find a program in the list using firstWhere method.
-Program? findProgramUsingFirstWhere(List<Program?> programs, String? programId) {
+Program? findProgramUsingFirstWhere(
+    List<Program?> programs, String? programId) {
   final program = programs
       .firstWhere((element) => element!.programId == programId, orElse: () {
     return null;
