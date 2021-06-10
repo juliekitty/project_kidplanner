@@ -5,7 +5,9 @@ import 'package:easy_localization/easy_localization.dart';
 
 import 'package:project_kidplanner/src/components/appBar.dart';
 import 'package:project_kidplanner/src/libraries/globals.dart' as globals;
+import 'package:project_kidplanner/views/HomePage.dart';
 import 'package:project_kidplanner/views/creditsView.dart';
+import 'package:project_kidplanner/views/profile/programList.dart';
 
 const profileListPadding = EdgeInsets.fromLTRB(15.0, 12.5, 25.0, 12.5);
 
@@ -19,14 +21,17 @@ class _ProfileViewState extends State<ProfileView> {
 
   @override
   Widget build(BuildContext context) {
+    Participant user = Participant();
     return FutureBuilder(
         future: _initFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            Participant user = snapshot.data;
-            user.programs = globals.defaultPrograms;
-            globals.currentParticipant = user;
-
+            dynamic data = snapshot.data;
+            if (data != null) {
+              user = data;
+              user.programs = globals.defaultPrograms;
+              globals.currentParticipant = user;
+            }
             return Scaffold(
               appBar: appBar(
                 context,
@@ -85,6 +90,70 @@ class _ProfileViewState extends State<ProfileView> {
                             Expanded(
                                 flex: 10,
                                 child: Text(user.programs.toString())),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        decoration: globals.profileListBoxDecoration,
+                        padding: profileListPadding,
+                        child: Column(
+                          children: <Widget>[
+                            Row(
+                              children: <Widget>[
+                                Expanded(
+                                    child: Text('Profile_Programs_label').tr()),
+                                IconButton(
+                                  icon: Icon(
+                                    Icons.keyboard_arrow_right,
+                                    size: Theme.of(context).iconTheme.size,
+                                  ),
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => ProgramListView(),
+                                        settings: RouteSettings(
+                                          arguments: user,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        decoration: globals.profileListBoxDecoration,
+                        padding: profileListPadding,
+                        child: Column(
+                          children: <Widget>[
+                            Row(
+                              children: <Widget>[
+                                Expanded(child: Text('Profile_Logout').tr()),
+                                IconButton(
+                                  icon: Icon(
+                                    Icons.keyboard_arrow_right,
+                                    size: Theme.of(context).iconTheme.size,
+                                  ),
+                                  onPressed: () {
+                                    globals.currentParticipant.name == '';
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => HomePage(),
+                                        settings: RouteSettings(
+                                          arguments: user,
+                                        ),
+                                      ),
+                                    );
+
+                                    //
+                                  },
+                                )
+                              ],
+                            ),
                           ],
                         ),
                       ),

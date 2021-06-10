@@ -7,6 +7,11 @@
   "General_DONE": "FIN",
   "General_NEXT": "SUIVANT",
   "General_Begin": "Début",  
+  "General_Create": "Créer",
+  "General_DELETE": "SUPPRIMER",
+  "General_Delete": "Supprimer",
+  "General_Cancel": "Annuler",
+
   "HP_SnackBar_NotEnoughPoints": "Tu n‘as pas assez de points pour jouer!",
   "HP_PageTitle": "Accueil",
   "HP_AlertDialog_Title": "Comment t‘appelles-tu ?",
@@ -32,6 +37,7 @@
   "Profile_Debug_label": "Debug :",
   "Profile_Debug_addPointsButtonlabel": "Ajoute 500",
   "Profile_Credits_label": "Crédits",
+  "Profile_Logout": "Logout",
   "Countdown_PageTitle": "Chronomètre",
   "Countdown_PageIntroText": "Crée un chronomètre pour une tâche de ton choix !",
   "Countdown_SetTimerButtonLabel": "Créer",
@@ -71,5 +77,10 @@
       "stepWater": "Boire un peu d‘eau",
       "stepEndBed": "Se coucher"
     }
+  },
+  "Programs_edit": {
+    "dismissed": "Routine supprimée",
+    "delete_confirmation": "Supprimer cette routine ?",
+    "delete_button": "Confirmation"
   }
 }

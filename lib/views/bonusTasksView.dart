@@ -40,11 +40,11 @@ class _BonusTasksViewState extends State<BonusTasksView> {
           title: Text(
             tr('Bonus_' + step.id.toString() + '_title'),
             textAlign: TextAlign.left,
-            style: Theme.of(context).textTheme.headline6,
+            style: Theme.of(context).textTheme.bodyText1,
           ),
           trailing: Text(
             step.points.toString(),
-            style: Theme.of(context).textTheme.headline6,
+            style: Theme.of(context).textTheme.bodyText2,
           ),
           onTap: () {
             if (!step.done) {
@@ -60,7 +60,8 @@ class _BonusTasksViewState extends State<BonusTasksView> {
 
     return Scaffold(
       appBar:
-          appBar(context, Theme.of(context).textTheme, tr('Bonus_PageTitle')) as PreferredSizeWidget?,
+          appBar(context, Theme.of(context).textTheme, tr('Bonus_PageTitle'))
+              as PreferredSizeWidget?,
       body: ListView(
         scrollDirection: Axis.vertical,
         //shrinkWrap: true,

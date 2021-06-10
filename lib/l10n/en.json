@@ -7,6 +7,8 @@
   "General_DONE": "DONE",
   "General_NEXT": "NEXT",
   "General_Begin": "Begin",
+  "General_Create": "Create",
+  "General_DELETE": "DELETE",
   "HP_SnackBar_NotEnoughPoints": "You do not have enough point to play!",
   "HP_PageTitle": "Home page",
   "HP_AlertDialog_Title": "What‘s your name?",
@@ -32,6 +34,7 @@
   "Profile_Debug_label": "Debug:",
   "Profile_Debug_addPointsButtonlabel": "Add 500",
   "Profile_Credits_label": "Credits",
+  "Profile_Logout": "Logout",
   "Countdown_PageTitle": "Task Timer",
   "Countdown_PageIntroText": "Set a timer for a task!",
   "Countdown_SetTimerButtonLabel": "Set a timer",
@@ -45,20 +48,20 @@
   "Bonus_Task6_title": "throw the trash away",
   "Bonus_Task7_title": "put your toys away",
   "Advices_PageTitle": "Planning advices",
-  "Programs" : {
+  "Programs": {
     "appBar": "My Routine",
     "programIntro": "There are {length} steps, you should be ready at {timeReady}",
     "programInterrupt": "Are you sure you want to exit? You‘ll loose your bonus!",
     "programInterrupt_yes": "Yes, exit!!",
     "morning": {
-      "title": "Morning Routine", 
+      "title": "Morning Routine",
       "introText": "Time to get up!"
     },
     "bedtime": {
-      "title": "Bedtime (quick version)", 
+      "title": "Bedtime (quick version)",
       "introText": "Time to go to bed!"
     },
-    "Steps" : {
+    "Steps": {
       "stepDress": "Dress up",
       "stepBfast": "Eat your breakfast",
       "stepTeeth": "Tooth brushing",
@@ -71,5 +74,8 @@
       "stepWater": "Drink some water",
       "stepEndBed": "Go to bed"
     }
+  },
+  "Programs_edit": {
+    "dismissed": "Routine deleted"
   }
 }
