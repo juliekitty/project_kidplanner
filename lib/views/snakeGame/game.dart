@@ -28,7 +28,7 @@ class _GamePageState extends State<GamePage> {
 
   late double screenWidth;
   late double screenHeight;
-  int lowerBoundX, upperBoundX, lowerBoundY, upperBoundY;
+  int lowerBoundX = 0, upperBoundX = 0, lowerBoundY = 0, upperBoundY = 0;
 
   Timer? timer;
   double speed = 0.7;
