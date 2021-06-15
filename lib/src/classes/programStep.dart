@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:countdown_flutter/countdown_flutter.dart';
+import '../countdown_flutter/countdown_flutter.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 
 class ProgramStep {
@@ -21,6 +21,30 @@ class ProgramStep {
       this.animation = '',
       this.points = 0,
       this.done = false});
+
+  fromJson(Map<String, dynamic> json) {
+    return {
+      id = json['id'],
+      duration = json['duration'], // ?
+      widget = json['widget'],
+      picture = json['picture'],
+      animation = json['animation'],
+      points = json['points'],
+      done = json['done'],
+    };
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'duration': duration,
+      'widget': widget,
+      'picture': picture,
+      'animation': animation,
+      'points': points,
+      'done': done,
+    };
+  }
 
   String displayDuration() {
     return '${this.duration.inMinutes}:'
@@ -72,6 +96,7 @@ class ProgramStep {
               fontSize: 20.0, color: Colors.white, fontWeight: FontWeight.bold),
         );
       },
+      key: UniqueKey(),
     );
   }
 
