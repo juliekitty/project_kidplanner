@@ -23,6 +23,8 @@ class _ProfileViewState extends State<ProfileView> {
   Widget build(BuildContext context) {
     Participant user = Participant();
 
+    var participantList = Participant.getAllParticipants();
+
     return FutureBuilder(
         future: _initFuture,
         builder: (context, snapshot) {
@@ -30,13 +32,10 @@ class _ProfileViewState extends State<ProfileView> {
             dynamic data = snapshot.data;
             if (data != null) {
               user = data;
-              user.programs = globals.defaultPrograms;
               globals.currentParticipant = user;
 
               debugMode = (user.name == 'Julie');
-              print(user.name);
-
-              print(debugMode.toString());
+              print(user);
             }
             return Scaffold(
               appBar: appBar(
@@ -218,6 +217,12 @@ class _ProfileViewState extends State<ProfileView> {
                           ],
                         ),
                       ),
+                      if (debugMode)
+                        Container(
+                          decoration: globals.profileListDebugBoxDecoration,
+                          padding: profileListPadding,
+                          child: Text(participantList.toString()),
+                        ),
                     ],
                   ),
                 ],

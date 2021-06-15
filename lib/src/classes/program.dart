@@ -1,4 +1,5 @@
 import 'package:project_kidplanner/src/classes/programStep.dart';
+import 'package:project_kidplanner/src/classes/user.dart';
 
 class Program {
   // Eigenschaften
@@ -27,7 +28,7 @@ class Program {
     return sumDuration;
   }
 
-  static delete(List<Program?>? programs, String /*!*/ programId) {
+  static remove(List<Program?>? programs, String /*!*/ programId) {
     print('delete it');
 
     final program = programs!
@@ -37,10 +38,40 @@ class Program {
     programs.remove(program);
   }
 
-  reorderSteps(int oldIndex, int newIndex) {
+  removeStep(ProgramStep step) {
+    this.steps.remove(step);
+  }
+
+  updateStepDuration(ProgramStep step, Duration newDuration) {
+    var index = this.steps.indexOf(step);
+    this.steps[index].duration = newDuration;
+  }
+
+  reorderSteps(int oldIndex, int newIndex, Participant participant) {
     var item = this.steps[oldIndex];
     this.steps.insert(newIndex, item);
     this.steps.removeAt(oldIndex);
+
+    Participant.updateParticipant(participant);
+  }
+
+  fromJson(Map<String, dynamic> json) {
+    print('fromJson');
+    return {
+      programId = json['programId'],
+      title = json['title'],
+      //steps = json['steps'],
+      descr = json['descr'],
+    };
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'programId': programId,
+      'title': title,
+      //'steps': steps,
+      'descr': descr,
+    };
   }
 }
 

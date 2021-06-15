@@ -1,7 +1,5 @@
 {
-    "workbench.editorAssociations": [
-    
-    ],
+    "workbench.editorAssociations": {},
     "[search-result]": {
 
         "editor.lineNumbers": "off"

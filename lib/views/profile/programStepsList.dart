@@ -17,8 +17,10 @@ class ProgramStepsListView extends StatefulWidget {
 class ProgramStepsListViewState extends State<ProgramStepsListView> {
   @override
   Widget build(BuildContext context) {
-    final Program program =
-        ModalRoute.of(context)!.settings.arguments as Program;
+    final programID = ModalRoute.of(context)!.settings.arguments;
+
+    Program? program = findProgramUsingFirstWhere(
+        globals.currentParticipant.programs!, programID.toString());
 
     Widget createCard(context, ProgramStep step) {
       return Dismissible(
@@ -34,7 +36,11 @@ class ProgramStepsListViewState extends State<ProgramStepsListView> {
                 title: Text(
                   tr('Programs.Steps.' + step.id.toString()),
                   textAlign: TextAlign.left,
-                  style: Theme.of(context).textTheme.bodyText1,
+                  style: Theme.of(context).textTheme.bodyText2,
+                ),
+                subtitle: Text(
+                  step.displayDuration(),
+                  style: Theme.of(context).textTheme.subtitle2,
                 ),
                 trailing: TextButton(
                   child: Text(tr('General_Edit')),
@@ -44,7 +50,7 @@ class ProgramStepsListViewState extends State<ProgramStepsListView> {
                       MaterialPageRoute(
                         builder: (context) => ProgramStepEditView(),
                         settings: RouteSettings(
-                          arguments: step,
+                          arguments: [step, program],
                         ),
                       ),
                     );
@@ -91,7 +97,7 @@ class ProgramStepsListViewState extends State<ProgramStepsListView> {
         },
         onDismissed: (direction) {
           // Remove the item from the data source.
-          // Program.delete(participantPrograms, program.programId);
+          program != null && program.removeStep(step);
 
           // Then show a snackbar.
           ScaffoldMessenger.of(context).showSnackBar(
@@ -173,6 +179,10 @@ class ProgramStepsListViewState extends State<ProgramStepsListView> {
 
     */
 
+    if (program == null) {
+      return Container(child: Text('No program found'));
+    }
+
     return Scaffold(
       appBar: appBar(context, Theme.of(context).textTheme, 'Program')
           as PreferredSizeWidget?,
@@ -197,7 +207,8 @@ class ProgramStepsListViewState extends State<ProgramStepsListView> {
                     //physics: ScrollPhysics(),
                     onReorder: (int start, int current) {
                       setState(() {
-                        program.reorderSteps(start, current);
+                        program.reorderSteps(
+                            start, current, globals.currentParticipant);
                       });
                     },
                     children: <Widget>[
@@ -216,7 +227,7 @@ class ProgramStepsListViewState extends State<ProgramStepsListView> {
             MaterialPageRoute(
               builder: (context) => ProgramStepEditView(),
               settings: RouteSettings(
-                arguments: ProgramStep(),
+                arguments: [program, ProgramStep()],
               ),
             ),
           );

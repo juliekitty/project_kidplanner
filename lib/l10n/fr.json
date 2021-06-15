@@ -12,6 +12,7 @@
   "General_Delete": "Supprimer",
   "General_Cancel": "Annuler",
   "General_Edit": "Modifier",
+  "General_Saved": "Enregistré",
 
   "HP_SnackBar_NotEnoughPoints": "Tu n‘as pas assez de points pour jouer!",
   "HP_PageTitle": "Accueil",
@@ -62,7 +63,7 @@
       "introText": "C‘est l‘heure de se lever !"
     },
     "bedtime": {
-      "title": "Coucher (quick version)", 
+      "title": "Coucher", 
       "introText": "Au lit !"
     },
     "Steps" : {
@@ -87,6 +88,9 @@
   "ProgramStep_edit": {
     "dismissed": "Étape supprimée",
     "delete_confirmation": "Supprimer cette étape ?",
-    "delete_button": "Confirmation"
+    "delete_button": "Confirmation",
+    "duration_label": "Choisir une durée pour l'étape",
+    "confirm": "Étape enregistrée"
+
   }
 }

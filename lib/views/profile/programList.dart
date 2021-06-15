@@ -9,14 +9,19 @@ import 'package:project_kidplanner/src/components/appBar.dart';
 import 'package:project_kidplanner/src/libraries/globals.dart' as globals;
 import 'package:project_kidplanner/views/profile/programCreate.dart';
 import 'package:project_kidplanner/views/profile/programStepsList.dart';
+import 'package:project_kidplanner/src/libraries/programsData.dart'
+    as programsData;
 
 class ProgramListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // Participant.deleteParticipant(1);
+
     final Participant user =
         ModalRoute.of(context)!.settings.arguments as Participant;
 
     final List<Program?>? participantPrograms = user.programs;
+    // programsData.programs
 
     Widget createTile(context, Program /*!*/ program) {
       return Dismissible(
@@ -60,7 +65,7 @@ class ProgramListView extends StatelessWidget {
         },
         onDismissed: (direction) {
           // Remove the item from the data source.
-          Program.delete(participantPrograms, program.programId);
+          Program.remove(participantPrograms, program.programId);
 
           // Then show a snackbar.
           ScaffoldMessenger.of(context).showSnackBar(
@@ -90,7 +95,7 @@ class ProgramListView extends StatelessWidget {
                   MaterialPageRoute(
                     builder: (context) => ProgramStepsListView(),
                     settings: RouteSettings(
-                      arguments: program,
+                      arguments: program.programId,
                     ),
                   ),
                 );
@@ -101,10 +106,14 @@ class ProgramListView extends StatelessWidget {
       );
     }
 
-    return Scaffold(
-      appBar: appBar(context, Theme.of(context).textTheme, 'Program')
-          as PreferredSizeWidget?,
-      body: ListView(
+    Widget emptyState() {
+      user.programs = programsData.programs;
+      Participant.updateParticipant(user);
+      return Text('User has no program ${user.toMap()}');
+    }
+
+    Widget programList(participantPrograms, context) {
+      return ListView(
         scrollDirection: Axis.vertical,
         //shrinkWrap: true,
         children: [
@@ -121,7 +130,21 @@ class ProgramListView extends StatelessWidget {
             ],
           )
         ],
-      ),
+      );
+    }
+
+    Widget returnBody(participantPrograms, context) {
+      if (participantPrograms == null) {
+        return emptyState();
+      } else {
+        return programList(participantPrograms, context);
+      }
+    }
+
+    return Scaffold(
+      appBar: appBar(context, Theme.of(context).textTheme, 'Program')
+          as PreferredSizeWidget?,
+      body: returnBody(participantPrograms, context),
       floatingActionButton: FloatingActionButton.extended(
         label: Text('General_Create').tr(),
         icon: Icon(Icons.keyboard_arrow_right),
