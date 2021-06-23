@@ -1,12 +1,19 @@
 {
   "@@locale": "fr",
-  "General_appName": "Kid Planner",
+  "General_appName": "Kids Planner",
   "General_go": "OK",
   "General_yes": "Oui",
   "General_no": "Non",
   "General_DONE": "FIN",
   "General_NEXT": "SUIVANT",
   "General_Begin": "Début",  
+  "General_Create": "Créer",
+  "General_DELETE": "SUPPRIMER",
+  "General_Delete": "Supprimer",
+  "General_Cancel": "Annuler",
+  "General_Edit": "Modifier",
+  "General_Saved": "Enregistré",
+
   "HP_SnackBar_NotEnoughPoints": "Tu n‘as pas assez de points pour jouer!",
   "HP_PageTitle": "Accueil",
   "HP_AlertDialog_Title": "Comment t‘appelles-tu ?",
@@ -32,6 +39,7 @@
   "Profile_Debug_label": "Debug :",
   "Profile_Debug_addPointsButtonlabel": "Ajoute 500",
   "Profile_Credits_label": "Crédits",
+  "Profile_Logout": "Logout",
   "Countdown_PageTitle": "Chronomètre",
   "Countdown_PageIntroText": "Crée un chronomètre pour une tâche de ton choix !",
   "Countdown_SetTimerButtonLabel": "Créer",
@@ -55,7 +63,7 @@
       "introText": "C‘est l‘heure de se lever !"
     },
     "bedtime": {
-      "title": "Coucher (quick version)", 
+      "title": "Coucher", 
       "introText": "Au lit !"
     },
     "Steps" : {
@@ -71,5 +79,18 @@
       "stepWater": "Boire un peu d‘eau",
       "stepEndBed": "Se coucher"
     }
+  },
+  "Programs_edit": {
+    "dismissed": "Routine supprimée",
+    "delete_confirmation": "Supprimer cette routine ?",
+    "delete_button": "Confirmation"
+  },
+  "ProgramStep_edit": {
+    "dismissed": "Étape supprimée",
+    "delete_confirmation": "Supprimer cette étape ?",
+    "delete_button": "Confirmation",
+    "duration_label": "Choisir une durée pour l'étape",
+    "confirm": "Étape enregistrée"
+
   }
 }

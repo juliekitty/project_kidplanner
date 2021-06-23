@@ -1,8 +1,6 @@
 PODS:
   - audioplayers (0.0.1):
     - Flutter
-  - countdown_flutter (0.0.1):
-    - Flutter
   - Flutter (1.0.0)
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
@@ -21,7 +19,6 @@ PODS:
 
 DEPENDENCIES:
   - audioplayers (from `.symlinks/plugins/audioplayers/ios`)
-  - countdown_flutter (from `.symlinks/plugins/countdown_flutter/ios`)
   - Flutter (from `Flutter`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
@@ -36,8 +33,6 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   audioplayers:
     :path: ".symlinks/plugins/audioplayers/ios"
-  countdown_flutter:
-    :path: ".symlinks/plugins/countdown_flutter/ios"
   Flutter:
     :path: Flutter
   path_provider:
@@ -53,7 +48,6 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   audioplayers: 455322b54050b30ea4b1af7cd9e9d105f74efa8c
-  countdown_flutter: 423a4cc24614ccb078c2ce4ac6739b1d85cbe98b
   Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c

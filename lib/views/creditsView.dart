@@ -10,7 +10,7 @@ class CreditsRoute extends StatefulWidget {
 }
 
 class WebViewLoadUI extends State<WebViewLoad> {
-  WebViewController webViewController;
+  late WebViewController webViewController;
   String htmlFilePath = 'assets/html/credits.html';
 
   loadLocalHTML() async {

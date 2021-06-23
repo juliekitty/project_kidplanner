@@ -18,7 +18,7 @@ class Init {
     // TODO retrieve last logged-in user from local storage
     // load settings from current user
     await Future.delayed(Duration(seconds: 1));
-    globals.currentParticipant = await Participant().getParticipant(1);
+    globals.currentParticipant = await Participant.getParticipant(1);
 
     print("finished loading settings");
   }

@@ -7,13 +7,13 @@ import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 
 // Participant and Programs
-Participant exampleParticipant = Participant(id: 1, name: '', score: 0);
 
-ValueNotifier<int> userNotifier = ValueNotifier(currentParticipant.score);
+Participant exampleParticipant =
+    Participant(id: 1, name: '', score: 0, programs: programsData.programs);
 
-Participant currentParticipant;
+ValueNotifier<int?> userNotifier = ValueNotifier(currentParticipant.score);
 
-List<Program> defaultPrograms = programsData.programs;
+late Participant currentParticipant;
 
 // Themes Infos
 const profileListBorders = Border(
@@ -28,11 +28,14 @@ const profileListBoxDecoration = BoxDecoration(
   border: profileListBorders,
 );
 
+const profileListDebugBoxDecoration =
+    BoxDecoration(color: Colors.yellow, border: profileListBorders);
+
 // Audio constants
 const timerFinishedAudio = "Cool-alarm-tone-notification-sound.mp3";
 const programStepAudio = "Ticking-clock-sound.mp3";
 const pointsAdd = "Video-game-bonus-bell-sound-effect.mp3";
 const gameLoose = "Error-beep-sound-effect.mp3";
 const pointsLoose = "Single-coin-dropping.mp3";
-const audioFilesPrefix = 'audio/';
+const audioFilesPrefix = 'assets/audio/';
 final audioPlayer = AudioPlayer();

@@ -11,7 +11,7 @@ String appBarTitle = '';
 Widget _buildParticipantScore() {
   return ValueListenableBuilder(
     valueListenable: globals.userNotifier,
-    builder: (context, value, child) {
+    builder: (context, dynamic value, child) {
       return Center(
         child: new Text(
           globals.currentParticipant.score.toString(),

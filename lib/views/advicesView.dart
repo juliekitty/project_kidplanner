@@ -10,9 +10,9 @@ class AdvicesView extends StatelessWidget {
     var maxIndex = 0;
     return Scaffold(
       appBar:
-          appBar(context, Theme.of(context).textTheme, tr('Advices_PageTitle')),
+          appBar(context, Theme.of(context).textTheme, tr('Advices_PageTitle')) as PreferredSizeWidget?,
       body: Container(
-        color: Colors.yellow[100].withOpacity(0.3),
+        color: Colors.yellow[100]!.withOpacity(0.3),
         child: PageView(
             onPageChanged: (index) {
               if (maxIndex < index) {
