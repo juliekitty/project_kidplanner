@@ -30,7 +30,7 @@ class ProgramListView extends StatelessWidget {
         key: Key(program.programId),
         background: Container(
           alignment: Alignment.centerRight,
-          padding: EdgeInsets.fromLTRB(20, 8, 0, 8),
+          padding: const EdgeInsets.fromLTRB(20, 8, 0, 8),
           child: Padding(
             padding: const EdgeInsets.fromLTRB(0, 1, 10, 1),
             child: Text(
@@ -41,7 +41,7 @@ class ProgramListView extends StatelessWidget {
                   .copyWith(color: Colors.white),
             ),
           ),
-          decoration: BoxDecoration(color: Colors.red),
+          decoration: const BoxDecoration(color: Colors.red),
         ),
         confirmDismiss: (DismissDirection direction) async {
           return await showDialog(
@@ -77,7 +77,7 @@ class ProgramListView extends StatelessWidget {
           child: ListTile(
             tileColor: Colors.white,
             //leading: Icon(Icons.star),
-            shape: RoundedRectangleBorder(
+            shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(20))),
             title: Text(
               tr(program.title),
@@ -146,8 +146,8 @@ class ProgramListView extends StatelessWidget {
           as PreferredSizeWidget?,
       body: returnBody(participantPrograms, context),
       floatingActionButton: FloatingActionButton.extended(
-        label: Text('General_Create').tr(),
-        icon: Icon(Icons.keyboard_arrow_right),
+        label: const Text('General_Create').tr(),
+        icon: const Icon(Icons.keyboard_arrow_right),
         onPressed: () {
           Navigator.push(
             context,

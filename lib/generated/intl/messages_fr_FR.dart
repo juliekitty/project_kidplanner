@@ -19,10 +19,11 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'fr_FR';
 
-  final Map<String, dynamic> messages = _notInlinedMessages(_notInlinedMessages);
+  final Map<String, dynamic> messages =
+      _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function>{
         "Advices_PageTitle":
-            MessageLookupByLibrary.simpleMessage("Conseils d\'organisation"),
+            MessageLookupByLibrary.simpleMessage("Conseils d‘organisation"),
         "Bonus_PageIntroText":
             MessageLookupByLibrary.simpleMessage("Gagne des points bonus "),
         "Bonus_PageTitle": MessageLookupByLibrary.simpleMessage("Tâches bonus"),
@@ -51,15 +52,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "HP_AlertDialog_Form_LabelText":
             MessageLookupByLibrary.simpleMessage("Nom"),
         "HP_AlertDialog_Form_ValidationText":
-            MessageLookupByLibrary.simpleMessage("Merci d\'entrer ton nom"),
+            MessageLookupByLibrary.simpleMessage("Merci d‘entrer ton nom"),
         "HP_AlertDialog_Title":
-            MessageLookupByLibrary.simpleMessage("Comment t\'appelles-tu ?"),
+            MessageLookupByLibrary.simpleMessage("Comment t‘appelles-tu ?"),
         "HP_Carousel_Bonus":
             MessageLookupByLibrary.simpleMessage("Gagne des points bonus"),
         "HP_Carousel_Bonus_AdvicesDescr": MessageLookupByLibrary.simpleMessage(
-            "La clé c\'est la préparation !"),
+            "La clé c‘est la préparation !"),
         "HP_Carousel_Bonus_AdvicesTitle":
-            MessageLookupByLibrary.simpleMessage("Conseils d\'organisation"),
+            MessageLookupByLibrary.simpleMessage("Conseils d‘organisation"),
         "HP_Carousel_Bonus_TasksDescr":
             MessageLookupByLibrary.simpleMessage("Gagne des points bonus"),
         "HP_Carousel_Bonus_TasksTitle":
@@ -83,7 +84,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Tes routines"),
         "HP_PageTitle": MessageLookupByLibrary.simpleMessage("Accueil"),
         "HP_SnackBar_NotEnoughPoints": MessageLookupByLibrary.simpleMessage(
-            "Tu n\'as pas assez de points pour jouer!"),
+            "Tu n‘as pas assez de points pour jouer!"),
         "Profile_Credits_label":
             MessageLookupByLibrary.simpleMessage("Crédits"),
         "Profile_Debug_addPointsButtonlabel":

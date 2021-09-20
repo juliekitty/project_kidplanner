@@ -5,7 +5,7 @@ import 'package:easy_localization/easy_localization.dart';
 
 Widget returnBottomNav(_selectedScreenIndex, _selectScreen) {
   return BottomAppBar(
-    shape: CircularNotchedRectangle(),
+    shape: const CircularNotchedRectangle(),
     color: Colors.amber,
     notchMargin: 4,
     clipBehavior: Clip.antiAlias,
@@ -22,9 +22,9 @@ Widget returnBottomNav(_selectedScreenIndex, _selectScreen) {
       onTap: _selectScreen,
       items: [
         BottomNavigationBarItem(
-            icon: Icon(Icons.home), label: tr('HP_PageTitle')),
+            icon: const Icon(Icons.home), label: tr('HP_PageTitle')),
         BottomNavigationBarItem(
-            icon: Icon(Icons.hourglass_bottom),
+            icon: const Icon(Icons.hourglass_bottom),
             label: tr('Countdown_PageTitle')),
         //BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
         //BottomNavigationBarItem(icon: Icon(Icons.list), label: "Advices"),

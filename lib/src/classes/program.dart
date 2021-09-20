@@ -21,7 +21,7 @@ class Program {
   }
 
   Duration getDuration() {
-    Duration sumDuration = Duration(minutes: 0);
+    Duration sumDuration = const Duration(minutes: 0);
     for (var step in steps) {
       sumDuration += step.duration;
     }
@@ -29,7 +29,7 @@ class Program {
   }
 
   static remove(List<Program?>? programs, String /*!*/ programId) {
-    print('delete it');
+    // print('delete it');
 
     final program = programs!
         .firstWhere((element) => element!.programId == programId, orElse: () {
@@ -56,7 +56,7 @@ class Program {
   }
 
   fromJson(Map<String, dynamic> json) {
-    print('fromJson');
+    // print('fromJson');
     return {
       programId = json['programId'],
       title = json['title'],

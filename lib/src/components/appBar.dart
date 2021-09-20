@@ -15,7 +15,7 @@ Widget _buildParticipantScore() {
       return Center(
         child: Text(
           globals.currentParticipant.score.toString(),
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white,
             fontSize: 20.0,
             fontWeight: FontWeight.w500,
@@ -36,7 +36,7 @@ Widget appBar(context, textTheme, appBarTitle) {
     actions: <Widget>[
       _buildParticipantScore(),
       IconButton(
-        icon: Icon(Icons.person),
+        icon: const Icon(Icons.person),
         tooltip: tr('Profile_PageTitle'),
         onPressed: () {
           Navigator.push(

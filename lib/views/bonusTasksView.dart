@@ -33,9 +33,9 @@ class _BonusTasksViewState extends State<BonusTasksView> {
           mouseCursor: MaterialStateMouseCursor.clickable,
           enabled: (step.done ? false : true),
           leading: (step.done
-              ? Icon(Icons.check_box)
-              : Icon(Icons.check_box_outline_blank)),
-          shape: RoundedRectangleBorder(
+              ? const Icon(Icons.check_box)
+              : const Icon(Icons.check_box_outline_blank)),
+          shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(20))),
           title: Text(
             tr('Bonus_' + step.id.toString() + '_title'),
@@ -74,7 +74,7 @@ class _BonusTasksViewState extends State<BonusTasksView> {
             ),
           ),
           bonusTasks.isEmpty
-              ? SizedBox()
+              ? const SizedBox()
               : Column(
                   children: [
                     for (var item in bonusTasks) createTile(context, item)

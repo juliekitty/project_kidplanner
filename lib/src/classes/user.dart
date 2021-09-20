@@ -58,9 +58,9 @@ class Participant extends User {
 
   Future<Participant> currentUser() async {
     // TODO implement with last ID stored in local storage
-    print('getAllParticipants');
-    print(await Participant.getAllParticipants());
-    print('FORCE Use participant ID 1');
+    // print('getAllParticipants');
+    // print(await Participant.getAllParticipants());
+    // print('FORCE Use participant ID 1');
     return await Participant.getParticipant(1);
   }
 
@@ -83,7 +83,7 @@ class Participant extends User {
 
     var requestResult = await Participant.getParticipant(participant.id);
     if (requestResult == globals.exampleParticipant) {
-      print('insertParticipant ${participant.toString()}');
+      // print('insertParticipant ${participant.toString()}');
       await db.insert(
         'participants',
         participant.toMap(),
@@ -115,15 +115,15 @@ class Participant extends User {
 
     var participantMap = participant.toMap();
 
-    print('updateParticipant ${participant.id} ${participantMap['programs']}');
-    var update = await db.update(
+    // print('updateParticipant ${participant.id} ${participantMap['programs']}');
+    // var update =
+    await db.update(
       'participants',
       participantMap,
       where: "id = ?",
       whereArgs: [participant.id],
     );
-    print(
-        'updateParticipant row updated: $update ${await Participant.getParticipant(1)} ');
+    // print('updateParticipant row updated: $update ${await Participant.getParticipant(1)} ');
   }
 
   static Future<Participant> getParticipant(int? id) async {
@@ -139,11 +139,11 @@ class Participant extends User {
 
     // Convert the List<Map<String, dynamic> into a List<Participant>.
     if (maps.isEmpty) {
-      print('no Participant in DB, use globals.exampleParticipant');
+      // print('no Participant in DB, use globals.exampleParticipant');
       return globals.exampleParticipant;
     }
 
-    print('getParticipant ${maps[0].runtimeType} ${maps[0]} ');
+    // print('getParticipant ${maps[0].runtimeType} ${maps[0]} ');
 
     var programsDecoded = jsonDecode(maps[0]['programs']);
 

@@ -18,6 +18,7 @@ String timeReady(Program program) {
 }
 
 class ProgramView extends StatelessWidget {
+  const ProgramView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final String? programType =
@@ -32,8 +33,8 @@ class ProgramView extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(10, 3, 10, 3),
         child: ListTile(
           tileColor: Colors.white,
-          leading: Icon(Icons.star),
-          shape: RoundedRectangleBorder(
+          leading: const Icon(Icons.star),
+          shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(20))),
           title: Text(
             tr('Programs.Steps.' + step.id.toString()),
@@ -78,7 +79,7 @@ class ProgramView extends StatelessWidget {
             ]),
           ),
           program.steps.isEmpty
-              ? SizedBox()
+              ? const SizedBox()
               : Column(
                   children: [
                     for (var item in program.steps) createTile(context, item)
@@ -87,8 +88,8 @@ class ProgramView extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
-        label: Text('General_Begin').tr(),
-        icon: Icon(Icons.keyboard_arrow_right),
+        label: const Text('General_Begin').tr(),
+        icon: const Icon(Icons.keyboard_arrow_right),
         onPressed: () {
           Navigator.push(
             context,

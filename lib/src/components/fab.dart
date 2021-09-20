@@ -6,7 +6,7 @@ import 'package:project_kidplanner/views/bonusTasksView.dart';
 Widget returnFab(context) {
   return FloatingActionButton(
     tooltip: tr('HP_Carousel_Bonus_TasksDescr'),
-    child: Icon(
+    child: const Icon(
       Icons.star,
       color: Colors.white,
     ),

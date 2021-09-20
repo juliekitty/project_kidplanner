@@ -26,16 +26,16 @@ bool _initDone = false;
 // Widget of the dialog shown when user attempts to interrupt the program
 Widget showInterruptDialog(context) {
   return AlertDialog(
-    content: Text('Programs.programInterrupt').tr(),
+    content: const Text('Programs.programInterrupt').tr(),
     actions: <Widget>[
       TextButton(
-        child: Text('General_no').tr(),
+        child: const Text('General_no').tr(),
         onPressed: () {
           Navigator.of(context).pop(false);
         },
       ),
       TextButton(
-        child: Text('Programs.programInterrupt_yes').tr(),
+        child: const Text('Programs.programInterrupt_yes').tr(),
         onPressed: () {
           Navigator.of(context).pop(true);
         },
@@ -112,7 +112,7 @@ class _ProgramDetailsViewState extends State<ProgramDetailsView> {
     globals.audioPlayer.stop();
     if (_selectedScreenIndex + 1 < _screens.length) {
       _pageController.nextPage(
-        duration: Duration(milliseconds: 350),
+        duration: const Duration(milliseconds: 350),
         curve: Curves.easeInOut,
       );
       setState(() {
@@ -155,7 +155,8 @@ class _ProgramDetailsViewState extends State<ProgramDetailsView> {
         if (!_initDone) {
           print('!_initDone');
           _initDone = true;
-          final String? programType = ModalRoute.of(context)!.settings.arguments as String?;
+          final String? programType =
+              ModalRoute.of(context)!.settings.arguments as String?;
           final Program program =
               findProgramUsingFirstWhere(programs, programType)!;
           debugPrint(program.title);
@@ -190,8 +191,8 @@ class _ProgramDetailsViewState extends State<ProgramDetailsView> {
               return value == true;
             },
             child: Scaffold(
-              appBar: appBar(
-                  context, Theme.of(context).textTheme, tr('Programs.appBar')) as PreferredSizeWidget?,
+              appBar: appBar(context, Theme.of(context).textTheme,
+                  tr('Programs.appBar')) as PreferredSizeWidget?,
               body: Container(
                 color: Colors.yellow[100]!.withOpacity(0.3),
                 child: PageView(
@@ -214,7 +215,7 @@ class _ProgramDetailsViewState extends State<ProgramDetailsView> {
                     (_selectedScreenIndex + 1 >= _screens.length)
                         ? tr("General_DONE")
                         : tr("General_NEXT"),
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontFamily: 'Helvetica', fontWeight: FontWeight.bold),
                   ),
                   icon: Icon(
@@ -230,7 +231,7 @@ class _ProgramDetailsViewState extends State<ProgramDetailsView> {
           return Container(
             color: Colors.yellow[100],
             child: Center(
-              child: Container(child: CircularProgressIndicator()),
+              child: Container(child: const CircularProgressIndicator()),
             ),
           );
         }

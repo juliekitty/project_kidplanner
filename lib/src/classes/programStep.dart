@@ -65,7 +65,7 @@ class ProgramStep {
         backgroundColor: Colors.amber[800],
         strokeWidth: 10.0,
         strokeCap: StrokeCap.round,
-        textStyle: TextStyle(
+        textStyle: const TextStyle(
             fontSize: 20.0, color: Colors.white, fontWeight: FontWeight.bold),
         textFormat: CountdownTextFormat.S,
         isReverse: true,
@@ -73,10 +73,10 @@ class ProgramStep {
         isTimerTextShown: false,
         autoStart: true,
         onStart: () {
-          print('Countdown Started');
+          // print('Countdown Started');
         },
         onComplete: () {
-          print('Countdown Ended');
+          // print('Countdown Ended');
         },
       ),
       displayCountdown(),
@@ -87,12 +87,12 @@ class ProgramStep {
     return Countdown(
       duration: duration,
       onFinish: () {
-        print('finished');
+        // print('finished');
       },
       builder: (BuildContext ctx, Duration remaining) {
         return Text(
           '${remaining.inMinutes}:${(remaining.inSeconds % 60).toString().padLeft(2, '0')}',
-          style: TextStyle(
+          style: const TextStyle(
               fontSize: 20.0, color: Colors.white, fontWeight: FontWeight.bold),
         );
       },
@@ -132,9 +132,10 @@ class ProgramStep {
             child: Container(
               width: MediaQuery.of(context).size.width * 0.40,
               height: MediaQuery.of(context).size.height * 0.40,
-              child: (picture != null
+              child: (picture != ''
                   ? SvgPicture.asset(picture, semanticsLabel: '')
-                  : (Container())), // TODO display gif
+                  : (Container())),
+              // TODO display gif
             ),
           ),
         ]),

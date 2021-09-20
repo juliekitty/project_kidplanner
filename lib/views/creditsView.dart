@@ -42,7 +42,7 @@ class _CreditsRouteState extends State<CreditsRoute> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Credits"),
+        title: const Text("Credits"),
       ),
       body: WebViewLoad(),
     );

@@ -8,18 +8,18 @@ class Init {
   }
 
   static _registerServices() async {
-    print("starting registering services");
-    await Future.delayed(Duration(seconds: 1));
-    print("finished registering services");
+    // print("starting registering services");
+    await Future.delayed(const Duration(seconds: 1));
+    // print("finished registering services");
   }
 
   static _loadSettings() async {
-    print("starting loading settings");
+    // print("starting loading settings");
     // TODO retrieve last logged-in user from local storage
     // load settings from current user
-    await Future.delayed(Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 1));
     globals.currentParticipant = await Participant.getParticipant(1);
 
-    print("finished loading settings");
+    // print("finished loading settings");
   }
 }

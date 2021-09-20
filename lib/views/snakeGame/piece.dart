@@ -28,7 +28,7 @@ class _PieceState extends State<Piece> with SingleTickerProviderStateMixin {
     _animationController = AnimationController(
       lowerBound: 0.25,
       upperBound: 1.0,
-      duration: Duration(milliseconds: 1000),
+      duration: const Duration(milliseconds: 1000),
       vsync: this,
     );
     _animationController.addStatusListener((status) {

@@ -112,13 +112,13 @@ class _GamePageState extends State<GamePage> {
 
         return AlertDialog(
           backgroundColor: Colors.cyan[500],
-          shape: RoundedRectangleBorder(
+          shape: const RoundedRectangleBorder(
               side: BorderSide(
                 color: Colors.black,
                 width: 3.0,
               ),
               borderRadius: BorderRadius.all(Radius.circular(10.0))),
-          title: Text(
+          title: const Text(
             "Game Over",
             style: TextStyle(color: Colors.white),
           ),
@@ -126,7 +126,7 @@ class _GamePageState extends State<GamePage> {
             "Your game is over but you played well. Your score is " +
                 score.toString() +
                 '.\n${(globals.currentParticipant.score! - 200 < 0) ? "You do not have enough point to play again!" : "\nRestart will cost you 200 points!"}',
-            style: TextStyle(color: Colors.white),
+            style: const TextStyle(color: Colors.white),
           ),
           actions: [
             (globals.currentParticipant.score! - 200 < 0)
@@ -137,7 +137,7 @@ class _GamePageState extends State<GamePage> {
                       Navigator.of(context).pop();
                       restart();
                     },
-                    child: Text(
+                    child: const Text(
                       "Restart",
                       style: TextStyle(
                           color: Colors.white, fontWeight: FontWeight.bold),
@@ -147,7 +147,7 @@ class _GamePageState extends State<GamePage> {
               onPressed: () async {
                 Navigator.of(context).pop();
               },
-              child: Text(
+              child: const Text(
                 "Exit game",
                 style:
                     TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
@@ -165,7 +165,7 @@ class _GamePageState extends State<GamePage> {
     if (detectCollision(position) == true) {
       if (timer != null && timer!.isActive) timer!.cancel();
       await Future.delayed(
-          Duration(milliseconds: 500), () => showGameOverDialog());
+          const Duration(milliseconds: 500), () => showGameOverDialog());
       return position;
     }
 
@@ -198,7 +198,7 @@ class _GamePageState extends State<GamePage> {
       posX: foodPosition!.dx.toInt(),
       posY: foodPosition!.dy.toInt(),
       size: step,
-      color: Color(0XFF8EA604),
+      color: const Color(0xff8ea604),
       isAnimated: true,
     );
   }
@@ -258,7 +258,7 @@ class _GamePageState extends State<GamePage> {
       right: 40.0,
       child: Text(
         "Score: " + score.toString(),
-        style: TextStyle(fontSize: 24.0),
+        style: const TextStyle(fontSize: 24.0),
       ),
     );
   }
@@ -308,16 +308,15 @@ class _GamePageState extends State<GamePage> {
     upperBoundY = roundToNearestTens(screenHeight.toInt() - step);
 
     return Scaffold(
-      appBar: appBar(context, Theme.of(context).textTheme, 'Program') as PreferredSizeWidget?,
+      appBar: appBar(context, Theme.of(context).textTheme, 'Program')
+          as PreferredSizeWidget?,
       body: Container(
         color: Colors.amber[100],
         child: Stack(
           children: [
             getPlayAreaBorder(),
-            Container(
-              child: Stack(
-                children: getPieces(),
-              ),
+            Stack(
+              children: getPieces(),
             ),
             food,
             getControls(),

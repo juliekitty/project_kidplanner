@@ -13,7 +13,7 @@ class CountDownTimer extends StatefulWidget {
 class _CountDownTimerState extends State<CountDownTimer>
     with TickerProviderStateMixin {
   late AnimationController controller;
-  Duration resultingDuration = Duration(hours: 0, minutes: 0);
+  Duration resultingDuration = const Duration(hours: 0, minutes: 0);
 
   // Audio
   static AudioCache player = AudioCache(
@@ -27,7 +27,7 @@ class _CountDownTimerState extends State<CountDownTimer>
   Future initDuration() async {
     var resultingDuration = await showDurationPicker(
       context: context,
-      initialTime: Duration(minutes: 3),
+      initialTime: const Duration(minutes: 3),
       snapToMins: 5.0,
     );
     setState(() {
@@ -78,13 +78,13 @@ class _CountDownTimerState extends State<CountDownTimer>
                         child: Column(children: [
                           Text(
                             tr('Countdown_PageIntroText'),
-                            style: TextStyle(fontSize: 18),
+                            style: const TextStyle(fontSize: 18),
                           ),
                           ElevatedButton(
                             child: Text(
                               tr('Countdown_SetTimerButtonLabel'),
-                              style:
-                                  TextStyle(fontSize: 18, color: Colors.white),
+                              style: const TextStyle(
+                                  fontSize: 18, color: Colors.white),
                             ),
                             onPressed: initDuration,
                           ),
@@ -104,7 +104,7 @@ class _CountDownTimerState extends State<CountDownTimer>
               controller.duration == Duration.zero
                   ? Container()
                   : Padding(
-                      padding: EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(8.0),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[

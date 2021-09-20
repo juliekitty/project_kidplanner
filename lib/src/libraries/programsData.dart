@@ -8,50 +8,50 @@ import 'package:project_kidplanner/src/classes/programStep.dart';
 
 final ProgramStep stepDress = ProgramStep(
     id: 'stepDress',
-    duration: Duration(minutes: 3),
+    duration: const Duration(minutes: 3),
     picture: "assets/images/clothing.svg");
 final ProgramStep stepBfast = ProgramStep(
     id: 'stepBfast',
-    duration: Duration(minutes: 7),
+    duration: const Duration(minutes: 7),
     picture: "assets/images/cereal.svg");
 final ProgramStep stepTeeth = ProgramStep(
     id: 'stepTeeth',
-    duration: Duration(minutes: 4),
+    duration: const Duration(minutes: 4),
     picture: 'assets/images/eucalyp-brush-teeth.svg',
     animation: 'assets/images/animated/brush-teeth-gif-6.gif');
 final ProgramStep stepPrepareBag = ProgramStep(
     id: 'stepPrepareBag',
-    duration: Duration(minutes: 4),
+    duration: const Duration(minutes: 4),
     picture: 'assets/images/backpack.svg');
 final ProgramStep stepForOutside = ProgramStep(
     id: 'stepForOutside',
-    duration: Duration(minutes: 4),
+    duration: const Duration(minutes: 4),
     picture: "assets/images/raincoat.svg");
 
 final ProgramStep stepCheckBag = ProgramStep(
     id: 'stepCheckBag',
-    duration: Duration(minutes: 4),
+    duration: const Duration(minutes: 4),
     picture: 'assets/images/backpack.svg');
 final ProgramStep stepPyjama = ProgramStep(
     id: 'stepPyjama',
-    duration: Duration(minutes: 4),
+    duration: const Duration(minutes: 4),
     picture: "assets/images/pyjamas.svg");
 final ProgramStep stepTeethNight = ProgramStep(
     id: 'stepTeethNight',
-    duration: Duration(minutes: 4),
+    duration: const Duration(minutes: 4),
     picture: 'assets/images/eucalyp-brush-teeth.svg',
     animation: 'assets/images/animated/brush-teeth-gif-6.gif');
 final ProgramStep stepToilet = ProgramStep(
     id: 'stepToilet',
-    duration: Duration(minutes: 4),
+    duration: const Duration(minutes: 4),
     picture: 'assets/images/eucalyp-shower.svg');
 final ProgramStep stepWater = ProgramStep(
     id: 'stepWater',
-    duration: Duration(minutes: 4),
+    duration: const Duration(minutes: 4),
     picture: "assets/images/water.svg");
 final ProgramStep stepEndBed = ProgramStep(
     id: 'stepEndBed',
-    duration: Duration(seconds: 1),
+    duration: const Duration(seconds: 1),
     picture: 'assets/images/bed.svg');
 
 // PROGRAMS

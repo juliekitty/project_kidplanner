@@ -26,14 +26,17 @@ void main() async {
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(
     EasyLocalization(
-        supportedLocales: [Locale('en'), Locale('fr')],
+        // ignore: prefer_const_literals_to_create_immutables
+        supportedLocales: [const Locale('en'), const Locale('fr')],
         path: 'lib/l10n', // <-- change the path of the translation files
-        fallbackLocale: Locale('en'),
+        fallbackLocale: const Locale('en'),
         child: MyApp()),
   );
 }
 
 class MyApp extends StatelessWidget {
+  MyApp({Key? key}) : super(key: key);
+
   final Future _initFuture = Init.initialize();
 
   @override
@@ -44,13 +47,13 @@ class MyApp extends StatelessWidget {
         color: Colors.cyan[600],
         size: 40,
       ),
-      primaryIconTheme: IconThemeData(
+      primaryIconTheme: const IconThemeData(
         color: Colors.white,
         size: 40,
       ),
       //buttonTheme: ButtonThemeData(),
       fontFamily: 'Futura',
-      textTheme: TextTheme(
+      textTheme: const TextTheme(
         headline1: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
         headline6: TextStyle(fontSize: 28.0),
         bodyText1: TextStyle(fontSize: 18.0),
@@ -66,10 +69,8 @@ class MyApp extends StatelessWidget {
           future: _initFuture,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
-              print('LayoutView');
-              return LayoutView();
+              return const LayoutView();
             } else {
-              print('SplashScreen');
               return SplashScreen();
             }
           },
@@ -80,6 +81,8 @@ class MyApp extends StatelessWidget {
 }
 
 class LayoutView extends StatefulWidget {
+  const LayoutView({Key? key}) : super(key: key);
+
   @override
   _LayoutViewState createState() => _LayoutViewState();
 }
@@ -102,7 +105,7 @@ class _LayoutViewState extends State<LayoutView> {
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('HP_AlertDialog_Title').tr(),
+          title: const Text('HP_AlertDialog_Title').tr(),
           content: SingleChildScrollView(
             child: Form(
               key: _keyDialogForm,
@@ -117,7 +120,7 @@ class _LayoutViewState extends State<LayoutView> {
                       setState(() {});
                     },
                     decoration: InputDecoration(
-                      border: OutlineInputBorder(),
+                      border: const OutlineInputBorder(),
                       labelText: tr('HP_AlertDialog_Form_LabelText'),
                     ),
                     autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -134,7 +137,7 @@ class _LayoutViewState extends State<LayoutView> {
           ),
           actions: <Widget>[
             TextButton(
-              child: Text('General_go').tr(),
+              child: const Text('General_go').tr(),
               onPressed: () {
                 if (_keyDialogForm.currentState!.validate()) {
                   _keyDialogForm.currentState!.save();
@@ -152,7 +155,8 @@ class _LayoutViewState extends State<LayoutView> {
   void initState() {
     super.initState();
     Future.delayed(Duration.zero, () {
-      if (globals.currentParticipant.name == '') {
+      if (globals.currentParticipant.name == null ||
+          globals.currentParticipant.name == '') {
         _askNameDialog();
       }
     });

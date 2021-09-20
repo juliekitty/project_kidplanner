@@ -1,6 +1,5 @@
 library project_kidplanner.globals;
 
-import 'package:project_kidplanner/src/classes/program.dart';
 import 'package:project_kidplanner/src/classes/user.dart';
 import 'programsData.dart' as programsData;
 import 'package:flutter/material.dart';
@@ -13,7 +12,7 @@ Participant exampleParticipant =
 
 ValueNotifier<int?> userNotifier = ValueNotifier(currentParticipant.score);
 
-late Participant currentParticipant;
+Participant currentParticipant = exampleParticipant;
 
 // Themes Infos
 const profileListBorders = Border(

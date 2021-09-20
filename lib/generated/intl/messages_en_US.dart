@@ -19,7 +19,8 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en_US';
 
-  final Map<String, dynamic> messages = _notInlinedMessages(_notInlinedMessages);
+  final Map<String, dynamic> messages =
+      _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function>{
         "Advices_PageTitle":
             MessageLookupByLibrary.simpleMessage("Planning advices"),
@@ -53,7 +54,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "HP_AlertDialog_Form_ValidationText":
             MessageLookupByLibrary.simpleMessage("Please enter your name"),
         "HP_AlertDialog_Title":
-            MessageLookupByLibrary.simpleMessage("What\'s your name?"),
+            MessageLookupByLibrary.simpleMessage("What‘s your name?"),
         "HP_Carousel_Bonus":
             MessageLookupByLibrary.simpleMessage("Win bonus points"),
         "HP_Carousel_Bonus_AdvicesDescr":

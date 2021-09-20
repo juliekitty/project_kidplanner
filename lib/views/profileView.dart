@@ -56,8 +56,8 @@ class _ProfileViewState extends State<ProfileView> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Expanded(flex: 1, child: Icon(Icons.person)),
-                            Expanded(flex: 1, child: Divider()),
+                            const Expanded(flex: 1, child: Icon(Icons.person)),
+                            const Expanded(flex: 1, child: Divider()),
                             Expanded(
                                 flex: 10,
                                 child:
@@ -75,7 +75,7 @@ class _ProfileViewState extends State<ProfileView> {
                             Expanded(
                                 flex: 10,
                                 child: Text(tr('Profile_Points_label'))),
-                            Expanded(flex: 1, child: Divider()),
+                            const Expanded(flex: 1, child: Divider()),
                             Expanded(
                                 flex: 10, child: Text(user.score.toString())),
                           ],
@@ -89,7 +89,8 @@ class _ProfileViewState extends State<ProfileView> {
                             Row(
                               children: <Widget>[
                                 Expanded(
-                                    child: Text('Profile_Programs_label').tr()),
+                                    child: const Text('Profile_Programs_label')
+                                        .tr()),
                                 IconButton(
                                   icon: Icon(
                                     Icons.keyboard_arrow_right,
@@ -122,8 +123,9 @@ class _ProfileViewState extends State<ProfileView> {
                             children: [
                               Expanded(
                                   flex: 10,
-                                  child: Text('Profile_Debug_label').tr()),
-                              Expanded(flex: 1, child: Divider()),
+                                  child:
+                                      const Text('Profile_Debug_label').tr()),
+                              const Expanded(flex: 1, child: Divider()),
                               Expanded(
                                   flex: 10,
                                   child: ElevatedButton(
@@ -146,7 +148,8 @@ class _ProfileViewState extends State<ProfileView> {
                             Row(
                               children: <Widget>[
                                 Expanded(
-                                    child: Text('Profile_Credits_label').tr()),
+                                    child: const Text('Profile_Credits_label')
+                                        .tr()),
                                 IconButton(
                                   icon: Icon(
                                     Icons.keyboard_arrow_right,
@@ -176,7 +179,7 @@ class _ProfileViewState extends State<ProfileView> {
                               Expanded(
                                   flex: 10,
                                   child: Text(tr('Profile_Language_label'))),
-                              Expanded(flex: 1, child: Divider()),
+                              const Expanded(flex: 1, child: Divider()),
                               Expanded(
                                   flex: 10,
                                   child:
@@ -191,7 +194,8 @@ class _ProfileViewState extends State<ProfileView> {
                           children: <Widget>[
                             Row(
                               children: <Widget>[
-                                Expanded(child: Text('Profile_Logout').tr()),
+                                Expanded(
+                                    child: const Text('Profile_Logout').tr()),
                                 IconButton(
                                   icon: Icon(
                                     Icons.keyboard_arrow_right,
@@ -232,7 +236,7 @@ class _ProfileViewState extends State<ProfileView> {
             return Container(
               color: Colors.yellow[100],
               child: Center(
-                child: Container(child: CircularProgressIndicator()),
+                child: Container(child: const CircularProgressIndicator()),
               ),
             );
           }
