@@ -51,10 +51,11 @@ class MyApp extends StatelessWidget {
       //buttonTheme: ButtonThemeData(),
       fontFamily: 'Futura',
       textTheme: TextTheme(
-          headline1: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
-          headline6: TextStyle(fontSize: 28.0),
-          bodyText1: TextStyle(fontSize: 18.0),
-        ),
+        headline1: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
+        headline6: TextStyle(fontSize: 28.0),
+        bodyText1: TextStyle(fontSize: 18.0),
+        bodyText2: TextStyle(fontSize: 18.0),
+      ),
     );
 
     return MaterialApp(
@@ -85,7 +86,7 @@ class LayoutView extends StatefulWidget {
 
 class _LayoutViewState extends State<LayoutView> {
   int _selectedScreenIndex = 0;
-  List _screens = [
+  final List _screens = [
     {"screen": HomePage(), "title": tr('General_appName')},
     {"screen": CountDownTimer(), "title": tr('Countdown_PageTitle')},
     {"screen": ProfileView(), "title": tr('Profile_PageTitle')},
@@ -93,7 +94,7 @@ class _LayoutViewState extends State<LayoutView> {
     {"screen": BonusTasksView(), "title": tr('Bonus_PageTitle')}
   ];
 
-  final GlobalKey<FormState> _keyDialogForm = new GlobalKey<FormState>();
+  final GlobalKey<FormState> _keyDialogForm = GlobalKey<FormState>();
 
   Future<void> _askNameDialog() async {
     return showDialog<void>(
@@ -121,7 +122,7 @@ class _LayoutViewState extends State<LayoutView> {
                     ),
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (value) {
-                      if (value.isEmpty) {
+                      if (value!.isEmpty) {
                         return tr('HP_AlertDialog_Form_ValidationText');
                       }
                       return null;
@@ -135,8 +136,8 @@ class _LayoutViewState extends State<LayoutView> {
             TextButton(
               child: Text('General_go').tr(),
               onPressed: () {
-                if (_keyDialogForm.currentState.validate()) {
-                  _keyDialogForm.currentState.save();
+                if (_keyDialogForm.currentState!.validate()) {
+                  _keyDialogForm.currentState!.save();
                   Navigator.pop(context);
                 }
               },
@@ -150,7 +151,7 @@ class _LayoutViewState extends State<LayoutView> {
   @override
   void initState() {
     super.initState();
-    new Future.delayed(Duration.zero, () {
+    Future.delayed(Duration.zero, () {
       if (globals.currentParticipant.name == '') {
         _askNameDialog();
       }
@@ -167,9 +168,9 @@ class _LayoutViewState extends State<LayoutView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar(context, Theme.of(context).textTheme,
-          _screens[_selectedScreenIndex]["title"]),
+          _screens[_selectedScreenIndex]["title"]) as PreferredSizeWidget?,
       body: Container(
-        color: Colors.yellow[100].withOpacity(0.3),
+        color: Colors.yellow[100]!.withOpacity(0.3),
         child: _screens[_selectedScreenIndex]["screen"],
       ),
       extendBody: true,

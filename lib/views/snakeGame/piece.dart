@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 class Piece extends StatefulWidget {
-  final int posX, posY;
-  final int size;
-  final Color color;
+  final int? posX, posY;
+  final int? size;
+  final Color? color;
   final bool isAnimated;
 
   const Piece(
-      {Key key,
+      {Key? key,
       this.posX,
       this.posY,
       this.size,
@@ -20,7 +20,7 @@ class Piece extends StatefulWidget {
 }
 
 class _PieceState extends State<Piece> with SingleTickerProviderStateMixin {
-  AnimationController _animationController;
+  late AnimationController _animationController;
 
   @override
   void initState() {
@@ -51,18 +51,18 @@ class _PieceState extends State<Piece> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      left: widget.posX.toDouble(),
-      top: widget.posY.toDouble(),
+      left: widget.posX!.toDouble(),
+      top: widget.posY!.toDouble(),
       child: Opacity(
         opacity: widget.isAnimated ? _animationController.value : 1.0,
         child: Container(
-          width: widget.size.toDouble(),
-          height: widget.size.toDouble(),
+          width: widget.size!.toDouble(),
+          height: widget.size!.toDouble(),
           decoration: BoxDecoration(
             color: widget.color,
             borderRadius: BorderRadius.all(
               Radius.circular(
-                widget.size.toDouble() / 4,
+                widget.size!.toDouble() / 4,
               ),
             ),
             border: Border.all(color: Colors.black, width: 2.0),

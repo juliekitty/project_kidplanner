@@ -6,11 +6,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:project_kidplanner/views/advicesView.dart';
 import 'package:project_kidplanner/views/bonusTasksView.dart';
-import 'package:project_kidplanner/views/programView.dart';
+import 'package:project_kidplanner/views/programOverview.dart';
 import 'package:project_kidplanner/views/snakeGame/game.dart';
 
 Widget cardCarousel(
-    {context,
+    {required context,
     color,
     title,
     descrText,
@@ -23,11 +23,11 @@ Widget cardCarousel(
 
   Future<dynamic> onTap() {
     if (costPoints != null) {
-      if (globals.currentParticipant.score - costPoints < 0) {
+      if (globals.currentParticipant.score! - costPoints < 0) {
         // not enough points
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
 
-        return new Future.delayed(Duration.zero, () {});
+        return Future.delayed(Duration.zero, () {});
       } else {
         globals.currentParticipant.addToScore(-costPoints);
         return Navigator.push(
@@ -71,7 +71,7 @@ Widget cardCarousel(
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(10, 10, 10, 5),
                   child: Text(
-                    (title != null ? title : 'Title'),
+                    (title ?? 'Title'),
                     style: TextStyle(
                         fontSize: MediaQuery.of(context).size.width * 0.07),
                     textAlign: TextAlign.center,
@@ -81,7 +81,7 @@ Widget cardCarousel(
               Padding(
                 padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
                 child: Text(
-                  (descrText != null ? descrText : 'descrText'),
+                  (descrText ?? 'descrText'),
                   style: TextStyle(
                       fontSize: MediaQuery.of(context).size.width * 0.04),
                 ),
@@ -92,15 +92,15 @@ Widget cardCarousel(
                   width: 70,
                   height: 70,
                   child: SvgPicture.asset(
-                      (picture != null ? picture : 'assets/images/clock.svg'),
+                      (picture ?? 'assets/images/clock.svg'),
                       semanticsLabel: ''),
                 ),
               ),
               route == null
-                  ? new SizedBox()
+                  ? SizedBox()
                   : ElevatedButton(
                       child: Text(
-                        (buttonText != null ? buttonText : tr('General_go')),
+                        (buttonText ?? tr('General_go')),
                         style: TextStyle(fontSize: 18),
                       ),
                       onPressed: onTap,
@@ -116,6 +116,17 @@ Widget cardCarousel(
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var carouselConstraints = BoxConstraints(
+      minHeight: 300, //minimum height
+      minWidth: 300, // minimum width
+
+      maxHeight: 350,
+      //maximum height set to 100% of vertical height
+
+      maxWidth: MediaQuery.of(context).size.width,
+      //maximum width set to 100% of width
+    );
+
     return ListView(
       scrollDirection: Axis.vertical, shrinkWrap: true,
       //physics: ScrollPhysics(),
@@ -129,8 +140,8 @@ class HomePage extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.fromLTRB(5, 5, 15, 5),
-          child: SizedBox(
-            height: MediaQuery.of(context).size.height * 0.40,
+          child: Container(
+            constraints: carouselConstraints,
             child: ListView(
               scrollDirection: Axis.horizontal,
               shrinkWrap: true,
@@ -164,8 +175,8 @@ class HomePage extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.fromLTRB(5, 5, 15, 5),
-          child: SizedBox(
-            height: MediaQuery.of(context).size.height * 0.40,
+          child: Container(
+            constraints: carouselConstraints,
             child: ListView(
               scrollDirection: Axis.horizontal,
               shrinkWrap: true,
@@ -199,8 +210,8 @@ class HomePage extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.fromLTRB(5, 5, 15, 5),
-          child: SizedBox(
-            height: MediaQuery.of(context).size.height * 0.40,
+          child: Container(
+            constraints: carouselConstraints,
             child: ListView(
               scrollDirection: Axis.horizontal,
               shrinkWrap: true,

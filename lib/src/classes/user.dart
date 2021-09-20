@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -7,56 +8,65 @@ import 'package:project_kidplanner/src/classes/program.dart';
 import 'package:project_kidplanner/src/libraries/globals.dart' as globals;
 
 abstract class User {
-  String name;
-  int id;
+  String? name;
+  int? id;
   User(this.id, this.name);
 }
 
 // Participant
 class Participant extends User {
   // programs that the user have access to
-  List<Program> programs; // TODO implement Participant.programs
-  int score;
+  List<Program?>? programs; // TODO implement Participant.programs
+  int? score;
 
-  Participant({id, name, this.score}) : super(id, name);
+  Participant({id, name, this.score, programs}) : super(id, name);
 
-  int addToScore(int addedPoints) {
-    this.score += addedPoints;
-    this.insertParticipant(this);
-    globals.userNotifier.value = this.score;
-    AudioCache player = new AudioCache(
+  int? addToScore(int addedPoints) {
+    if (score != null) score = score! + addedPoints;
+    insertParticipant(this);
+    globals.userNotifier.value = score;
+    AudioCache player = AudioCache(
         prefix: globals.audioFilesPrefix, fixedPlayer: globals.audioPlayer);
     if (addedPoints > 0) {
       player.play(globals.pointsAdd);
     } else {
       player.play(globals.pointsLoose);
     }
-    return this.score;
+    return score;
   }
 
   Map<String, dynamic> toMap() {
+    List<String> programConverted = [];
+    if (programs != null && programs!.isNotEmpty) {
+      for (int i = 0; i < programs!.length; i++) {
+        programConverted.add(jsonEncode(programs![i]));
+      }
+    }
+
     return {
-      'id': (id != null ? id : 0),
+      'id': (id ?? 0),
       'name': name,
-      'score': (score != null ? score : 0),
+      'score': (score ?? 0),
+      'programs': programConverted.toString(),
     };
   }
 
   @override
   String toString() {
-    return 'Participant{id: $id, name: $name, score: $score}';
+    return 'Participant{id: $id, name: $name, score: $score, programs: $programs}';
   }
 
   Future<Participant> currentUser() async {
     // TODO implement with last ID stored in local storage
-    print(await Participant().participants());
-    print('Use participant ID 1');
-    return await Participant().getParticipant(1);
+    print('getAllParticipants');
+    print(await Participant.getAllParticipants());
+    print('FORCE Use participant ID 1');
+    return await Participant.getParticipant(1);
   }
 
   // SQ Lite functions
   //
-  Future<Database> openSQLiteDatabase() async {
+  static Future<Database> openSQLiteDatabase() async {
     return openDatabase(
       join(await getDatabasesPath(), 'kid_planner_database.db'),
       onCreate: (db, version) {
@@ -71,7 +81,7 @@ class Participant extends User {
   Future<void> insertParticipant(Participant participant) async {
     final Database db = await openSQLiteDatabase();
 
-    var requestResult = await this.getParticipant(participant.id);
+    var requestResult = await Participant.getParticipant(participant.id);
     if (requestResult == globals.exampleParticipant) {
       print('insertParticipant ${participant.toString()}');
       await db.insert(
@@ -84,7 +94,7 @@ class Participant extends User {
     }
   }
 
-  Future<List<Participant>> participants() async {
+  static Future<List<Participant>> getAllParticipants() async {
     final Database db = await openSQLiteDatabase();
 
     final List<Map<String, dynamic>> maps = await db.query('participants');
@@ -95,23 +105,28 @@ class Participant extends User {
         id: maps[i]['id'],
         name: maps[i]['name'],
         score: maps[i]['score'],
+        programs: maps[i]['programs'],
       );
     });
   }
 
-  Future<void> updateParticipant(Participant participant) async {
+  static Future<void> updateParticipant(Participant participant) async {
     final db = await openSQLiteDatabase();
-    print('updateParticipant ${participant.id} ${participant.toMap()}');
-    await db.update(
+
+    var participantMap = participant.toMap();
+
+    print('updateParticipant ${participant.id} ${participantMap['programs']}');
+    var update = await db.update(
       'participants',
-      participant.toMap(),
+      participantMap,
       where: "id = ?",
       whereArgs: [participant.id],
     );
-    print(await Participant().participants());
+    print(
+        'updateParticipant row updated: $update ${await Participant.getParticipant(1)} ');
   }
 
-  Future<Participant> getParticipant(int id) async {
+  static Future<Participant> getParticipant(int? id) async {
     // Get a reference to the database.
     final Database db = await openSQLiteDatabase();
 
@@ -124,19 +139,23 @@ class Participant extends User {
 
     // Convert the List<Map<String, dynamic> into a List<Participant>.
     if (maps.isEmpty) {
-      print('no Participant in DB');
-      print('use globals.exampleParticipant');
+      print('no Participant in DB, use globals.exampleParticipant');
       return globals.exampleParticipant;
     }
+
+    print('getParticipant ${maps[0].runtimeType} ${maps[0]} ');
+
+    var programsDecoded = jsonDecode(maps[0]['programs']);
 
     return Participant(
       id: maps[0]['id'],
       name: maps[0]['name'],
       score: maps[0]['score'],
+      programs: programsDecoded,
     );
   }
 
-  Future<void> deleteParticipant(int id) async {
+  static Future<void> deleteParticipant(int id) async {
     final db = await openSQLiteDatabase();
 
     await db.delete(

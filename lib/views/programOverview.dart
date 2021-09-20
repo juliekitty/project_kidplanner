@@ -20,10 +20,11 @@ String timeReady(Program program) {
 class ProgramView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final String programType = ModalRoute.of(context).settings.arguments;
+    final String? programType =
+        ModalRoute.of(context)!.settings.arguments as String?;
 //
     //print('ok ${programs.toString()}');
-    final Program program = findProgramUsingFirstWhere(programs, programType);
+    final Program program = findProgramUsingFirstWhere(programs, programType)!;
 
     Widget createTile(context, step) {
       return Container(
@@ -37,11 +38,11 @@ class ProgramView extends StatelessWidget {
           title: Text(
             tr('Programs.Steps.' + step.id.toString()),
             textAlign: TextAlign.left,
-            style: Theme.of(context).textTheme.headline6,
+            style: Theme.of(context).textTheme.bodyText1,
           ),
           trailing: Text(
             step.displayDuration(),
-            style: Theme.of(context).textTheme.headline6,
+            style: Theme.of(context).textTheme.bodyText2,
           ),
         ),
       );
@@ -53,10 +54,11 @@ class ProgramView extends StatelessWidget {
         'timeReady': timeReady(program)
       }),
       //'There are ${program.steps.length} steps, you should be ready at ${timeReady(program)}',
-      style: Theme.of(context).textTheme.headline6,
+      style: Theme.of(context).textTheme.bodyText2,
     );
     return Scaffold(
-      appBar: appBar(context, Theme.of(context).textTheme, 'Program'),
+      appBar: appBar(context, Theme.of(context).textTheme, 'Program')
+          as PreferredSizeWidget?,
       body: ListView(
         scrollDirection: Axis.vertical,
         //shrinkWrap: true,
@@ -75,8 +77,8 @@ class ProgramView extends StatelessWidget {
               text,
             ]),
           ),
-          program.steps.length == 0
-              ? new SizedBox()
+          program.steps.isEmpty
+              ? SizedBox()
               : Column(
                   children: [
                     for (var item in program.steps) createTile(context, item)

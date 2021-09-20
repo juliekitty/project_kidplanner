@@ -74,4 +74,4 @@ final Program bedtime = Program(
   stepEndBed
 ]);
 
-final List<Program> programs = [bedtime, morning];
+final List<Program?> programs = [bedtime, morning];
