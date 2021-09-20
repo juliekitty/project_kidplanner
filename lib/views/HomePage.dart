@@ -27,7 +27,7 @@ Widget cardCarousel(
         // not enough points
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
 
-        return new Future.delayed(Duration.zero, () {});
+        return Future.delayed(Duration.zero, () {});
       } else {
         globals.currentParticipant.addToScore(-costPoints);
         return Navigator.push(
@@ -71,7 +71,7 @@ Widget cardCarousel(
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(10, 10, 10, 5),
                   child: Text(
-                    (title != null ? title : 'Title'),
+                    (title ?? 'Title'),
                     style: TextStyle(
                         fontSize: MediaQuery.of(context).size.width * 0.07),
                     textAlign: TextAlign.center,
@@ -81,7 +81,7 @@ Widget cardCarousel(
               Padding(
                 padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
                 child: Text(
-                  (descrText != null ? descrText : 'descrText'),
+                  (descrText ?? 'descrText'),
                   style: TextStyle(
                       fontSize: MediaQuery.of(context).size.width * 0.04),
                 ),
@@ -92,15 +92,15 @@ Widget cardCarousel(
                   width: 70,
                   height: 70,
                   child: SvgPicture.asset(
-                      (picture != null ? picture : 'assets/images/clock.svg'),
+                      (picture ?? 'assets/images/clock.svg'),
                       semanticsLabel: ''),
                 ),
               ),
               route == null
-                  ? new SizedBox()
+                  ? SizedBox()
                   : ElevatedButton(
                       child: Text(
-                        (buttonText != null ? buttonText : tr('General_go')),
+                        (buttonText ?? tr('General_go')),
                         style: TextStyle(fontSize: 18),
                       ),
                       onPressed: onTap,

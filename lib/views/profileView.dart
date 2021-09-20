@@ -17,7 +17,7 @@ class ProfileView extends StatefulWidget {
 }
 
 class _ProfileViewState extends State<ProfileView> {
-  Future _initFuture = Participant().currentUser();
+  final Future _initFuture = Participant().currentUser();
   bool debugMode = false;
   @override
   Widget build(BuildContext context) {

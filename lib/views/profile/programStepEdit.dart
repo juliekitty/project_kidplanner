@@ -69,7 +69,7 @@ class _ProgramStepEditViewState extends State<ProgramStepEditView> {
                           ),
                         );
                         setState(() {
-                          program.updateStepDuration(step, this.value);
+                          program.updateStepDuration(step, value);
 
                           
                         });

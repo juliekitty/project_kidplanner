@@ -77,8 +77,8 @@ class ProgramView extends StatelessWidget {
               text,
             ]),
           ),
-          program.steps.length == 0
-              ? new SizedBox()
+          program.steps.isEmpty
+              ? SizedBox()
               : Column(
                   children: [
                     for (var item in program.steps) createTile(context, item)

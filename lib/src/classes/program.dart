@@ -11,18 +11,18 @@ class Program {
 
   @override
   String toString() {
-    return this.title;
+    return title;
   }
 
   String displayDuration() {
-    Duration duration = this.getDuration();
+    Duration duration = getDuration();
     return '${duration.inMinutes}:'
         '${(duration.inSeconds % 60).toString().padLeft(2, '0')}';
   }
 
   Duration getDuration() {
     Duration sumDuration = Duration(minutes: 0);
-    for (var step in this.steps) {
+    for (var step in steps) {
       sumDuration += step.duration;
     }
     return sumDuration;
@@ -39,18 +39,18 @@ class Program {
   }
 
   removeStep(ProgramStep step) {
-    this.steps.remove(step);
+    steps.remove(step);
   }
 
   updateStepDuration(ProgramStep step, Duration newDuration) {
-    var index = this.steps.indexOf(step);
-    this.steps[index].duration = newDuration;
+    var index = steps.indexOf(step);
+    steps[index].duration = newDuration;
   }
 
   reorderSteps(int oldIndex, int newIndex, Participant participant) {
-    var item = this.steps[oldIndex];
-    this.steps.insert(newIndex, item);
-    this.steps.removeAt(oldIndex);
+    var item = steps[oldIndex];
+    steps.insert(newIndex, item);
+    steps.removeAt(oldIndex);
 
     Participant.updateParticipant(participant);
   }

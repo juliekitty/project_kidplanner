@@ -73,8 +73,8 @@ class _BonusTasksViewState extends State<BonusTasksView> {
               style: Theme.of(context).textTheme.headline5,
             ),
           ),
-          bonusTasks.length == 0
-              ? new SizedBox()
+          bonusTasks.isEmpty
+              ? SizedBox()
               : Column(
                   children: [
                     for (var item in bonusTasks) createTile(context, item)
