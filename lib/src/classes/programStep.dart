@@ -47,15 +47,15 @@ class ProgramStep {
   }
 
   String displayDuration() {
-    return '${this.duration.inMinutes}:'
-        '${(this.duration.inSeconds % 60).toString().padLeft(2, '0')}';
+    return '${duration.inMinutes}:'
+        '${(duration.inSeconds % 60).toString().padLeft(2, '0')}';
   }
 
   Widget displayGraphicalCountDown(context, _controller) {
     // _controller.start();
     return Stack(alignment: Alignment.center, children: [
       CircularCountDownTimer(
-        duration: this.duration.inSeconds,
+        duration: duration.inSeconds,
         initialDuration: 0,
         controller: _controller,
         width: MediaQuery.of(context).size.width / 4,
@@ -79,13 +79,13 @@ class ProgramStep {
           print('Countdown Ended');
         },
       ),
-      this.displayCountdown(),
+      displayCountdown(),
     ]);
   }
 
   Widget displayCountdown() {
     return Countdown(
-      duration: this.duration,
+      duration: duration,
       onFinish: () {
         print('finished');
       },
@@ -101,20 +101,20 @@ class ProgramStep {
   }
 
   String stepTitle() {
-    return tr('Programs.Steps.' + this.id);
+    return tr('Programs.Steps.' + id);
   }
 
 // return a widget with step infos
   Widget stepDefault(context, _controller) {
     return Padding(
       padding: const EdgeInsets.all(10.0),
-      child: new Card(
+      child: Card(
         color: Colors.amber,
         child: Column(children: [
           Padding(
             padding: const EdgeInsets.fromLTRB(10, 20, 10, 3),
             child: Text(
-              this.stepTitle(),
+              stepTitle(),
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.headline5,
             ),
@@ -125,15 +125,15 @@ class ProgramStep {
           ),*/
           Padding(
             padding: const EdgeInsets.all(10.0),
-            child: this.displayGraphicalCountDown(context, _controller),
+            child: displayGraphicalCountDown(context, _controller),
           ),
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: Container(
               width: MediaQuery.of(context).size.width * 0.40,
               height: MediaQuery.of(context).size.height * 0.40,
-              child: (this.picture != null
-                  ? SvgPicture.asset(this.picture, semanticsLabel: '')
+              child: (picture != null
+                  ? SvgPicture.asset(picture, semanticsLabel: '')
                   : (Container())), // TODO display gif
             ),
           ),

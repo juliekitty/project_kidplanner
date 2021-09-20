@@ -197,8 +197,8 @@ class ProgramStepsListViewState extends State<ProgramStepsListView> {
               style: Theme.of(context).textTheme.headline5,
             ),
           ),
-          program.steps.length == 0
-              ? new SizedBox()
+          program.steps.isEmpty
+              ? SizedBox()
               : SizedBox(
                   child: ReorderableListView(
                     buildDefaultDragHandles: true,

@@ -16,7 +16,7 @@ class _CountDownTimerState extends State<CountDownTimer>
   Duration resultingDuration = Duration(hours: 0, minutes: 0);
 
   // Audio
-  static AudioCache player = new AudioCache(
+  static AudioCache player = AudioCache(
       prefix: globals.audioFilesPrefix, fixedPlayer: globals.audioPlayer);
 
   String get timerString {

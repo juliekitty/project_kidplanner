@@ -86,7 +86,7 @@ class LayoutView extends StatefulWidget {
 
 class _LayoutViewState extends State<LayoutView> {
   int _selectedScreenIndex = 0;
-  List _screens = [
+  final List _screens = [
     {"screen": HomePage(), "title": tr('General_appName')},
     {"screen": CountDownTimer(), "title": tr('Countdown_PageTitle')},
     {"screen": ProfileView(), "title": tr('Profile_PageTitle')},
@@ -94,7 +94,7 @@ class _LayoutViewState extends State<LayoutView> {
     {"screen": BonusTasksView(), "title": tr('Bonus_PageTitle')}
   ];
 
-  final GlobalKey<FormState> _keyDialogForm = new GlobalKey<FormState>();
+  final GlobalKey<FormState> _keyDialogForm = GlobalKey<FormState>();
 
   Future<void> _askNameDialog() async {
     return showDialog<void>(
@@ -151,7 +151,7 @@ class _LayoutViewState extends State<LayoutView> {
   @override
   void initState() {
     super.initState();
-    new Future.delayed(Duration.zero, () {
+    Future.delayed(Duration.zero, () {
       if (globals.currentParticipant.name == '') {
         _askNameDialog();
       }

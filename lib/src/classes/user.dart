@@ -22,17 +22,17 @@ class Participant extends User {
   Participant({id, name, this.score, programs}) : super(id, name);
 
   int? addToScore(int addedPoints) {
-    if (this.score != null) this.score = this.score! + addedPoints;
-    this.insertParticipant(this);
-    globals.userNotifier.value = this.score;
-    AudioCache player = new AudioCache(
+    if (score != null) score = score! + addedPoints;
+    insertParticipant(this);
+    globals.userNotifier.value = score;
+    AudioCache player = AudioCache(
         prefix: globals.audioFilesPrefix, fixedPlayer: globals.audioPlayer);
     if (addedPoints > 0) {
       player.play(globals.pointsAdd);
     } else {
       player.play(globals.pointsLoose);
     }
-    return this.score;
+    return score;
   }
 
   Map<String, dynamic> toMap() {
@@ -44,9 +44,9 @@ class Participant extends User {
     }
 
     return {
-      'id': (id != null ? id : 0),
+      'id': (id ?? 0),
       'name': name,
-      'score': (score != null ? score : 0),
+      'score': (score ?? 0),
       'programs': programConverted.toString(),
     };
   }

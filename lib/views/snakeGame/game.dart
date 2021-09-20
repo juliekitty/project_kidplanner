@@ -43,8 +43,8 @@ class _GamePageState extends State<GamePage> {
   }
 
   void draw() async {
-    if (this.mounted) {
-      if (positions.length == 0) {
+    if (mounted) {
+      if (positions.isEmpty) {
         positions.add(getRandomPositionWithinRange());
       }
 
@@ -106,7 +106,7 @@ class _GamePageState extends State<GamePage> {
       barrierDismissible: false,
       context: context,
       builder: (ctx) {
-        AudioCache player = new AudioCache(
+        AudioCache player = AudioCache(
             prefix: globals.audioFilesPrefix, fixedPlayer: globals.audioPlayer);
         player.play(globals.gameLoose);
 
@@ -183,9 +183,7 @@ class _GamePageState extends State<GamePage> {
   }
 
   void drawFood() {
-    if (foodPosition == null) {
-      foodPosition = getRandomPositionWithinRange();
-    }
+    foodPosition ??= getRandomPositionWithinRange();
 
     if (foodPosition == positions[0]) {
       length++;

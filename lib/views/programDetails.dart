@@ -70,12 +70,12 @@ class _ProgramDetailsViewState extends State<ProgramDetailsView> {
   // State variables
   // Variables for Pageview
   int _selectedScreenIndex = 0; // current screen
-  PageController _pageController = PageController();
+  final PageController _pageController = PageController();
 
   // Animation
-  CountDownController _controller = CountDownController();
+  final CountDownController _controller = CountDownController();
   // Audio
-  static AudioCache player = new AudioCache(
+  static AudioCache player = AudioCache(
       prefix: globals.audioFilesPrefix, fixedPlayer: globals.audioPlayer);
 
   // Go back to previous state
@@ -99,7 +99,7 @@ class _ProgramDetailsViewState extends State<ProgramDetailsView> {
   void timedAction() {
     debugPrint("timedAction");
     debugPrint("Button next visible");
-    if (this.mounted) {
+    if (mounted) {
       setState(() {
         isVisibileNextBtn = true;
         player.play(globals.timerFinishedAudio);
@@ -125,7 +125,7 @@ class _ProgramDetailsViewState extends State<ProgramDetailsView> {
 
   // create a timer
   void loadTimer(Duration duration) {
-    timer = new Timer(duration, timedAction);
+    timer = Timer(duration, timedAction);
   }
 
   void onPageChanged(index) {
