@@ -61,7 +61,7 @@ Widget cardCarousel(
         onTap: onTap,
         child: Card(
           color: color,
-          shape: RoundedRectangleBorder(
+          shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(18))),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -97,11 +97,11 @@ Widget cardCarousel(
                 ),
               ),
               route == null
-                  ? SizedBox()
+                  ? const SizedBox()
                   : ElevatedButton(
                       child: Text(
                         (buttonText ?? tr('General_go')),
-                        style: TextStyle(fontSize: 18),
+                        style: const TextStyle(fontSize: 18),
                       ),
                       onPressed: onTap,
                     ),
@@ -152,7 +152,7 @@ class HomePage extends StatelessWidget {
                     title: tr('HP_Carousel_Routine_MorningTitle'),
                     descrText: tr('HP_Carousel_Routine_MorningDescr'),
                     picture: 'assets/images/clock.svg',
-                    route: ProgramView(),
+                    route: const ProgramView(),
                     arguments: 'morning'),
                 cardCarousel(
                     context: context,
@@ -160,7 +160,7 @@ class HomePage extends StatelessWidget {
                     title: tr('HP_Carousel_Routine_BedtimeTitle'),
                     descrText: tr('HP_Carousel_Routine_BedtimeDescr'),
                     picture: 'assets/images/wake-up.svg',
-                    route: ProgramView(),
+                    route: const ProgramView(),
                     arguments: 'bedtime'),
               ],
             ),

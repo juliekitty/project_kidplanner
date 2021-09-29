@@ -32,7 +32,7 @@ class ProgramStepsListViewState extends State<ProgramStepsListView> {
             children: <Widget>[
               ListTile(
                 tileColor: Colors.white,
-                leading: Icon(Icons.drag_handle_rounded),
+                leading: const Icon(Icons.drag_handle_rounded),
                 title: Text(
                   tr('Programs.Steps.' + step.id.toString()),
                   textAlign: TextAlign.left,
@@ -62,7 +62,7 @@ class ProgramStepsListViewState extends State<ProgramStepsListView> {
         ),
         background: Container(
           alignment: Alignment.centerRight,
-          padding: EdgeInsets.fromLTRB(20, 8, 0, 8),
+          padding: const EdgeInsets.fromLTRB(20, 8, 0, 8),
           child: Padding(
             padding: const EdgeInsets.fromLTRB(0, 1, 10, 1),
             child: Text(
@@ -73,7 +73,7 @@ class ProgramStepsListViewState extends State<ProgramStepsListView> {
                   .copyWith(color: Colors.white),
             ),
           ),
-          decoration: BoxDecoration(color: Colors.red),
+          decoration: const BoxDecoration(color: Colors.red),
         ),
         confirmDismiss: (DismissDirection direction) async {
           return await showDialog(
@@ -180,7 +180,7 @@ class ProgramStepsListViewState extends State<ProgramStepsListView> {
     */
 
     if (program == null) {
-      return Container(child: Text('No program found'));
+      return Container(child: const Text('No program found'));
     }
 
     return Scaffold(
@@ -198,7 +198,7 @@ class ProgramStepsListViewState extends State<ProgramStepsListView> {
             ),
           ),
           program.steps.isEmpty
-              ? SizedBox()
+              ? const SizedBox()
               : SizedBox(
                   child: ReorderableListView(
                     buildDefaultDragHandles: true,
@@ -219,8 +219,8 @@ class ProgramStepsListViewState extends State<ProgramStepsListView> {
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
-        label: Text('General_Create').tr(),
-        icon: Icon(Icons.keyboard_arrow_right),
+        label: const Text('General_Create').tr(),
+        icon: const Icon(Icons.keyboard_arrow_right),
         onPressed: () {
           Navigator.push(
             context,

@@ -13,7 +13,7 @@ class ProgramStepEditView extends StatefulWidget {
 }
 
 class _ProgramStepEditViewState extends State<ProgramStepEditView> {
-  Duration value = Duration();
+  Duration value = const Duration();
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -78,7 +78,7 @@ class _ProgramStepEditViewState extends State<ProgramStepEditView> {
                         Navigator.pop(context);
                       }
                     },
-                    child: Text('Submit'),
+                    child: const Text('Submit'),
                   ),
                 ),
               ],

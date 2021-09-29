@@ -10,13 +10,13 @@ class SplashScreen extends StatelessWidget {
         children: <Widget>[
           Text(
             tr("General_appName"),
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 32,
               fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(height: 20),
-          CircularProgressIndicator()
+          const SizedBox(height: 20),
+          const CircularProgressIndicator()
         ],
       ),
     );
