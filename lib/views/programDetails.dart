@@ -46,7 +46,7 @@ Widget showInterruptDialog(context) {
 
 List<Widget?> initStepsWidgetsList(_screens, context, _controller) {
   // createWidget List to use in the PageView
-  final List<Widget?> _stepsWidgetsList = [];
+  final List<Widget> _stepsWidgetsList = [];
   // TODO use the programStep infos for widget
   _screens.forEach((element) {
     if (element.widget != null) {
