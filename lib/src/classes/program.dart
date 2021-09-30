@@ -16,8 +16,10 @@ class Program {
 
   String displayDuration() {
     Duration duration = getDuration();
-    return '${duration.inMinutes}:'
-        '${(duration.inSeconds % 60).toString().padLeft(2, '0')}';
+    return duration.compareTo(const Duration(seconds: 0)) == 0
+        ? ''
+        : '${duration.inMinutes}:'
+            '${(duration.inSeconds % 60).toString().padLeft(2, '0')}';
   }
 
   Duration getDuration() {

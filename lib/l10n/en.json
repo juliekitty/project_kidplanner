@@ -23,7 +23,7 @@
   "HP_Carousel_Routine_MorningTitle": "Morning Routine",
   "HP_Carousel_Routine_MorningDescr": "Begin your morning routine!",
   "HP_Carousel_Routine_BedtimeTitle": "Bedtime Routine",
-  "HP_Carousel_Routine_BedtimeDescr": "Begin your bedtime routine!",
+  "HP_Carousel_Routine_BedtimeDescr": "Begin your bedtime routine!\nQuick edition for presentation",
   "HP_Carousel_Bonus": "Win bonus points",
   "HP_Carousel_Bonus_TasksTitle": "Bonus Tasks",
   "HP_Carousel_Bonus_TasksDescr": "Win bonus points!",
@@ -77,7 +77,12 @@
       "stepTeethNight": "Tooth brushing",
       "stepToilet": "Toilet",
       "stepWater": "Drink some water",
-      "stepEndBed": "Go to bed"
+      "stepEndBed": "Go to bed",
+      "stepFinished": "Congratulations!"
+    },
+    "StepsDescription": {
+      "stepFinished": "You're ready to go to school!",
+      "stepEndBed": "Congratulations! You're ready to go to bed. Good night and sweet dreams!"
     }
   },
   "Programs_edit": {

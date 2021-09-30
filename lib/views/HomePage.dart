@@ -67,15 +67,13 @@ Widget cardCarousel(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 10, 10, 5),
-                  child: Text(
-                    (title ?? 'Title'),
-                    style: TextStyle(
-                        fontSize: MediaQuery.of(context).size.width * 0.07),
-                    textAlign: TextAlign.center,
-                  ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(10, 10, 10, 5),
+                child: Text(
+                  (title ?? 'Title'),
+                  style: TextStyle(
+                      fontSize: MediaQuery.of(context).size.width * 0.07),
+                  textAlign: TextAlign.center,
                 ),
               ),
               Padding(

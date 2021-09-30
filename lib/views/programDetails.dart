@@ -48,13 +48,20 @@ List<Widget?> initStepsWidgetsList(_screens, context, _controller) {
   // createWidget List to use in the PageView
   final List<Widget> _stepsWidgetsList = [];
   // TODO use the programStep infos for widget
-  _screens.forEach((element) {
+
+  for (var i = 0; i < _screens.length; i++) {
+    var element = _screens[i];
     if (element.widget != null) {
       _stepsWidgetsList.add(element.widget);
     } else {
-      _stepsWidgetsList.add(element.stepDefault(context, _controller));
+      if (i == _screens.length - 1) {
+        _stepsWidgetsList.add(element.stepFinishedWidget(context, _controller));
+      } else {
+        _stepsWidgetsList.add(element.stepDefault(context, _controller));
+      }
     }
-  });
+  }
+
   if (_stepsWidgetsList.isEmpty) {
     _stepsWidgetsList.add(Container());
   }
@@ -135,9 +142,15 @@ class _ProgramDetailsViewState extends State<ProgramDetailsView> {
     _selectedScreenIndex = index;
 
     // If not the last step, program a timer to go to the next step
-    debugPrint(
-        'create timer $_selectedScreenIndex of ${_screens[_selectedScreenIndex].duration}');
-    loadTimer(_screens[_selectedScreenIndex].duration);
+    if (_selectedScreenIndex + 1 < _screens.length) {
+      debugPrint(
+          'create timer $_selectedScreenIndex of ${_screens[_selectedScreenIndex].duration}');
+      loadTimer(_screens[_selectedScreenIndex].duration);
+    } else {
+      setState(() {
+        isVisibileNextBtn = true;
+      });
+    }
   }
 
   @override
@@ -151,15 +164,15 @@ class _ProgramDetailsViewState extends State<ProgramDetailsView> {
   }
 
   Future<dynamic> callAsyncFetch() => Future.delayed(Duration.zero, () {
-        print('callAsyncFetch');
+        // print('callAsyncFetch');
         if (!_initDone) {
-          print('!_initDone');
+          // print('!_initDone');
           _initDone = true;
           final String? programType =
               ModalRoute.of(context)!.settings.arguments as String?;
           final Program program =
               findProgramUsingFirstWhere(programs, programType)!;
-          debugPrint(program.title);
+          debugPrint('program.title' + program.title);
           _screens = program.steps;
           _stepsWidgetsList =
               initStepsWidgetsList(_screens, context, _controller);
@@ -174,11 +187,9 @@ class _ProgramDetailsViewState extends State<ProgramDetailsView> {
 
   @override
   Widget build(BuildContext context) {
-    print('build');
     return FutureBuilder<dynamic>(
       future: callAsyncFetch(),
       builder: (context, AsyncSnapshot<dynamic> snapshot) {
-        print(snapshot.data);
         if (snapshot.hasData && _stepsWidgetsList.isNotEmpty) {
           return WillPopScope(
             onWillPop: () async {

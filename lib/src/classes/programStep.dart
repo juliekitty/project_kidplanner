@@ -47,8 +47,10 @@ class ProgramStep {
   }
 
   String displayDuration() {
-    return '${duration.inMinutes}:'
-        '${(duration.inSeconds % 60).toString().padLeft(2, '0')}';
+    return duration.compareTo(const Duration(seconds: 0)) == 0
+        ? ''
+        : '${duration.inMinutes}:'
+            '${(duration.inSeconds % 60).toString().padLeft(2, '0')}';
   }
 
   Widget displayGraphicalCountDown(context, _controller) {
@@ -104,6 +106,10 @@ class ProgramStep {
     return tr('Programs.Steps.' + id);
   }
 
+  String stepDescription() {
+    return tr('Programs.StepsDescription.' + id);
+  }
+
 // return a widget with step infos
   Widget stepDefault(context, _controller) {
     return Padding(
@@ -132,6 +138,44 @@ class ProgramStep {
             child: Container(
               width: MediaQuery.of(context).size.width * 0.40,
               height: MediaQuery.of(context).size.height * 0.40,
+              child: (picture != ''
+                  ? SvgPicture.asset(picture, semanticsLabel: '')
+                  : (Container())),
+              // TODO display gif
+            ),
+          ),
+        ]),
+      ),
+    );
+  }
+
+  Widget stepFinishedWidget(context, _controller) {
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: Card(
+        color: Colors.amber,
+        child: Column(children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(10, 20, 10, 3),
+            child: Text(
+              stepTitle(),
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.headline5,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(10, 20, 10, 3),
+            child: Text(
+              stepDescription(),
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.bodyText1,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Container(
+              width: MediaQuery.of(context).size.width * 0.60,
+              height: MediaQuery.of(context).size.height * 0.60,
               child: (picture != ''
                   ? SvgPicture.asset(picture, semanticsLabel: '')
                   : (Container())),

@@ -8,7 +8,7 @@ import 'package:project_kidplanner/src/classes/programStep.dart';
 
 final ProgramStep stepDress = ProgramStep(
     id: 'stepDress',
-    duration: const Duration(minutes: 3),
+    duration: const Duration(seconds: 3),
     picture: "assets/images/clothing.svg");
 final ProgramStep stepBfast = ProgramStep(
     id: 'stepBfast',
@@ -27,51 +27,57 @@ final ProgramStep stepForOutside = ProgramStep(
     id: 'stepForOutside',
     duration: const Duration(minutes: 4),
     picture: "assets/images/raincoat.svg");
+final ProgramStep stepFinished = ProgramStep(
+    id: 'stepFinished',
+    duration: const Duration(seconds: 0),
+    picture: 'assets/images/requirement.svg');
 
 final ProgramStep stepCheckBag = ProgramStep(
     id: 'stepCheckBag',
-    duration: const Duration(minutes: 4),
+    duration: const Duration(seconds: 4),
     picture: 'assets/images/backpack.svg');
 final ProgramStep stepPyjama = ProgramStep(
     id: 'stepPyjama',
-    duration: const Duration(minutes: 4),
+    duration: const Duration(seconds: 4),
     picture: "assets/images/pyjamas.svg");
 final ProgramStep stepTeethNight = ProgramStep(
     id: 'stepTeethNight',
-    duration: const Duration(minutes: 4),
+    duration: const Duration(seconds: 4),
     picture: 'assets/images/eucalyp-brush-teeth.svg',
     animation: 'assets/images/animated/brush-teeth-gif-6.gif');
 final ProgramStep stepToilet = ProgramStep(
     id: 'stepToilet',
-    duration: const Duration(minutes: 4),
+    duration: const Duration(seconds: 4),
     picture: 'assets/images/eucalyp-shower.svg');
 final ProgramStep stepWater = ProgramStep(
     id: 'stepWater',
-    duration: const Duration(minutes: 4),
+    duration: const Duration(seconds: 4),
     picture: "assets/images/water.svg");
 final ProgramStep stepEndBed = ProgramStep(
     id: 'stepEndBed',
-    duration: const Duration(seconds: 1),
+    duration: const Duration(seconds: 0),
     picture: 'assets/images/bed.svg');
 
 // PROGRAMS
-final Program morning =
-    Program('morning', 'Programs.morning.title', 'Programs.morning.introText', [
+final Program morning = Program(
+    'morning', 'Programs.morning.title', 'Programs.morning.introText', [
   stepDress,
   stepBfast,
   stepTeeth,
   stepPrepareBag,
   stepForOutside,
+  stepFinished
 ]);
 
-final Program bedtime = Program(
-    'bedtime', 'Programs.bedtime.title', 'Programs.bedtime.introText', [
+final Program bedtime =
+    Program('bedtime', 'Programs.bedtime.title', 'Programs.bedtime.introText', [
   stepCheckBag,
-  stepPyjama,
+  stepEndBed
+  /*stepPyjama,
   stepTeethNight,
   stepToilet,
   stepWater,
-  stepEndBed
+  stepEndBed*/
 ]);
 
 final List<Program?> programs = [bedtime, morning];

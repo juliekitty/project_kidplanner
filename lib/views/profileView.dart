@@ -35,7 +35,7 @@ class _ProfileViewState extends State<ProfileView> {
               globals.currentParticipant = user;
 
               debugMode = (user.name == 'Julie');
-              print(user);
+              // print(user);
             }
             return Scaffold(
               appBar: appBar(
