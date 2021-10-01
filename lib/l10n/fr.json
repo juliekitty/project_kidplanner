@@ -92,5 +92,13 @@
     "duration_label": "Choisir une durée pour l'étape",
     "confirm": "Étape enregistrée"
 
+  },
+  "verifyParentDialog" : {
+    "title": "Cette partie n'est accessible qu'aux parents ou tuteurs.",
+    "question": "Donnez le résultat du calcul :",
+    "placeholder": "Réponse",
+    "validation": "Donnez la réponse correcte.",
+    "go_back": "Pas un parent ou tuteur : retour à l'app",
+    "validate": "Valider la réponse pour accéder au profil"
   }
 }

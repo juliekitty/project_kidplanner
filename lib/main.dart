@@ -17,6 +17,7 @@ import 'package:project_kidplanner/views/splashScreenView.dart';
 import 'package:project_kidplanner/src/components/appBar.dart';
 import 'package:project_kidplanner/src/components/fab.dart';
 import 'package:project_kidplanner/src/components/bottomMenu.dart';
+import 'package:project_kidplanner/src/components/AlertDialogs.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -99,65 +100,13 @@ class _LayoutViewState extends State<LayoutView> {
 
   final GlobalKey<FormState> _keyDialogForm = GlobalKey<FormState>();
 
-  Future<void> _askNameDialog() async {
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: false, // user must tap button!
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('HP_AlertDialog_Title').tr(),
-          content: SingleChildScrollView(
-            child: Form(
-              key: _keyDialogForm,
-              child: ListBody(
-                children: <Widget>[
-                  TextFormField(
-                    textAlign: TextAlign.center,
-                    onSaved: (val) {
-                      globals.currentParticipant.name = val;
-                      Participant()
-                          .insertParticipant(globals.currentParticipant);
-                      setState(() {});
-                    },
-                    decoration: InputDecoration(
-                      border: const OutlineInputBorder(),
-                      labelText: tr('HP_AlertDialog_Form_LabelText'),
-                    ),
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return tr('HP_AlertDialog_Form_ValidationText');
-                      }
-                      return null;
-                    },
-                  )
-                ],
-              ),
-            ),
-          ),
-          actions: <Widget>[
-            TextButton(
-              child: const Text('General_go').tr(),
-              onPressed: () {
-                if (_keyDialogForm.currentState!.validate()) {
-                  _keyDialogForm.currentState!.save();
-                  Navigator.pop(context);
-                }
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
-
   @override
   void initState() {
     super.initState();
     Future.delayed(Duration.zero, () {
       if (globals.currentParticipant.name == null ||
           globals.currentParticipant.name == '') {
-        _askNameDialog();
+        AlertDialogs.askNameDialog(context, _keyDialogForm, setState);
       }
     });
   }

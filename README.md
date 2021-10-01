@@ -10,8 +10,11 @@ A kid wins points when he/she does the routines or bonus tasks, the points can b
 - A game, only if the kid won enough points
 
 2.06.21
-- Internationalization in French done, language chosen in the device settings is used.
+- Internationalization in French done, language chosen in the device settings is used (use of easy_localization library https://pub.dev/packages/easy_localization)
 - null safety migration
+
+1.10.21
+- Add a parental gate before accessing profile page
 - Add the possibility to create and edit routines and steps (ongoing)
 
 Roadmap/Todolist:

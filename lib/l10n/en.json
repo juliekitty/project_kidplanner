@@ -97,5 +97,14 @@
     "duration_label": "Choose a duration for the step",
     
     "confirm": "Step saved"
+  },
+  "verifyParentDialog" : {
+    "title": "This area is only for parents or guardians.",
+    "question": "Give the result of the calculation:",
+    "placeholder": "Answer",
+    "validation": "Please enter a correct answer",
+    "go_back": "if you're not a parent or guardian: go back to App",
+    "validate": "Validate my answer to see profile"
+
   }
 }

@@ -8,6 +8,7 @@ import 'package:project_kidplanner/src/libraries/globals.dart' as globals;
 import 'package:project_kidplanner/views/HomePage.dart';
 import 'package:project_kidplanner/views/creditsView.dart';
 import 'package:project_kidplanner/views/profile/programList.dart';
+import 'package:project_kidplanner/src/components/AlertDialogs.dart';
 
 const profileListPadding = EdgeInsets.fromLTRB(15.0, 12.5, 25.0, 12.5);
 
@@ -16,9 +17,24 @@ class ProfileView extends StatefulWidget {
   _ProfileViewState createState() => _ProfileViewState();
 }
 
-class _ProfileViewState extends State<ProfileView> {
+class _ProfileViewState extends State<ProfileView> with AlertDialogs {
   final Future _initFuture = Participant().currentUser();
   bool debugMode = false;
+  final GlobalKey<FormState> _keyDialogForm = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    super.initState();
+    debugPrint('initState verifyParentDialog');
+    Future.delayed(Duration.zero, () {
+      return AlertDialogs.verifyParentDialog(context, _keyDialogForm, setState);
+    });
+  }
+
+  Future callAsyncFetch() => Future.delayed(Duration.zero, () {
+        return _initFuture;
+      });
+
   @override
   Widget build(BuildContext context) {
     Participant user = Participant();
@@ -26,7 +42,7 @@ class _ProfileViewState extends State<ProfileView> {
     var participantList = Participant.getAllParticipants();
 
     return FutureBuilder(
-        future: _initFuture,
+        future: callAsyncFetch(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             dynamic data = snapshot.data;
