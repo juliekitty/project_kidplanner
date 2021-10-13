@@ -55,7 +55,7 @@
   "Advices_PageTitle": "Conseils d‘organisation",
   "Programs" : {
     "appBar": "Ma routine",
-    "programIntro": "Il y a {length} étapes, tu seras prêt à {timeReady}.",
+    "programIntro": "Il y a {length} étapes, tu seras prêt(e) à {timeReady}.",
     "programInterrupt": "Es-tu sûr(e) de vouloir quitter ? Tu perds ton bonus !",
     "programInterrupt_yes": "Oui, quitter !",
     "morning": {
@@ -77,7 +77,12 @@
       "stepTeethNight": "Se laver les dents",
       "stepToilet": "Aller aux toilettes",
       "stepWater": "Boire un peu d‘eau",
-      "stepEndBed": "Se coucher"
+      "stepEndBed": "Se coucher",
+      "stepFinished": "Félicitations !"
+    },
+    "StepsDescription": {
+      "stepFinished": "Tu es prêt(e) à aller à l'école !",
+      "stepEndBed": "Félicitations ! Tu es prêt(e) à aller te coucher. Fais de beaux rêves !"
     }
   },
   "Programs_edit": {
@@ -91,7 +96,6 @@
     "delete_button": "Confirmation",
     "duration_label": "Choisir une durée pour l'étape",
     "confirm": "Étape enregistrée"
-
   },
   "verifyParentDialog" : {
     "title": "Cette partie n'est accessible qu'aux parents ou tuteurs.",

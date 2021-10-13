@@ -95,7 +95,6 @@
     "delete_confirmation": "Are you sure you want to delete this Step?",
     "delete_button": "Delete Confirmation",
     "duration_label": "Choose a duration for the step",
-    
     "confirm": "Step saved"
   },
   "verifyParentDialog" : {
@@ -105,6 +104,5 @@
     "validation": "Please enter a correct answer",
     "go_back": "if you're not a parent or guardian: go back to App",
     "validate": "Validate my answer to see profile"
-
   }
 }

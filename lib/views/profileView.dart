@@ -203,40 +203,41 @@ class _ProfileViewState extends State<ProfileView> with AlertDialogs {
                             ],
                           ),
                         ),
-                      Container(
-                        decoration: globals.profileListBoxDecoration,
-                        padding: profileListPadding,
-                        child: Column(
-                          children: <Widget>[
-                            Row(
-                              children: <Widget>[
-                                Expanded(
-                                    child: const Text('Profile_Logout').tr()),
-                                IconButton(
-                                  icon: Icon(
-                                    Icons.keyboard_arrow_right,
-                                    size: Theme.of(context).iconTheme.size,
-                                  ),
-                                  onPressed: () {
-                                    globals.currentParticipant.name == '';
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => HomePage(),
-                                        settings: RouteSettings(
-                                          arguments: user,
+                      if (debugMode)
+                        Container(
+                          decoration: globals.profileListBoxDecoration,
+                          padding: profileListPadding,
+                          child: Column(
+                            children: <Widget>[
+                              Row(
+                                children: <Widget>[
+                                  Expanded(
+                                      child: const Text('Profile_Logout').tr()),
+                                  IconButton(
+                                    icon: Icon(
+                                      Icons.keyboard_arrow_right,
+                                      size: Theme.of(context).iconTheme.size,
+                                    ),
+                                    onPressed: () {
+                                      globals.currentParticipant.name == '';
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => HomePage(),
+                                          settings: RouteSettings(
+                                            arguments: user,
+                                          ),
                                         ),
-                                      ),
-                                    );
+                                      );
 
-                                    //
-                                  },
-                                )
-                              ],
-                            ),
-                          ],
+                                      //
+                                    },
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
                       if (debugMode)
                         Container(
                           decoration: globals.profileListDebugBoxDecoration,
