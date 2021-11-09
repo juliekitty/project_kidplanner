@@ -76,6 +76,9 @@ class MyApp extends StatelessWidget {
             }
           },
         ),
+        routes: {
+          '/profile': (context) => ProfileView(),
+        },
         debugShowCheckedModeBanner: false,
         theme: theme);
   }

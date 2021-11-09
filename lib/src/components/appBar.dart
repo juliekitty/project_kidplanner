@@ -36,12 +36,14 @@ Widget appBar(context, textTheme, appBarTitle) {
       _buildParticipantScore(),
       IconButton(
         icon: const Icon(Icons.person),
+        color: (ModalRoute.of(context)?.settings.name != '/profile')
+            ? Colors.white
+            : Colors.cyan[900],
         tooltip: tr('Profile_PageTitle'),
         onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => ProfileView()),
-          );
+          if (ModalRoute.of(context)?.settings.name != '/profile') {
+            Navigator.pushNamed(context, '/profile');
+          }
         },
       ),
     ],
