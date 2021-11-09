@@ -50,7 +50,7 @@ class _ProfileViewState extends State<ProfileView> with AlertDialogs {
               user = data;
               globals.currentParticipant = user;
 
-              debugMode = (user.name == 'Julie');
+              debugMode = (user.name == 'JulieTEMP');
               // print(user);
             }
             return Scaffold(
@@ -97,38 +97,41 @@ class _ProfileViewState extends State<ProfileView> with AlertDialogs {
                           ],
                         ),
                       ),
-                      Container(
-                        decoration: globals.profileListBoxDecoration,
-                        padding: profileListPadding,
-                        child: Column(
-                          children: <Widget>[
-                            Row(
-                              children: <Widget>[
-                                Expanded(
-                                    child: const Text('Profile_Programs_label')
-                                        .tr()),
-                                IconButton(
-                                  icon: Icon(
-                                    Icons.keyboard_arrow_right,
-                                    size: Theme.of(context).iconTheme.size,
-                                  ),
-                                  onPressed: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => ProgramListView(),
-                                        settings: RouteSettings(
-                                          arguments: user,
+                      if (debugMode)
+                        Container(
+                          decoration: globals.profileListDebugBoxDecoration,
+                          padding: profileListPadding,
+                          child: Column(
+                            children: <Widget>[
+                              Row(
+                                children: <Widget>[
+                                  Expanded(
+                                      child:
+                                          const Text('Profile_Programs_label')
+                                              .tr()),
+                                  IconButton(
+                                    icon: Icon(
+                                      Icons.keyboard_arrow_right,
+                                      size: Theme.of(context).iconTheme.size,
+                                    ),
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              ProgramListView(),
+                                          settings: RouteSettings(
+                                            arguments: user,
+                                          ),
                                         ),
-                                      ),
-                                    );
-                                  },
-                                )
-                              ],
-                            ),
-                          ],
+                                      );
+                                    },
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
                       if (debugMode)
                         Container(
                           decoration: globals.profileListDebugBoxDecoration,
@@ -205,7 +208,7 @@ class _ProfileViewState extends State<ProfileView> with AlertDialogs {
                         ),
                       if (debugMode)
                         Container(
-                          decoration: globals.profileListBoxDecoration,
+                          decoration: globals.profileListDebugBoxDecoration,
                           padding: profileListPadding,
                           child: Column(
                             children: <Widget>[
