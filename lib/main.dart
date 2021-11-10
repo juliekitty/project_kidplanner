@@ -17,7 +17,6 @@ import 'package:project_kidplanner/views/splashScreenView.dart';
 import 'package:project_kidplanner/src/components/appBar.dart';
 import 'package:project_kidplanner/src/components/fab.dart';
 import 'package:project_kidplanner/src/components/bottomMenu.dart';
-import 'package:project_kidplanner/src/components/AlertDialogs.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,8 +36,6 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
-
-  final Future _initFuture = Init.initialize();
 
   @override
   Widget build(BuildContext context) {
@@ -66,18 +63,13 @@ class MyApp extends StatelessWidget {
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,
-        home: FutureBuilder(
-          future: _initFuture,
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.done) {
-              return const LayoutView();
-            } else {
-              return SplashScreen();
-            }
-          },
-        ),
+        initialRoute: '/',
         routes: {
+          '/': (context) => LayoutView(),
           '/profile': (context) => ProfileView(),
+          '/CountDownTimer': (context) => CountDownTimer(),
+          '/Advices': (context) => AdvicesView(),
+          '/BonusTasksView': (context) => BonusTasksView(),
         },
         debugShowCheckedModeBanner: false,
         theme: theme);
@@ -92,47 +84,24 @@ class LayoutView extends StatefulWidget {
 }
 
 class _LayoutViewState extends State<LayoutView> {
-  int _selectedScreenIndex = 0;
-  final List _screens = [
-    {"screen": HomePage(), "title": tr('General_appName')},
-    {"screen": CountDownTimer(), "title": tr('Countdown_PageTitle')},
-    {"screen": ProfileView(), "title": tr('Profile_PageTitle')},
-    {"screen": AdvicesView(), "title": tr('Advices_PageTitle')},
-    {"screen": BonusTasksView(), "title": tr('Bonus_PageTitle')}
-  ];
-
-  final GlobalKey<FormState> _keyDialogForm = GlobalKey<FormState>();
+  final Future _initFuture = Init.initialize();
 
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration.zero, () {
-      if (globals.currentParticipant.name == null ||
-          globals.currentParticipant.name == '') {
-        AlertDialogs.askNameDialog(context, _keyDialogForm, setState);
-      }
-    });
-  }
-
-  void _selectScreen(int index) {
-    setState(() {
-      _selectedScreenIndex = index;
-    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: appBar(context, Theme.of(context).textTheme,
-          _screens[_selectedScreenIndex]["title"]) as PreferredSizeWidget?,
-      body: Container(
-        color: Colors.yellow[100]!.withOpacity(0.3),
-        child: _screens[_selectedScreenIndex]["screen"],
-      ),
-      extendBody: true,
-      bottomNavigationBar: returnBottomNav(_selectedScreenIndex, _selectScreen),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: returnFab(context),
+    return FutureBuilder(
+      future: _initFuture,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+          return HomePage();
+        } else {
+          return SplashScreen();
+        }
+      },
     );
   }
 }

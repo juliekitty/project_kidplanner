@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-Widget returnBottomNav(_selectedScreenIndex, _selectScreen) {
+Widget returnBottomNav(context) {
+  final List routes = ['/', '/CountDownTimer'];
+  int _selectedScreenIndex = 0;
+
+  void _selectScreen(int index) {
+    Navigator.pushNamed(context, routes[index]);
+  }
+
   return BottomAppBar(
     shape: const CircularNotchedRectangle(),
     color: Colors.amber,
