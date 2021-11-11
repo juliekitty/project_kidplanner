@@ -1,15 +1,14 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:project_kidplanner/src/classes/program.dart';
 import 'package:project_kidplanner/src/classes/programStep.dart';
-
 import 'package:project_kidplanner/src/components/appBar.dart';
 import 'package:project_kidplanner/src/libraries/globals.dart' as globals;
 import 'package:project_kidplanner/views/profile/programStepEdit.dart';
 
 class ProgramStepsListView extends StatefulWidget {
+  const ProgramStepsListView({Key? key}) : super(key: key);
+
   @override
   ProgramStepsListViewState createState() => ProgramStepsListViewState();
 }
@@ -48,7 +47,7 @@ class ProgramStepsListViewState extends State<ProgramStepsListView> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => ProgramStepEditView(),
+                        builder: (context) => const ProgramStepEditView(),
                         settings: RouteSettings(
                           arguments: [step, program],
                         ),
@@ -180,7 +179,7 @@ class ProgramStepsListViewState extends State<ProgramStepsListView> {
     */
 
     if (program == null) {
-      return Container(child: const Text('No program found'));
+      return const Text('No program found');
     }
 
     return Scaffold(
@@ -225,7 +224,7 @@ class ProgramStepsListViewState extends State<ProgramStepsListView> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => ProgramStepEditView(),
+              builder: (context) => const ProgramStepEditView(),
               settings: RouteSettings(
                 arguments: [program, ProgramStep()],
               ),

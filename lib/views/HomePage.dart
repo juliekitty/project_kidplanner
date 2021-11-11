@@ -57,7 +57,7 @@ Widget cardCarousel(
 
   return Padding(
     padding: const EdgeInsets.all(8.0),
-    child: Container(
+    child: SizedBox(
       width: MediaQuery.of(context).size.width * 0.75,
       child: GestureDetector(
         onTap: onTap,
@@ -88,7 +88,7 @@ Widget cardCarousel(
               ), //
               Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: Container(
+                child: SizedBox(
                   width: 70,
                   height: 70,
                   child: SvgPicture.asset(
@@ -215,7 +215,7 @@ class _HomePageState extends State<HomePage> {
                     title: tr('HP_Carousel_Bonus_TasksTitle'),
                     descrText: tr('HP_Carousel_Bonus_TasksDescr'),
                     picture: 'assets/images/requirement.svg',
-                    route: BonusTasksView(),
+                    route: const BonusTasksView(),
                   ),
                   cardCarousel(
                     context: context,
@@ -223,7 +223,7 @@ class _HomePageState extends State<HomePage> {
                     title: tr('HP_Carousel_Bonus_AdvicesTitle'),
                     descrText: tr('HP_Carousel_Bonus_AdvicesDescr'),
                     picture: 'assets/images/read.svg',
-                    route: AdvicesView(),
+                    route: const AdvicesView(),
                   ),
                 ],
               ),
@@ -250,7 +250,7 @@ class _HomePageState extends State<HomePage> {
                       title: tr('HP_Carousel_Games_GamesTitle'),
                       descrText: tr('HP_Carousel_Games_GamesDescr'),
                       picture: 'assets/images/game-console.svg',
-                      route: GamePage(),
+                      route: const GamePage(),
                       costPoints: 500),
                 ],
               ),

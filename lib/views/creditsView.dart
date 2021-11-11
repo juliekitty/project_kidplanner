@@ -1,10 +1,12 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
-import 'package:webview_flutter/webview_flutter.dart';
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:webview_flutter/webview_flutter.dart';
+
 class CreditsRoute extends StatefulWidget {
+  const CreditsRoute({Key? key}) : super(key: key);
+
   @override
   _CreditsRouteState createState() => _CreditsRouteState();
 }
@@ -33,6 +35,8 @@ class WebViewLoadUI extends State<WebViewLoad> {
 }
 
 class WebViewLoad extends StatefulWidget {
+  const WebViewLoad({Key? key}) : super(key: key);
+
   @override
   WebViewLoadUI createState() => WebViewLoadUI();
 }
@@ -44,7 +48,7 @@ class _CreditsRouteState extends State<CreditsRoute> {
       appBar: AppBar(
         title: const Text("Credits"),
       ),
-      body: WebViewLoad(),
+      body: const WebViewLoad(),
     );
   }
 }

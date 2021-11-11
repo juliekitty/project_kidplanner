@@ -1,9 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:project_kidplanner/src/classes/user.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/services.dart';
-import 'package:project_kidplanner/src/libraries/globals.dart' as globals;
 import 'dart:math';
+
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:project_kidplanner/src/classes/user.dart';
+import 'package:project_kidplanner/src/libraries/globals.dart' as globals;
 
 mixin AlertDialogs {
   static Future<void> askNameDialog(context, _keyDialogForm, setState) async {

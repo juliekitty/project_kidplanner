@@ -1,16 +1,18 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:project_kidplanner/src/components/appBar.dart';
 import 'package:project_kidplanner/src/libraries/globals.dart' as globals;
 
 class AdvicesView extends StatelessWidget {
+  const AdvicesView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     var maxIndex = 0;
     return Scaffold(
       appBar:
-          appBar(context, Theme.of(context).textTheme, tr('Advices_PageTitle')) as PreferredSizeWidget?,
+          appBar(context, Theme.of(context).textTheme, tr('Advices_PageTitle'))
+              as PreferredSizeWidget?,
       body: Container(
         color: Colors.yellow[100]!.withOpacity(0.3),
         child: PageView(

@@ -1,13 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:project_kidplanner/src/classes/program.dart';
 import 'package:project_kidplanner/src/classes/programStep.dart';
-
 import 'package:project_kidplanner/src/components/appBar.dart';
 
 class ProgramStepEditView extends StatefulWidget {
+  const ProgramStepEditView({Key? key}) : super(key: key);
+
   @override
   State<ProgramStepEditView> createState() => _ProgramStepEditViewState();
 }
@@ -70,8 +70,6 @@ class _ProgramStepEditViewState extends State<ProgramStepEditView> {
                         );
                         setState(() {
                           program.updateStepDuration(step, value);
-
-                          
                         });
                         Navigator.pop(context);
 

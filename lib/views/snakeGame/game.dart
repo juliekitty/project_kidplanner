@@ -3,16 +3,17 @@ import 'dart:math';
 
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:project_kidplanner/src/components/appBar.dart';
+import 'package:project_kidplanner/src/libraries/globals.dart' as globals;
 
 import 'control_panel.dart';
 import 'direction.dart';
 import 'direction_type.dart';
 import 'piece.dart';
 
-import 'package:project_kidplanner/src/components/appBar.dart';
-import 'package:project_kidplanner/src/libraries/globals.dart' as globals;
-
 class GamePage extends StatefulWidget {
+  const GamePage({Key? key}) : super(key: key);
+
   @override
   _GamePageState createState() => _GamePageState();
 }

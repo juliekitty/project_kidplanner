@@ -12,7 +12,7 @@ Widget returnFab(context) {
     onPressed: () {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => BonusTasksView()),
+        MaterialPageRoute(builder: (context) => const BonusTasksView()),
       );
     },
   );

@@ -1,10 +1,10 @@
-import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:project_kidplanner/src/classes/user.dart';
-
 import 'package:project_kidplanner/src/components/appBar.dart';
 
 class ProgramCreateView extends StatelessWidget {
+  const ProgramCreateView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final Participant user =

@@ -1,15 +1,14 @@
 import 'dart:async';
-import 'package:audioplayers/audioplayers.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter/material.dart';
-import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 
-import 'package:project_kidplanner/src/components/appBar.dart';
+import 'package:audioplayers/audioplayers.dart';
+import 'package:circular_countdown_timer/circular_countdown_timer.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
 import 'package:project_kidplanner/src/classes/customScrollPhysics.dart';
 import 'package:project_kidplanner/src/classes/program.dart';
-import 'package:project_kidplanner/src/libraries/programsData.dart';
+import 'package:project_kidplanner/src/components/appBar.dart';
 import 'package:project_kidplanner/src/libraries/globals.dart' as globals;
+import 'package:project_kidplanner/src/libraries/programsData.dart';
 
 //
 //  global variables
@@ -69,6 +68,8 @@ List<Widget?> initStepsWidgetsList(_screens, context, _controller) {
 }
 
 class ProgramDetailsView extends StatefulWidget {
+  const ProgramDetailsView({Key? key}) : super(key: key);
+
   @override
   _ProgramDetailsViewState createState() => _ProgramDetailsViewState();
 }
@@ -241,8 +242,8 @@ class _ProgramDetailsViewState extends State<ProgramDetailsView> {
         } else {
           return Container(
             color: Colors.yellow[100],
-            child: Center(
-              child: Container(child: const CircularProgressIndicator()),
+            child: const Center(
+              child: CircularProgressIndicator(),
             ),
           );
         }

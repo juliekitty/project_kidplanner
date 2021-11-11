@@ -1,22 +1,13 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:project_kidplanner/src/classes/user.dart';
-import 'package:project_kidplanner/src/libraries/globals.dart' as globals;
-
-import 'package:easy_localization/easy_localization.dart';
-
 import 'package:project_kidplanner/src/classes/init.dart';
-
-import 'package:project_kidplanner/views/HomePage.dart';
-import 'package:project_kidplanner/views/profileView.dart';
 import 'package:project_kidplanner/views/CountDownTimerView.dart';
+import 'package:project_kidplanner/views/HomePage.dart';
 import 'package:project_kidplanner/views/advicesView.dart';
 import 'package:project_kidplanner/views/bonusTasksView.dart';
+import 'package:project_kidplanner/views/profileView.dart';
 import 'package:project_kidplanner/views/splashScreenView.dart';
-
-import 'package:project_kidplanner/src/components/appBar.dart';
-import 'package:project_kidplanner/src/components/fab.dart';
-import 'package:project_kidplanner/src/components/bottomMenu.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,12 +21,12 @@ void main() async {
         supportedLocales: [const Locale('en'), const Locale('fr')],
         path: 'lib/l10n', // <-- change the path of the translation files
         fallbackLocale: const Locale('en'),
-        child: MyApp()),
+        child: const MyApp()),
   );
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -65,11 +56,11 @@ class MyApp extends StatelessWidget {
         locale: context.locale,
         initialRoute: '/',
         routes: {
-          '/': (context) => LayoutView(),
-          '/profile': (context) => ProfileView(),
-          '/CountDownTimer': (context) => CountDownTimer(),
-          '/Advices': (context) => AdvicesView(),
-          '/BonusTasksView': (context) => BonusTasksView(),
+          '/': (context) => const LayoutView(),
+          '/profile': (context) => const ProfileView(),
+          '/CountDownTimer': (context) => const CountDownTimer(),
+          '/Advices': (context) => const AdvicesView(),
+          '/BonusTasksView': (context) => const BonusTasksView(),
         },
         debugShowCheckedModeBanner: false,
         theme: theme);
@@ -97,9 +88,9 @@ class _LayoutViewState extends State<LayoutView> {
       future: _initFuture,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
-          return HomePage();
+          return const HomePage();
         } else {
-          return SplashScreen();
+          return const SplashScreen();
         }
       },
     );

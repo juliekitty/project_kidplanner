@@ -1,12 +1,13 @@
 import 'package:audioplayers/audioplayers.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:duration_picker/duration_picker.dart';
-import 'package:project_kidplanner/src/libraries/globals.dart' as globals;
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
 import 'package:project_kidplanner/src/components/appBar.dart';
+import 'package:project_kidplanner/src/libraries/globals.dart' as globals;
 
 class CountDownTimer extends StatefulWidget {
+  const CountDownTimer({Key? key}) : super(key: key);
+
   @override
   _CountDownTimerState createState() => _CountDownTimerState();
 }

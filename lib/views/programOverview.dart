@@ -1,16 +1,12 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-
-import 'package:time/time.dart';
 import 'package:date_time_format/date_time_format.dart';
-
-import 'package:project_kidplanner/src/components/appBar.dart';
-import 'package:project_kidplanner/src/libraries/programsData.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
 import 'package:project_kidplanner/src/classes/program.dart';
-import 'package:project_kidplanner/views/programDetails.dart';
+import 'package:project_kidplanner/src/components/appBar.dart';
 import 'package:project_kidplanner/src/libraries/globals.dart' as globals;
+import 'package:project_kidplanner/src/libraries/programsData.dart';
+import 'package:project_kidplanner/views/programDetails.dart';
+import 'package:time/time.dart';
 
 String timeReady(Program program) {
   DateTime ready = DateTime.now() + program.getDuration();
@@ -94,7 +90,7 @@ class ProgramView extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => ProgramDetailsView(),
+              builder: (context) => const ProgramDetailsView(),
               settings: RouteSettings(
                 arguments: program.programId,
               ),

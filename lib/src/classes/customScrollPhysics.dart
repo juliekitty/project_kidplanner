@@ -1,7 +1,7 @@
 // ignore: file_names
-import 'package:flutter/widgets.dart';
-// ignore: file_names
 import 'package:flutter/material.dart';
+// ignore: file_names
+import 'package:flutter/widgets.dart';
 
 // ignore: must_be_immutable
 class CustomLockScrollPhysics extends ScrollPhysics {

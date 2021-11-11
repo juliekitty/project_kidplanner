@@ -1,9 +1,10 @@
 library project_kidplanner.globals;
 
-import 'package:project_kidplanner/src/classes/user.dart';
-import 'programsData.dart' as programsData;
-import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter/material.dart';
+import 'package:project_kidplanner/src/classes/user.dart';
+
+import 'programsData.dart' as programsData;
 
 // Participant and Programs
 

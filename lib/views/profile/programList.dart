@@ -1,18 +1,17 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:project_kidplanner/src/classes/program.dart';
 import 'package:project_kidplanner/src/classes/user.dart';
-
 import 'package:project_kidplanner/src/components/appBar.dart';
 import 'package:project_kidplanner/src/libraries/globals.dart' as globals;
-import 'package:project_kidplanner/views/profile/programCreate.dart';
-import 'package:project_kidplanner/views/profile/programStepsList.dart';
 import 'package:project_kidplanner/src/libraries/programsData.dart'
     as programsData;
+import 'package:project_kidplanner/views/profile/programCreate.dart';
+import 'package:project_kidplanner/views/profile/programStepsList.dart';
 
 class ProgramListView extends StatelessWidget {
+  const ProgramListView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     // Participant.deleteParticipant(1);
@@ -93,7 +92,7 @@ class ProgramListView extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ProgramStepsListView(),
+                    builder: (context) => const ProgramStepsListView(),
                     settings: RouteSettings(
                       arguments: program.programId,
                     ),
@@ -152,7 +151,7 @@ class ProgramListView extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => ProgramCreateView(),
+              builder: (context) => const ProgramCreateView(),
               settings: RouteSettings(
                 arguments: user,
               ),

@@ -1,15 +1,11 @@
-import 'package:flutter/widgets.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:easy_localization/easy_localization.dart';
-
-import 'package:time/time.dart';
 import 'package:date_time_format/date_time_format.dart';
-import 'package:project_kidplanner/src/libraries/bonusTasksData.dart';
-
-import 'package:project_kidplanner/src/components/appBar.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
 import 'package:project_kidplanner/src/classes/program.dart';
+import 'package:project_kidplanner/src/components/appBar.dart';
+import 'package:project_kidplanner/src/libraries/bonusTasksData.dart';
 import 'package:project_kidplanner/src/libraries/globals.dart' as globals;
+import 'package:time/time.dart';
 
 String timeReady(Program program) {
   DateTime ready = DateTime.now() + program.getDuration();
@@ -17,6 +13,8 @@ String timeReady(Program program) {
 }
 
 class BonusTasksView extends StatefulWidget {
+  const BonusTasksView({Key? key}) : super(key: key);
+
   @override
   _BonusTasksViewState createState() => _BonusTasksViewState();
 }

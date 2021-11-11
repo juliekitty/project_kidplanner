@@ -1,18 +1,18 @@
-import 'package:flutter/widgets.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:project_kidplanner/src/classes/user.dart';
-import 'package:easy_localization/easy_localization.dart';
-
+import 'package:project_kidplanner/src/components/AlertDialogs.dart';
 import 'package:project_kidplanner/src/components/appBar.dart';
 import 'package:project_kidplanner/src/libraries/globals.dart' as globals;
 import 'package:project_kidplanner/views/HomePage.dart';
 import 'package:project_kidplanner/views/creditsView.dart';
 import 'package:project_kidplanner/views/profile/programList.dart';
-import 'package:project_kidplanner/src/components/AlertDialogs.dart';
 
 const profileListPadding = EdgeInsets.fromLTRB(15.0, 12.5, 25.0, 12.5);
 
 class ProfileView extends StatefulWidget {
+  const ProfileView({Key? key}) : super(key: key);
+
   @override
   _ProfileViewState createState() => _ProfileViewState();
 }
@@ -119,7 +119,7 @@ class _ProfileViewState extends State<ProfileView> with AlertDialogs {
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) =>
-                                              ProgramListView(),
+                                              const ProgramListView(),
                                           settings: RouteSettings(
                                             arguments: user,
                                           ),
@@ -178,7 +178,8 @@ class _ProfileViewState extends State<ProfileView> with AlertDialogs {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => CreditsRoute()),
+                                          builder: (context) =>
+                                              const CreditsRoute()),
                                     );
                                   },
                                 )
@@ -226,7 +227,8 @@ class _ProfileViewState extends State<ProfileView> with AlertDialogs {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => HomePage(),
+                                          builder: (context) =>
+                                              const HomePage(),
                                           settings: RouteSettings(
                                             arguments: user,
                                           ),
@@ -255,8 +257,8 @@ class _ProfileViewState extends State<ProfileView> with AlertDialogs {
           } else {
             return Container(
               color: Colors.yellow[100],
-              child: Center(
-                child: Container(child: const CircularProgressIndicator()),
+              child: const Center(
+                child: CircularProgressIndicator(),
               ),
             );
           }
