@@ -1,4 +1,4 @@
-package com.example.project_kidplanner
+package julielandry.projectKidplanner
 
 import io.flutter.embedding.android.FlutterActivity
 
