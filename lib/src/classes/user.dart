@@ -22,7 +22,7 @@ class Participant extends User {
   List<Program?>? programs;
   int? score;
 
-  Participant({id, name, this.score, programs}) : super(id, name);
+  Participant({id, name, this.score, this.programs}) : super(id, name);
 
   int? addToScore(int addedPoints) {
     if (score != null) score = score! + addedPoints;
@@ -141,11 +141,22 @@ class Participant extends User {
 
     // Convert the List<Map<String, dynamic> into a List<Participant>.
     return List.generate(maps.length, (i) {
+      var programsDecoded = jsonDecode(maps[i]['programs']);
+      List<Program?> programsAsPrograms = [];
+      for (var i = 0; i < programsDecoded.length; i++) {
+        programsAsPrograms.add(Program(
+          programsDecoded[i]["programId"],
+          programsDecoded[i]["title"],
+          programsDecoded[i]["descr"],
+          programsDecoded[i]["steps"] ?? [], // use empty array temporary
+        ));
+      }
+
       return Participant(
         id: maps[i]['id'],
         name: maps[i]['name'],
         score: maps[i]['score'],
-        programs: maps[i]['programs'],
+        programs: programsAsPrograms,
       );
     });
   }
@@ -186,13 +197,22 @@ class Participant extends User {
     // print('getParticipant ${maps[0].runtimeType} ${maps[0]} ');
 
     var programsDecoded = jsonDecode(maps[0]['programs']);
+    List<Program?> programsAsPrograms = [];
+    for (var i = 0; i < programsDecoded.length; i++) {
+      programsAsPrograms.add(Program(
+        programsDecoded[i]["programId"],
+        programsDecoded[i]["title"],
+        programsDecoded[i]["descr"],
+        programsDecoded[i]["steps"] ?? [], // use empty array temporary
+      ));
+    }
 
     debugPrint('Participant ID found in DB, return Participant');
     return Participant(
       id: maps[0]['id'],
       name: maps[0]['name'],
       score: maps[0]['score'],
-      programs: programsDecoded,
+      programs: programsAsPrograms,
     );
   }
 
