@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:project_kidplanner/src/classes/programStep.dart';
 import 'package:project_kidplanner/src/classes/user.dart';
 
@@ -28,6 +29,10 @@ class Program {
       sumDuration += step.duration;
     }
     return sumDuration;
+  }
+
+  dynamic clone() {
+    return Program(programId, title, descr, steps);
   }
 
   static remove(List<Program?>? programs, String /*!*/ programId) {
@@ -80,9 +85,8 @@ class Program {
 /// Find a program in the list using firstWhere method.
 Program? findProgramUsingFirstWhere(
     List<Program?> programs, String? programId) {
-  final program = programs
-      .firstWhere((element) => element!.programId == programId, orElse: () {
-    return null;
-  });
+  final program =
+      programs.firstWhereOrNull((element) => element!.programId == programId);
+
   return program;
 }

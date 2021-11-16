@@ -23,6 +23,8 @@ void main() async {
         fallbackLocale: const Locale('en'),
         child: const MyApp()),
   );
+  EasyLocalization.logger.enableBuildModes =
+      []; // mute localization error messages
 }
 
 class MyApp extends StatelessWidget {

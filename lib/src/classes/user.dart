@@ -2,9 +2,12 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:project_kidplanner/src/classes/program.dart';
 import 'package:project_kidplanner/src/libraries/globals.dart' as globals;
+import 'package:project_kidplanner/src/libraries/programsData.dart'
+    as programsData;
 import 'package:sqflite/sqflite.dart';
 
 abstract class User {
@@ -16,13 +19,14 @@ abstract class User {
 // Participant
 class Participant extends User {
   // programs that the user have access to
-  List<Program?>? programs; // TODO implement Participant.programs
+  List<Program?>? programs;
   int? score;
 
   Participant({id, name, this.score, programs}) : super(id, name);
 
   int? addToScore(int addedPoints) {
     if (score != null) score = score! + addedPoints;
+    debugPrint('--- insertParticipant from addToScore');
     insertParticipant(this);
     globals.userNotifier.value = score;
     AudioCache player = AudioCache(
@@ -53,15 +57,45 @@ class Participant extends User {
 
   @override
   String toString() {
-    return 'Participant{id: $id, name: $name, score: $score, programs: $programs}';
+    return 'Participant{id: $id, name: $name, score: $score, programs: ${jsonEncode(programs)}}';
   }
 
   Future<Participant> currentUser() async {
     // TODO implement with last ID stored in local storage
     // print('getAllParticipants');
     // print(await Participant.getAllParticipants());
-    // print('FORCE Use participant ID 1');
+    debugPrint('FORCE Use participant ID 1');
     return await Participant.getParticipant(1);
+  }
+
+  /*
+    Create a new participant
+    with 1 as ID
+    with the default programs
+    width the name passed as argument
+  */
+  Participant initParticipant({name = ''}) {
+    // TODO generate Identifier for new User in DB
+    Participant newParticipant = Participant(
+        id: 1, name: name, score: 0, programs: programsData.programs);
+    debugPrint('------ initParticipant using default programs: ');
+    debugPrint(jsonEncode(newParticipant.programs));
+    Participant().insertParticipant(newParticipant);
+    return newParticipant;
+  }
+
+  /*
+    Create a new participant
+    with 1 as ID
+    with the default programs
+    width the name passed as argument
+  */
+  static Future<void> logout() async {
+    debugPrint('------ LOGOUT & delete participant');
+    final Participant currentUser = await Participant().currentUser();
+    globals.currentParticipant.name = '';
+    // DEBUG
+    Participant.deleteParticipant(1);
   }
 
   // SQ Lite functions
@@ -80,10 +114,16 @@ class Participant extends User {
 
   Future<void> insertParticipant(Participant participant) async {
     final Database db = await openSQLiteDatabase();
-
+    debugPrint(
+        '------ insertParticipant programs ${jsonEncode(participant.programs)}');
     var requestResult = await Participant.getParticipant(participant.id);
     if (requestResult == globals.exampleParticipant) {
-      // print('insertParticipant ${participant.toString()}');
+      // if getParticipant returns exampleParticipant, this means
+      // the user ID was not found and the user must be created
+      debugPrint('insertParticipant asString ${participant.toString()}');
+      debugPrint(
+          'insertParticipant programs ${jsonEncode(participant.programs)}');
+
       await db.insert(
         'participants',
         participant.toMap(),
@@ -147,6 +187,7 @@ class Participant extends User {
 
     var programsDecoded = jsonDecode(maps[0]['programs']);
 
+    debugPrint('Participant ID found in DB, return Participant');
     return Participant(
       id: maps[0]['id'],
       name: maps[0]['name'],

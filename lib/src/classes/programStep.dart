@@ -38,12 +38,12 @@ class ProgramStep {
   Map<String, dynamic> toJson() {
     return {
       'id': id,
-      'duration': duration,
+      'duration': duration.toString(),
       'widget': widget,
       'picture': picture,
       'animation': animation,
       'points': points,
-      'done': done,
+      'done': done.toString(),
     };
   }
 

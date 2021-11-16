@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:easy_localization/easy_localization.dart';
@@ -22,9 +23,10 @@ mixin AlertDialogs {
                   TextFormField(
                     textAlign: TextAlign.center,
                     onSaved: (val) {
-                      globals.currentParticipant.name = val;
-                      Participant()
-                          .insertParticipant(globals.currentParticipant);
+                      globals.currentParticipant =
+                          Participant().initParticipant(name: val);
+                      debugPrint('globals.currentParticipant ' +
+                          jsonEncode(globals.currentParticipant.programs));
                       setState(() {});
                     },
                     decoration: InputDecoration(

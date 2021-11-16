@@ -183,7 +183,7 @@ class ProgramStepsListViewState extends State<ProgramStepsListView> {
     }
 
     return Scaffold(
-      appBar: appBar(context, Theme.of(context).textTheme, 'Program')
+      appBar: appBar(context, Theme.of(context).textTheme, 'Steps List')
           as PreferredSizeWidget?,
       body: Column(
         //scrollDirection: Axis.vertical,

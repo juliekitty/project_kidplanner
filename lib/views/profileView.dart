@@ -25,7 +25,6 @@ class _ProfileViewState extends State<ProfileView> with AlertDialogs {
   @override
   void initState() {
     super.initState();
-    debugPrint('initState verifyParentDialog');
     Future.delayed(Duration.zero, () {
       return AlertDialogs.verifyParentDialog(context, _keyDialogForm, setState);
     });
@@ -50,8 +49,9 @@ class _ProfileViewState extends State<ProfileView> with AlertDialogs {
               user = data;
               globals.currentParticipant = user;
 
-              debugMode = (user.name == 'JulieTEMP');
-              // print(user);
+              // debugMode = (user.name == 'JulieTEMP');
+              debugMode = true;
+              debugPrint('user data loaded ' + user.toString());
             }
             return Scaffold(
               appBar: appBar(
@@ -223,7 +223,7 @@ class _ProfileViewState extends State<ProfileView> with AlertDialogs {
                                       size: Theme.of(context).iconTheme.size,
                                     ),
                                     onPressed: () {
-                                      globals.currentParticipant.name == '';
+                                      Participant.logout();
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(

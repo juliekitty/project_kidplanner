@@ -4,8 +4,6 @@ import 'package:project_kidplanner/src/classes/program.dart';
 import 'package:project_kidplanner/src/classes/user.dart';
 import 'package:project_kidplanner/src/components/appBar.dart';
 import 'package:project_kidplanner/src/libraries/globals.dart' as globals;
-import 'package:project_kidplanner/src/libraries/programsData.dart'
-    as programsData;
 import 'package:project_kidplanner/views/profile/programCreate.dart';
 import 'package:project_kidplanner/views/profile/programStepsList.dart';
 
@@ -18,9 +16,9 @@ class ProgramListView extends StatelessWidget {
 
     final Participant user =
         ModalRoute.of(context)!.settings.arguments as Participant;
-
+    debugPrint('User' + user.toString());
+    // TODO: why on first load, programs empty?
     final List<Program?>? participantPrograms = user.programs;
-    // programsData.programs
 
     Widget createTile(context, Program /*!*/ program) {
       return Dismissible(
@@ -79,7 +77,10 @@ class ProgramListView extends StatelessWidget {
             shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(20))),
             title: Text(
-              tr(program.title),
+              tr(program.title) +
+                  ' (' +
+                  program.steps.length.toString() +
+                  ' Steps)',
               textAlign: TextAlign.left,
               style: Theme.of(context).textTheme.bodyText1,
             ),
@@ -106,7 +107,6 @@ class ProgramListView extends StatelessWidget {
     }
 
     Widget emptyState() {
-      user.programs = programsData.programs;
       Participant.updateParticipant(user);
       return Text('User has no program ${user.toMap()}');
     }

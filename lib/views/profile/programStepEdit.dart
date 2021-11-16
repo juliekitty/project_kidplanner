@@ -23,7 +23,7 @@ class _ProgramStepEditViewState extends State<ProgramStepEditView> {
     final Program program = args[1];
 
     return Scaffold(
-      appBar: appBar(context, Theme.of(context).textTheme, 'Program')
+      appBar: appBar(context, Theme.of(context).textTheme, 'Step Edit')
           as PreferredSizeWidget?,
       body: ListView(
         children: [
