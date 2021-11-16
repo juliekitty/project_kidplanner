@@ -31,6 +31,15 @@ class Program {
     return sumDuration;
   }
 
+  static Program jsonDecodeProgram(json) {
+    return Program(
+      json["programId"],
+      json["title"],
+      json["descr"],
+      json["steps"] ?? [], // use empty array temporary
+    );
+  }
+
   dynamic clone() {
     return Program(programId, title, descr, steps);
   }

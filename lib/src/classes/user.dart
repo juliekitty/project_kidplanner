@@ -142,14 +142,11 @@ class Participant extends User {
     // Convert the List<Map<String, dynamic> into a List<Participant>.
     return List.generate(maps.length, (i) {
       var programsDecoded = jsonDecode(maps[i]['programs']);
+
       List<Program?> programsAsPrograms = [];
+
       for (var i = 0; i < programsDecoded.length; i++) {
-        programsAsPrograms.add(Program(
-          programsDecoded[i]["programId"],
-          programsDecoded[i]["title"],
-          programsDecoded[i]["descr"],
-          programsDecoded[i]["steps"] ?? [], // use empty array temporary
-        ));
+        programsAsPrograms.add(Program.jsonDecodeProgram(programsDecoded[i]));
       }
 
       return Participant(
@@ -199,12 +196,7 @@ class Participant extends User {
     var programsDecoded = jsonDecode(maps[0]['programs']);
     List<Program?> programsAsPrograms = [];
     for (var i = 0; i < programsDecoded.length; i++) {
-      programsAsPrograms.add(Program(
-        programsDecoded[i]["programId"],
-        programsDecoded[i]["title"],
-        programsDecoded[i]["descr"],
-        programsDecoded[i]["steps"] ?? [], // use empty array temporary
-      ));
+      programsAsPrograms.add(Program.jsonDecodeProgram(programsDecoded[i]));
     }
 
     debugPrint('Participant ID found in DB, return Participant');
