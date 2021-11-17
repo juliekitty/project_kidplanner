@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:collection/collection.dart';
 import 'package:project_kidplanner/src/classes/programStep.dart';
 import 'package:project_kidplanner/src/classes/user.dart';
@@ -38,6 +40,31 @@ class Program {
       json["descr"],
       json["steps"] ?? [], // use empty array temporary
     );
+  }
+
+/* 
+Output a json encoded Program 
+*/
+  static String jsonEncodeProgram(program) {
+    Map<String, dynamic> programCopy = {
+      "programId": program.programId,
+      "title": program.title,
+      "descr": program.descr,
+      "steps": ''
+    };
+
+    var tmpSteps = <String>{};
+
+    for (int i = 0; i < program!.steps.length; i++) {
+      tmpSteps.add(jsonEncode(program!.steps[i]));
+    }
+
+    List<String> tmpStepsList =
+        tmpSteps.map((item) => item.toString()).toList();
+
+    programCopy["steps"] = jsonEncode(tmpStepsList);
+
+    return jsonEncode(programCopy);
   }
 
   dynamic clone() {

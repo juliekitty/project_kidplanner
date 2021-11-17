@@ -43,7 +43,7 @@ class Participant extends User {
     List<String> programConverted = [];
     if (programs != null && programs!.isNotEmpty) {
       for (int i = 0; i < programs!.length; i++) {
-        programConverted.add(jsonEncode(programs![i]));
+        programConverted.add(Program.jsonEncodeProgram(programs![i]));
       }
     }
 
