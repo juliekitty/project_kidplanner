@@ -14,6 +14,11 @@ abstract class User {
   String? name;
   int? id;
   User(this.id, this.name);
+
+  @override
+  String toString() {
+    return 'User {id: $id, name: $name}';
+  }
 }
 
 // Participant
@@ -39,21 +44,26 @@ class Participant extends User {
     return score;
   }
 
-  Map<String, dynamic> toMap() {
-    List<String> programConverted = [];
-    if (programs != null && programs!.isNotEmpty) {
-      for (int i = 0; i < programs!.length; i++) {
-        programConverted.add(Program.jsonEncodeProgram(programs![i]));
-      }
-    }
+  factory Participant.fromRawJson(String str) =>
+      Participant.fromJson(json.decode(str));
 
-    return {
-      'id': (id ?? 0),
-      'name': name,
-      'score': (score ?? 0),
-      'programs': programConverted.toString(),
-    };
-  }
+  String toRawJson() => json.encode(toJson());
+
+  factory Participant.fromJson(Map<String, dynamic> json) => Participant(
+        name: json["name"],
+        id: json["id"],
+        score: json["score"],
+        programs: List<Program>.from(
+            json["programs"].map((x) => Program.fromJson(x))),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "name": name,
+        "id": id,
+        "score": score,
+        "programs":
+            jsonEncode(List<dynamic>.from(programs!.map((x) => x!.toJson()))),
+      };
 
   @override
   String toString() {
@@ -91,7 +101,7 @@ class Participant extends User {
     width the name passed as argument
   */
   static Future<void> logout() async {
-    debugPrint('------ LOGOUT & delete participant');
+    debugPrint('------ LOGOUT & delete participant --- debug only');
     final Participant currentUser = await Participant().currentUser();
     globals.currentParticipant.name = '';
     // DEBUG
@@ -126,7 +136,7 @@ class Participant extends User {
 
       await db.insert(
         'participants',
-        participant.toMap(),
+        participant.toJson(),
         conflictAlgorithm: ConflictAlgorithm.replace,
       );
     } else {
@@ -141,19 +151,19 @@ class Participant extends User {
 
     // Convert the List<Map<String, dynamic> into a List<Participant>.
     return List.generate(maps.length, (i) {
-      var programsDecoded = jsonDecode(maps[i]['programs']);
+      List programListDecoded = jsonDecode(maps[i]['programs']);
 
-      List<Program?> programsAsPrograms = [];
+      List<Program?> programList = [];
 
-      for (var i = 0; i < programsDecoded.length; i++) {
-        programsAsPrograms.add(Program.jsonDecodeProgram(programsDecoded[i]));
+      for (var i = 0; i < programListDecoded.length; i++) {
+        programList.add(Program.fromJson(programListDecoded[i]));
       }
 
       return Participant(
         id: maps[i]['id'],
         name: maps[i]['name'],
         score: maps[i]['score'],
-        programs: programsAsPrograms,
+        programs: programList,
       );
     });
   }
@@ -161,7 +171,7 @@ class Participant extends User {
   static Future<void> updateParticipant(Participant participant) async {
     final db = await openSQLiteDatabase();
 
-    var participantMap = participant.toMap();
+    var participantMap = participant.toJson();
 
     // print('updateParticipant ${participant.id} ${participantMap['programs']}');
     // var update =
@@ -193,10 +203,10 @@ class Participant extends User {
 
     // print('getParticipant ${maps[0].runtimeType} ${maps[0]} ');
 
-    var programsDecoded = jsonDecode(maps[0]['programs']);
-    List<Program?> programsAsPrograms = [];
-    for (var i = 0; i < programsDecoded.length; i++) {
-      programsAsPrograms.add(Program.jsonDecodeProgram(programsDecoded[i]));
+    List programListDecoded = jsonDecode(maps[0]['programs']);
+    List<Program?> programList = [];
+    for (var i = 0; i < programListDecoded.length; i++) {
+      programList.add(Program.fromJson(programListDecoded[i]));
     }
 
     debugPrint('Participant ID found in DB, return Participant');
@@ -204,7 +214,7 @@ class Participant extends User {
       id: maps[0]['id'],
       name: maps[0]['name'],
       score: maps[0]['score'],
-      programs: programsAsPrograms,
+      programs: programList,
     );
   }
 

@@ -33,39 +33,24 @@ class Program {
     return sumDuration;
   }
 
-  static Program jsonDecodeProgram(json) {
-    return Program(
-      json["programId"],
-      json["title"],
-      json["descr"],
-      json["steps"] ?? [], // use empty array temporary
-    );
-  }
+  factory Program.fromRawJson(String str) => Program.fromJson(json.decode(str));
 
-/* 
-Output a json encoded Program 
-*/
-  static String jsonEncodeProgram(program) {
-    Map<String, dynamic> programCopy = {
-      "programId": program.programId,
-      "title": program.title,
-      "descr": program.descr,
-      "steps": ''
-    };
+  String toRawJson() => json.encode(toJson());
 
-    var tmpSteps = <String>{};
+  factory Program.fromJson(Map<String, dynamic> json) => Program(
+        json["programId"],
+        json["title"],
+        json["descr"],
+        List<ProgramStep>.from(
+            json["steps"].map((x) => ProgramStep.fromJson(x))),
+      );
 
-    for (int i = 0; i < program!.steps.length; i++) {
-      tmpSteps.add(jsonEncode(program!.steps[i]));
-    }
-
-    List<String> tmpStepsList =
-        tmpSteps.map((item) => item.toString()).toList();
-
-    programCopy["steps"] = jsonEncode(tmpStepsList);
-
-    return jsonEncode(programCopy);
-  }
+  Map<String, dynamic> toJson() => {
+        "programId": programId,
+        "title": title,
+        "descr": descr,
+        "steps": List<dynamic>.from(steps.map((x) => x.toJson())),
+      };
 
   dynamic clone() {
     return Program(programId, title, descr, steps);
@@ -96,25 +81,6 @@ Output a json encoded Program
     steps.removeAt(oldIndex);
 
     Participant.updateParticipant(participant);
-  }
-
-  fromJson(Map<String, dynamic> json) {
-    // print('fromJson');
-    return {
-      programId = json['programId'],
-      title = json['title'],
-      //steps = json['steps'],
-      descr = json['descr'],
-    };
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'programId': programId,
-      'title': title,
-      //'steps': steps,
-      'descr': descr,
-    };
   }
 }
 

@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:project_kidplanner/src/classes/user.dart';
 import 'package:project_kidplanner/src/libraries/globals.dart' as globals;
 
@@ -5,6 +7,10 @@ class Init {
   static Future initialize() async {
     await _registerServices();
     await _loadSettings();
+
+    var appDocDir = await getApplicationDocumentsDirectory();
+    String appDocPath = appDocDir.path;
+    debugPrint('appDocPath ' + appDocPath);
   }
 
   static _registerServices() async {

@@ -16,8 +16,7 @@ class ProgramListView extends StatelessWidget {
 
     final Participant user =
         ModalRoute.of(context)!.settings.arguments as Participant;
-    debugPrint('User' + user.toString());
-    // TODO: why on first load, programs empty?
+
     final List<Program?>? participantPrograms = user.programs;
 
     Widget createTile(context, Program /*!*/ program) {
@@ -108,7 +107,7 @@ class ProgramListView extends StatelessWidget {
 
     Widget emptyState() {
       Participant.updateParticipant(user);
-      return Text('User has no program ${user.toMap()}');
+      return Text('User has no program ${user.toString()}');
     }
 
     Widget programList(participantPrograms, context) {

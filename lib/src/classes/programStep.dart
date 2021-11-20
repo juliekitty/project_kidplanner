@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:project_kidplanner/src/libraries/globals.dart' as globals;
 
 import '../countdown_flutter/countdown_flutter.dart';
 
@@ -23,29 +26,30 @@ class ProgramStep {
       this.points = 0,
       this.done = false});
 
-  fromJson(Map<String, dynamic> json) {
-    return {
-      id = json['id'],
-      duration = json['duration'], // ?
-      widget = json['widget'],
-      picture = json['picture'],
-      animation = json['animation'],
-      points = json['points'],
-      done = json['done'],
-    };
-  }
+  factory ProgramStep.fromRawJson(String str) =>
+      ProgramStep.fromJson(json.decode(str));
 
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'duration': duration.toString(),
-      'widget': widget,
-      'picture': picture,
-      'animation': animation,
-      'points': points,
-      'done': done.toString(),
-    };
-  }
+  String toRawJson() => json.encode(toJson());
+
+  factory ProgramStep.fromJson(Map<String, dynamic> json) => ProgramStep(
+        id: json["id"],
+        duration: globals.parseDuration(json['duration']),
+        widget: json['widget'],
+        picture: json["picture"],
+        animation: json['animation'],
+        points: json['points'],
+        done: json['done'].toLowerCase() == 'true',
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        'duration': duration.toString(),
+        'widget': widget,
+        "picture": picture,
+        'animation': animation,
+        'points': points,
+        'done': done.toString(),
+      };
 
   String displayDuration() {
     return duration.compareTo(const Duration(seconds: 0)) == 0
