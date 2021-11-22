@@ -8,11 +8,11 @@ import 'package:project_kidplanner/src/classes/programStep.dart';
 
 final ProgramStep stepDress = ProgramStep(
     id: 'stepDress',
-    duration: const Duration(seconds: 3),
+    duration: const Duration(minutes: 5),
     picture: "assets/images/clothing.svg");
 final ProgramStep stepBfast = ProgramStep(
     id: 'stepBfast',
-    duration: const Duration(minutes: 7),
+    duration: const Duration(minutes: 15),
     picture: "assets/images/cereal.svg");
 final ProgramStep stepTeeth = ProgramStep(
     id: 'stepTeeth',
@@ -34,24 +34,24 @@ final ProgramStep stepFinished = ProgramStep(
 
 final ProgramStep stepCheckBag = ProgramStep(
     id: 'stepCheckBag',
-    duration: const Duration(seconds: 4),
+    duration: const Duration(minutes: 4),
     picture: 'assets/images/backpack.svg');
 final ProgramStep stepPyjama = ProgramStep(
     id: 'stepPyjama',
-    duration: const Duration(seconds: 4),
+    duration: const Duration(minutes: 4),
     picture: "assets/images/pyjamas.svg");
 final ProgramStep stepTeethNight = ProgramStep(
     id: 'stepTeethNight',
-    duration: const Duration(seconds: 4),
+    duration: const Duration(minutes: 4),
     picture: 'assets/images/eucalyp-brush-teeth.svg',
     animation: 'assets/images/animated/brush-teeth-gif-6.gif');
 final ProgramStep stepToilet = ProgramStep(
     id: 'stepToilet',
-    duration: const Duration(seconds: 4),
+    duration: const Duration(minutes: 4),
     picture: 'assets/images/eucalyp-shower.svg');
 final ProgramStep stepWater = ProgramStep(
     id: 'stepWater',
-    duration: const Duration(seconds: 4),
+    duration: const Duration(minutes: 4),
     picture: "assets/images/water.svg");
 final ProgramStep stepEndBed = ProgramStep(
     id: 'stepEndBed',
@@ -69,15 +69,14 @@ final Program morning = Program(
   stepFinished
 ]);
 
-final Program bedtime =
-    Program('bedtime', 'Programs.bedtime.title', 'Programs.bedtime.introText', [
+final Program bedtime = Program(
+    'bedtime', 'Programs.bedtime.title', 'Programs.bedtime.introText', [
   stepCheckBag,
-  stepEndBed
-  /*stepPyjama,
+  stepPyjama,
   stepTeethNight,
   stepToilet,
   stepWater,
-  stepEndBed*/
+  stepEndBed
 ]);
 
 final List<Program?> programs = [bedtime, morning];

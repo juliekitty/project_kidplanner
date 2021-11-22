@@ -20,7 +20,7 @@ class Program {
   String displayDuration() {
     Duration duration = getDuration();
     return duration.compareTo(const Duration(seconds: 0)) == 0
-        ? ''
+        ? '-'
         : '${duration.inMinutes}:'
             '${(duration.inSeconds % 60).toString().padLeft(2, '0')}';
   }
@@ -63,16 +63,28 @@ class Program {
         .firstWhere((element) => element!.programId == programId, orElse: () {
       return null;
     });
-    programs.remove(program);
+    return programs.remove(program);
   }
 
   removeStep(ProgramStep step) {
     steps.remove(step);
+    return updateProgramSteps(steps);
+  }
+
+  updateProgramSteps(updatedSteps) async {
+    Participant currentUser = await Participant().currentUser();
+    final program = currentUser.programs!
+        .firstWhere((element) => element!.programId == programId, orElse: () {
+      return null;
+    });
+    program!.steps = updatedSteps;
+    Participant.updateParticipant(currentUser);
   }
 
   updateStepDuration(ProgramStep step, Duration newDuration) {
     var index = steps.indexOf(step);
     steps[index].duration = newDuration;
+    updateProgramSteps(steps);
   }
 
   reorderSteps(int oldIndex, int newIndex, Participant participant) {

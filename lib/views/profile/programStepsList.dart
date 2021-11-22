@@ -96,7 +96,9 @@ class ProgramStepsListViewState extends State<ProgramStepsListView> {
         },
         onDismissed: (direction) {
           // Remove the item from the data source.
-          program != null && program.removeStep(step);
+          if (program != null) {
+            program.removeStep(step);
+          }
 
           // Then show a snackbar.
           ScaffoldMessenger.of(context).showSnackBar(
