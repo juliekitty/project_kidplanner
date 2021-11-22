@@ -4,12 +4,16 @@ import 'package:project_kidplanner/src/classes/program.dart';
 import 'package:project_kidplanner/src/classes/user.dart';
 import 'package:project_kidplanner/src/components/appBar.dart';
 import 'package:project_kidplanner/src/libraries/globals.dart' as globals;
-import 'package:project_kidplanner/views/profile/programCreate.dart';
 import 'package:project_kidplanner/views/profile/programStepsList.dart';
 
-class ProgramListView extends StatelessWidget {
+class ProgramListView extends StatefulWidget {
   const ProgramListView({Key? key}) : super(key: key);
 
+  @override
+  State<ProgramListView> createState() => _ProgramListViewState();
+}
+
+class _ProgramListViewState extends State<ProgramListView> {
   @override
   Widget build(BuildContext context) {
     // Participant.deleteParticipant(1);
@@ -88,8 +92,8 @@ class ProgramListView extends StatelessWidget {
                 Icons.keyboard_arrow_right,
                 size: Theme.of(context).iconTheme.size,
               ),
-              onPressed: () {
-                Navigator.push(
+              onPressed: () async {
+                final result = await Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => const ProgramStepsListView(),
@@ -98,6 +102,9 @@ class ProgramListView extends StatelessWidget {
                     ),
                   ),
                 );
+                setState(() {
+                  if (result != null) program.steps = result;
+                });
               },
             ),
           ),
@@ -143,7 +150,7 @@ class ProgramListView extends StatelessWidget {
       appBar: appBar(context, Theme.of(context).textTheme, 'Program')
           as PreferredSizeWidget?,
       body: returnBody(participantPrograms, context),
-      floatingActionButton: FloatingActionButton.extended(
+      /*floatingActionButton: FloatingActionButton.extended(
         label: const Text('General_Create').tr(),
         icon: const Icon(Icons.keyboard_arrow_right),
         onPressed: () {
@@ -157,7 +164,7 @@ class ProgramListView extends StatelessWidget {
             ),
           );
         },
-      ),
+      ),*/
     );
   }
 }

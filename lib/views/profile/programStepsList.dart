@@ -99,7 +99,9 @@ class ProgramStepsListViewState extends State<ProgramStepsListView> {
           if (program != null) {
             program.removeStep(step);
           }
-
+          setState(() {
+            program!.steps.remove(step);
+          });
           // Then show a snackbar.
           ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text(tr('ProgramStep_edit.dismissed'))));
@@ -184,56 +186,72 @@ class ProgramStepsListViewState extends State<ProgramStepsListView> {
       return const Text('No program found');
     }
 
-    return Scaffold(
-      appBar: appBar(context, Theme.of(context).textTheme, 'Steps List')
-          as PreferredSizeWidget?,
-      body: Column(
-        //scrollDirection: Axis.vertical,
-        //shrinkWrap: true,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Text(
-              '${tr('Programs.' + program.programId + '.title')} (${program.displayDuration()})',
-              style: Theme.of(context).textTheme.headline5,
-            ),
-          ),
-          program.steps.isEmpty
-              ? const SizedBox()
-              : SizedBox(
-                  child: ReorderableListView(
-                    buildDefaultDragHandles: true,
-                    scrollDirection: Axis.vertical,
-                    shrinkWrap: true,
-                    //physics: ScrollPhysics(),
-                    onReorder: (int start, int current) {
-                      setState(() {
-                        program.reorderSteps(
-                            start, current, globals.currentParticipant);
-                      });
-                    },
-                    children: <Widget>[
-                      for (var item in program.steps) createCard(context, item)
-                    ],
-                  ),
-                )
-        ],
-      ),
-      floatingActionButton: FloatingActionButton.extended(
-        label: const Text('General_Create').tr(),
-        icon: const Icon(Icons.keyboard_arrow_right),
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const ProgramStepEditView(),
-              settings: RouteSettings(
-                arguments: [program, ProgramStep()],
-              ),
-            ),
-          );
+    return WillPopScope(
+        onWillPop: () async {
+          // in the case back button of Appbar is used
+          Navigator.pop(context, program.steps);
+          return false;
         },
-      ),
-    );
+        child: Scaffold(
+          appBar: appBar(context, Theme.of(context).textTheme, 'Steps List')
+              as PreferredSizeWidget?,
+          body: Column(
+            //scrollDirection: Axis.vertical,
+            //shrinkWrap: true,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Text(
+                  '${tr('Programs.' + program.programId + '.title')} (${program.displayDuration()})',
+                  style: Theme.of(context).textTheme.headline5,
+                ),
+              ),
+              program.steps.isEmpty
+                  ? const SizedBox()
+                  : SizedBox(
+                      child: ReorderableListView(
+                        buildDefaultDragHandles: true,
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        //physics: ScrollPhysics(),
+                        onReorder: (int start, int current) {
+                          setState(() {
+                            program.reorderSteps(
+                                start, current, globals.currentParticipant);
+                          });
+                        },
+                        children: <Widget>[
+                          for (var item in program.steps)
+                            createCard(context, item),
+                        ],
+                      ),
+                    ),
+              Center(
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context, program.steps);
+                  },
+                  child: const Text('Submit'),
+                ),
+              ),
+            ],
+          ),
+          /*floatingActionButton: FloatingActionButton.extended(
+            label: const Text('General_Create').tr(),
+            icon: const Icon(Icons.keyboard_arrow_right),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ProgramStepEditView(),
+                  settings: RouteSettings(
+                    arguments: [program, ProgramStep()],
+                  ),
+                ),
+              );
+            },
+          ),
+          */
+        ));
   }
 }
