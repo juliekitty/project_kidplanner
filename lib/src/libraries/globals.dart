@@ -13,7 +13,7 @@ Participant exampleParticipant =
 
 ValueNotifier<int?> userNotifier = ValueNotifier(currentParticipant.score);
 
-Participant currentParticipant = exampleParticipant;
+Participant currentParticipant = Participant();
 
 // Helpers
 

@@ -57,6 +57,12 @@ class Program {
     return Program(programId, title, descr, steps, picture);
   }
 
+  static saveUpdatedPrograms(updatedPrograms) async {
+    Participant currentUser = await Participant().currentUser();
+    currentUser.programs = updatedPrograms;
+    Participant.saveUpdatedParticipant(currentUser);
+  }
+
   static remove(List<Program?>? programs, String /*!*/ programId) {
     // print('delete it');
 
@@ -64,7 +70,9 @@ class Program {
         .firstWhere((element) => element!.programId == programId, orElse: () {
       return null;
     });
-    return programs.remove(program);
+    programs.remove(program);
+
+    saveUpdatedPrograms(programs);
   }
 
   removeStep(ProgramStep step) {
