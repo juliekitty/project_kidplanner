@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:project_kidplanner/src/classes/program.dart';
+import 'package:project_kidplanner/src/classes/user.dart';
 import 'package:project_kidplanner/src/components/AlertDialogs.dart';
 import 'package:project_kidplanner/src/components/appBar.dart';
 import 'package:project_kidplanner/src/components/bottomMenu.dart';
@@ -122,6 +124,82 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final GlobalKey<FormState> _keyDialogForm = GlobalKey<FormState>();
+  final Future _initFuture = Participant().currentUser();
+
+  Future callAsyncFetch() => Future.delayed(Duration.zero, () {
+        return _initFuture;
+      });
+
+  BoxConstraints carouselConstraints(context) {
+    return BoxConstraints(
+      minHeight: 300, //minimum height
+      minWidth: 300, // minimum width
+
+      maxHeight: 350,
+      //maximum height set to 100% of vertical height
+
+      maxWidth: MediaQuery.of(context).size.width,
+      //maximum width set to 100% of width
+    );
+  }
+
+  Widget returnProgramCarousel() {
+    Participant user = Participant();
+    List colors = [
+      Colors.yellow[600],
+      Colors.cyan[200],
+      Colors.orange,
+    ];
+    return FutureBuilder(
+        future: callAsyncFetch(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            dynamic data = snapshot.data;
+            if (data != null) {
+              user = data;
+              globals.currentParticipant = user;
+
+              // debugMode = (user.name == 'JulieTEMP');
+              debugPrint('user data loaded ' + user.toString());
+              final List<Program?>? participantPrograms = user.programs;
+
+              return Container(
+                  constraints: carouselConstraints(context),
+                  child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      shrinkWrap: true,
+                      children: <Widget>[
+                        for (var program in participantPrograms!)
+                          cardCarousel(
+                              context: context,
+                              color: colors[
+                                  participantPrograms.indexOf(program) % 3],
+                              title: tr(program!.title),
+                              descrText: tr(program.descr),
+                              picture: (program.picture != '')
+                                  ? program.picture
+                                  : 'assets/images/clock.svg',
+                              route: const ProgramView(),
+                              arguments: program.programId),
+                      ]));
+            } else {
+              return Container(
+                color: Colors.yellow[100],
+                child: const Center(
+                  child: CircularProgressIndicator(),
+                ),
+              );
+            }
+          } else {
+            return Container(
+              color: Colors.yellow[100],
+              child: const Center(
+                child: CircularProgressIndicator(),
+              ),
+            );
+          }
+        });
+  }
 
   @override
   void initState() {
@@ -137,17 +215,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    var carouselConstraints = BoxConstraints(
-      minHeight: 300, //minimum height
-      minWidth: 300, // minimum width
-
-      maxHeight: 350,
-      //maximum height set to 100% of vertical height
-
-      maxWidth: MediaQuery.of(context).size.width,
-      //maximum width set to 100% of width
-    );
-
     return Scaffold(
       appBar: appBar(
         context,
@@ -168,31 +235,7 @@ class _HomePageState extends State<HomePage> {
           ),
           Padding(
             padding: const EdgeInsets.fromLTRB(5, 5, 15, 5),
-            child: Container(
-              constraints: carouselConstraints,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                shrinkWrap: true,
-                children: <Widget>[
-                  cardCarousel(
-                      context: context,
-                      color: Colors.yellow[600],
-                      title: tr('HP_Carousel_Routine_MorningTitle'),
-                      descrText: tr('HP_Carousel_Routine_MorningDescr'),
-                      picture: 'assets/images/clock.svg',
-                      route: const ProgramView(),
-                      arguments: 'morning'),
-                  cardCarousel(
-                      context: context,
-                      color: Colors.cyan[200],
-                      title: tr('HP_Carousel_Routine_BedtimeTitle'),
-                      descrText: tr('HP_Carousel_Routine_BedtimeDescr'),
-                      picture: 'assets/images/wake-up.svg',
-                      route: const ProgramView(),
-                      arguments: 'bedtime'),
-                ],
-              ),
-            ),
+            child: returnProgramCarousel(),
           ),
           Padding(
             padding: const EdgeInsets.fromLTRB(15, 20, 15, 5),
@@ -204,7 +247,7 @@ class _HomePageState extends State<HomePage> {
           Padding(
             padding: const EdgeInsets.fromLTRB(5, 5, 15, 5),
             child: Container(
-              constraints: carouselConstraints,
+              constraints: carouselConstraints(context),
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 shrinkWrap: true,
@@ -239,7 +282,7 @@ class _HomePageState extends State<HomePage> {
           Padding(
             padding: const EdgeInsets.fromLTRB(5, 5, 15, 5),
             child: Container(
-              constraints: carouselConstraints,
+              constraints: carouselConstraints(context),
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 shrinkWrap: true,

@@ -6,11 +6,11 @@ import 'package:project_kidplanner/src/classes/user.dart';
 
 class Program {
   // Eigenschaften
-  String programId, title, descr;
+  String programId, title, descr, picture;
   List<ProgramStep> steps;
 
   // Konstruktor
-  Program(this.programId, this.title, this.descr, this.steps);
+  Program(this.programId, this.title, this.descr, this.steps, this.picture);
 
   @override
   String toString() {
@@ -43,6 +43,7 @@ class Program {
         json["descr"],
         List<ProgramStep>.from(
             json["steps"].map((x) => ProgramStep.fromJson(x))),
+        json["picture"] ?? '',
       );
 
   Map<String, dynamic> toJson() => {
@@ -53,7 +54,7 @@ class Program {
       };
 
   dynamic clone() {
-    return Program(programId, title, descr, steps);
+    return Program(programId, title, descr, steps, picture);
   }
 
   static remove(List<Program?>? programs, String /*!*/ programId) {
@@ -68,23 +69,23 @@ class Program {
 
   removeStep(ProgramStep step) {
     steps.remove(step);
-    return updateProgramSteps(steps);
+    return saveUpdatedProgramSteps(steps);
   }
 
-  updateProgramSteps(updatedSteps) async {
+  saveUpdatedProgramSteps(updatedSteps) async {
     Participant currentUser = await Participant().currentUser();
     final program = currentUser.programs!
         .firstWhere((element) => element!.programId == programId, orElse: () {
       return null;
     });
     program!.steps = updatedSteps;
-    Participant.updateParticipant(currentUser);
+    Participant.saveUpdatedParticipant(currentUser);
   }
 
   updateStepDuration(ProgramStep step, Duration newDuration) {
     var index = steps.indexOf(step);
     steps[index].duration = newDuration;
-    updateProgramSteps(steps);
+    saveUpdatedProgramSteps(steps);
   }
 
   reorderSteps(int oldIndex, int newIndex, Participant participant) {
@@ -92,7 +93,7 @@ class Program {
     steps.insert(newIndex, item);
     steps.removeAt(oldIndex);
 
-    Participant.updateParticipant(participant);
+    Participant.saveUpdatedParticipant(participant);
   }
 }
 

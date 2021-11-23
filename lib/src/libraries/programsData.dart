@@ -60,23 +60,32 @@ final ProgramStep stepEndBed = ProgramStep(
 
 // PROGRAMS
 final Program morning = Program(
-    'morning', 'Programs.morning.title', 'Programs.morning.introText', [
-  stepDress,
-  stepBfast,
-  stepTeeth,
-  stepPrepareBag,
-  stepForOutside,
-  stepFinished
-]);
+  'morning',
+  'Programs.morning.title',
+  'Programs.morning.introText',
+  [
+    stepDress,
+    stepBfast,
+    stepTeeth,
+    stepPrepareBag,
+    stepForOutside,
+    stepFinished
+  ],
+  'assets/images/clock.svg',
+);
 
 final Program bedtime = Program(
-    'bedtime', 'Programs.bedtime.title', 'Programs.bedtime.introText', [
-  stepCheckBag,
-  stepPyjama,
-  stepTeethNight,
-  stepToilet,
-  stepWater,
-  stepEndBed
-]);
+    'bedtime',
+    'Programs.bedtime.title',
+    'Programs.bedtime.introText',
+    [
+      stepCheckBag,
+      stepPyjama,
+      stepTeethNight,
+      stepToilet,
+      stepWater,
+      stepEndBed
+    ],
+    'assets/images/wake-up.svg');
 
-final List<Program?> programs = [bedtime, morning];
+final List<Program?> programs = [morning, bedtime];

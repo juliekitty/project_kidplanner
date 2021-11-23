@@ -97,41 +97,39 @@ class _ProfileViewState extends State<ProfileView> with AlertDialogs {
                           ],
                         ),
                       ),
-                      if (debugMode)
-                        Container(
-                          decoration: globals.profileListDebugBoxDecoration,
-                          padding: profileListPadding,
-                          child: Column(
-                            children: <Widget>[
-                              Row(
-                                children: <Widget>[
-                                  Expanded(
-                                      child:
-                                          const Text('Profile_Programs_label')
-                                              .tr()),
-                                  IconButton(
-                                    icon: Icon(
-                                      Icons.keyboard_arrow_right,
-                                      size: Theme.of(context).iconTheme.size,
-                                    ),
-                                    onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              const ProgramListView(),
-                                          settings: RouteSettings(
-                                            arguments: user,
-                                          ),
+                      Container(
+                        decoration: globals.profileListBoxDecoration,
+                        padding: profileListPadding,
+                        child: Column(
+                          children: <Widget>[
+                            Row(
+                              children: <Widget>[
+                                Expanded(
+                                    child: const Text('Profile_Programs_label')
+                                        .tr()),
+                                IconButton(
+                                  icon: Icon(
+                                    Icons.keyboard_arrow_right,
+                                    size: Theme.of(context).iconTheme.size,
+                                  ),
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            const ProgramListView(),
+                                        settings: RouteSettings(
+                                          arguments: user,
                                         ),
-                                      );
-                                    },
-                                  )
-                                ],
-                              ),
-                            ],
-                          ),
+                                      ),
+                                    );
+                                  },
+                                )
+                              ],
+                            ),
+                          ],
                         ),
+                      ),
                       if (debugMode)
                         Container(
                           decoration: globals.profileListDebugBoxDecoration,

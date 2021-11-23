@@ -113,7 +113,7 @@ class _ProgramListViewState extends State<ProgramListView> {
     }
 
     Widget emptyState() {
-      Participant.updateParticipant(user);
+      Participant.saveUpdatedParticipant(user);
       return Text('User has no program ${user.toString()}');
     }
 

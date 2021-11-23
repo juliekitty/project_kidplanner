@@ -140,7 +140,7 @@ class Participant extends User {
         conflictAlgorithm: ConflictAlgorithm.replace,
       );
     } else {
-      await updateParticipant(participant);
+      await saveUpdatedParticipant(participant);
     }
   }
 
@@ -168,12 +168,12 @@ class Participant extends User {
     });
   }
 
-  static Future<void> updateParticipant(Participant participant) async {
+  static Future<void> saveUpdatedParticipant(Participant participant) async {
     final db = await openSQLiteDatabase();
 
     var participantMap = participant.toJson();
 
-    // print('updateParticipant ${participant.id} ${participantMap['programs']}');
+    // print('saveUpdatedParticipant ${participant.id} ${participantMap['programs']}');
     // var update =
     await db.update(
       'participants',
@@ -181,7 +181,7 @@ class Participant extends User {
       where: "id = ?",
       whereArgs: [participant.id],
     );
-    // print('updateParticipant row updated: $update ${await Participant.getParticipant(1)} ');
+    // print('saveUpdatedParticipant row updated: $update ${await Participant.getParticipant(1)} ');
   }
 
   static Future<Participant> getParticipant(int? id) async {
