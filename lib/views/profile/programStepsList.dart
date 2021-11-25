@@ -24,16 +24,16 @@ class ProgramStepsListViewState extends State<ProgramStepsListView> {
     Widget createCard(context, ProgramStep step) {
       return Dismissible(
         direction: DismissDirection.endToStart,
-        key: Key(step.id),
+        key: UniqueKey(),
         child: Card(
-          key: Key(step.id),
+          key: UniqueKey(),
           child: Column(
             children: <Widget>[
               ListTile(
                 tileColor: Colors.white,
                 leading: const Icon(Icons.drag_handle_rounded),
                 title: Text(
-                  tr('Programs.Steps.' + step.id.toString()),
+                  step.stepTitle(),
                   textAlign: TextAlign.left,
                   style: Theme.of(context).textTheme.bodyText2,
                 ),
@@ -43,8 +43,8 @@ class ProgramStepsListViewState extends State<ProgramStepsListView> {
                 ),
                 trailing: TextButton(
                   child: Text(tr('General_Edit')),
-                  onPressed: () {
-                    Navigator.push(
+                  onPressed: () async {
+                    final result = await Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) => const ProgramStepEditView(),
@@ -53,6 +53,9 @@ class ProgramStepsListViewState extends State<ProgramStepsListView> {
                         ),
                       ),
                     );
+                    setState(() {
+                      if (result != null) program = result;
+                    });
                   },
                 ),
               ),
@@ -97,7 +100,7 @@ class ProgramStepsListViewState extends State<ProgramStepsListView> {
         onDismissed: (direction) {
           // Remove the item from the data source.
           if (program != null) {
-            program.removeStep(step);
+            program!.removeStep(step);
           }
           setState(() {
             program!.steps.remove(step);
@@ -108,79 +111,6 @@ class ProgramStepsListViewState extends State<ProgramStepsListView> {
         },
       );
     }
-/*
-    Widget createTile(context, ProgramStep step) {
-      return Dismissible(
-        direction: DismissDirection.endToStart,
-        key: Key(step.id),
-        child: Container(
-          constraints: carouselConstraints,
-          decoration: globals.profileListBoxDecoration,
-          padding: const EdgeInsets.fromLTRB(10, 3, 10, 3),
-          child: ListTile(
-            tileColor: Colors.white,
-            trailing: Icon(Icons.drag_handle_rounded),
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(20))),
-            title: Text(
-              tr('Programs.Steps.' + step.id.toString()),
-              textAlign: TextAlign.left,
-              style: Theme.of(context).textTheme.bodyText1,
-            ),
-            leading: Icon(Icons.star),
-            /*leading: Text(
-              step.displayDuration(),
-              style: Theme.of(context).textTheme.bodyText2,
-            ),*/
-          ),
-        ),
-        background: Container(
-          alignment: Alignment.centerRight,
-          padding: EdgeInsets.fromLTRB(20, 8, 0, 8),
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(0, 1, 10, 1),
-            child: Text(
-              tr('General_DELETE'),
-              style: Theme.of(context)
-                  .textTheme
-                  .headline6!
-                  .copyWith(color: Colors.white),
-            ),
-          ),
-          decoration: BoxDecoration(color: Colors.red),
-        ),
-        confirmDismiss: (DismissDirection direction) async {
-          return await showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return AlertDialog(
-                title: Text(tr('ProgramStep_edit.delete_button')),
-                content: Text(tr('ProgramStep_edit.delete_confirmation')),
-                actions: <Widget>[
-                  TextButton(
-                      onPressed: () => Navigator.of(context).pop(true),
-                      child: Text(tr('General_Delete'))),
-                  TextButton(
-                    onPressed: () => Navigator.of(context).pop(false),
-                    child: Text(tr('General_Cancel')),
-                  ),
-                ],
-              );
-            },
-          );
-        },
-        onDismissed: (direction) {
-          // Remove the item from the data source.
-          // Program.delete(participantPrograms, program.programId);
-
-          // Then show a snackbar.
-          ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(tr('ProgramStep_edit.dismissed'))));
-        },
-      );
-    }
-
-    */
 
     if (program == null) {
       return const Text('No program found');
@@ -189,26 +119,29 @@ class ProgramStepsListViewState extends State<ProgramStepsListView> {
     return WillPopScope(
         onWillPop: () async {
           // in the case back button of Appbar is used
-          Navigator.pop(context, program.steps);
+          Navigator.pop(context, program!.steps);
           return false;
         },
         child: Scaffold(
           appBar: appBar(context, Theme.of(context).textTheme, 'Steps List')
               as PreferredSizeWidget?,
-          body: Column(
-            //scrollDirection: Axis.vertical,
-            //shrinkWrap: true,
+          body: ListView(
+            scrollDirection: Axis.vertical,
+            shrinkWrap: false,
+            key: UniqueKey(),
+            padding: const EdgeInsets.fromLTRB(0, 0, 0, 250),
             children: [
               Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: Text(
-                  '${tr('Programs.' + program.programId + '.title')} (${program.displayDuration()})',
+                  '${tr('Programs.' + program!.programId + '.title')} (${program!.displayDuration()})',
                   style: Theme.of(context).textTheme.headline5,
                 ),
               ),
-              program.steps.isEmpty
+              program!.steps.isEmpty
                   ? const SizedBox()
-                  : SizedBox(
+                  : Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 250),
                       child: ReorderableListView(
                         buildDefaultDragHandles: true,
                         scrollDirection: Axis.vertical,
@@ -216,42 +149,36 @@ class ProgramStepsListViewState extends State<ProgramStepsListView> {
                         //physics: ScrollPhysics(),
                         onReorder: (int start, int current) {
                           setState(() {
-                            program.reorderSteps(
+                            program!.reorderSteps(
                                 start, current, globals.currentParticipant);
                           });
                         },
                         children: <Widget>[
-                          for (var item in program.steps)
+                          for (var item in program!.steps)
                             createCard(context, item),
                         ],
                       ),
                     ),
-              Center(
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.pop(context, program.steps);
-                  },
-                  child: const Text('Submit'),
-                ),
-              ),
             ],
           ),
-          /*floatingActionButton: FloatingActionButton.extended(
+          floatingActionButton: FloatingActionButton.extended(
             label: const Text('General_Create').tr(),
             icon: const Icon(Icons.keyboard_arrow_right),
-            onPressed: () {
-              Navigator.push(
+            onPressed: () async {
+              final result = await Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => const ProgramStepEditView(),
                   settings: RouteSettings(
-                    arguments: [program, ProgramStep()],
+                    arguments: [ProgramStep(), program],
                   ),
                 ),
               );
+              setState(() {
+                if (result != null) program = result;
+              });
             },
           ),
-          */
         ));
   }
 }

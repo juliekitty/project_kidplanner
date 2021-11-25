@@ -102,7 +102,7 @@ class Participant extends User {
   */
   static Future<void> logout() async {
     debugPrint('------ LOGOUT & delete participant --- debug only');
-    final Participant currentUser = await Participant().currentUser();
+    // final Participant currentUser = await Participant().currentUser();
     globals.currentParticipant.name = '';
     // DEBUG
     Participant.deleteParticipant(1);

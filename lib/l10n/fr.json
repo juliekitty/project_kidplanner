@@ -95,6 +95,7 @@
     "delete_confirmation": "Supprimer cette étape ?",
     "delete_button": "Confirmation",
     "duration_label": "Choisir une durée pour l'étape",
+    "title_label": "Choisir un titre pour l'étape",
     "confirm": "Étape enregistrée"
   },
   "verifyParentDialog" : {

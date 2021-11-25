@@ -80,6 +80,11 @@ class Program {
     return saveUpdatedProgramSteps(steps);
   }
 
+  addStep(ProgramStep step) {
+    steps.add(step);
+    return saveUpdatedProgramSteps(steps);
+  }
+
   saveUpdatedProgramSteps(updatedSteps) async {
     Participant currentUser = await Participant().currentUser();
     final program = currentUser.programs!
@@ -90,16 +95,16 @@ class Program {
     Participant.saveUpdatedParticipant(currentUser);
   }
 
-  updateStepDuration(ProgramStep step, Duration newDuration) {
-    var index = steps.indexOf(step);
-    steps[index].duration = newDuration;
+  updateStep(ProgramStep step) {
+    final index = steps.indexWhere((element) => element.id == step.id);
+    steps[index] = step;
     saveUpdatedProgramSteps(steps);
   }
 
   reorderSteps(int oldIndex, int newIndex, Participant participant) {
     var item = steps[oldIndex];
-    steps.insert(newIndex, item);
     steps.removeAt(oldIndex);
+    steps.insert(newIndex, item);
 
     Participant.saveUpdatedParticipant(participant);
   }

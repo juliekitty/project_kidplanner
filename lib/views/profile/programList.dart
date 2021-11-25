@@ -114,7 +114,8 @@ class _ProgramListViewState extends State<ProgramListView> {
 
     Widget emptyState() {
       Participant.saveUpdatedParticipant(user);
-      return Text('User has no program ${user.toString()}');
+      return const Padding(
+          padding: EdgeInsets.all(15.0), child: Text('User has no program.'));
     }
 
     Widget programList(participantPrograms, context) {
@@ -139,7 +140,7 @@ class _ProgramListViewState extends State<ProgramListView> {
     }
 
     Widget returnBody(participantPrograms, context) {
-      if (participantPrograms == null) {
+      if (participantPrograms == null || participantPrograms.length < 1) {
         return emptyState();
       } else {
         return programList(participantPrograms, context);

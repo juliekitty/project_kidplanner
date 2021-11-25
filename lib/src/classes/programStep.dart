@@ -10,7 +10,7 @@ import '../countdown_flutter/countdown_flutter.dart';
 
 class ProgramStep {
   // Eigenschaften
-  String /*!*/ id, picture, animation;
+  String /*!*/ id, picture, animation, userTitle;
   Duration /*!*/ duration;
   Widget? widget;
   bool done;
@@ -22,6 +22,7 @@ class ProgramStep {
       this.duration = const Duration(minutes: 0),
       this.widget,
       this.picture = '',
+      this.userTitle = '',
       this.animation = '',
       this.points = 0,
       this.done = false});
@@ -36,6 +37,7 @@ class ProgramStep {
         duration: globals.parseDuration(json['duration']),
         widget: json['widget'],
         picture: json["picture"],
+        userTitle: json["userTitle"],
         animation: json['animation'],
         points: json['points'],
         done: json['done'].toLowerCase() == 'true',
@@ -46,6 +48,7 @@ class ProgramStep {
         'duration': duration.toString(),
         'widget': widget,
         "picture": picture,
+        "userTitle": userTitle,
         'animation': animation,
         'points': points,
         'done': done.toString(),
@@ -108,7 +111,13 @@ class ProgramStep {
   }
 
   String stepTitle() {
-    return tr('Programs.Steps.' + id);
+    if (userTitle.isNotEmpty) {
+      return userTitle;
+    } else if (id.isNotEmpty) {
+      return tr('Programs.Steps.' + id);
+    } else {
+      return '';
+    }
   }
 
   String stepDescription() {
